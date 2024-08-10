@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: none;
+    box-sizing: border-box;
+}
+
+:root {
+    --tipo--fuente: "Raleway", sans-serif;
+    --tamaño--texto: 18px;
+    --color--fondo: rgba(244, 244, 244, 1);
+    --color--encabezado: rgba(7, 96, 16, 1);
+    --color--blanco: #ffff;
+    --boton-ingresar: rgba(70, 175, 81, 1);
+    /* --fondo--contenedor: #10dfb223; */
+    /* --fondo--contenedor:#0ba48328; */
+    --fondo--contenedor:#ffcf0f57;
+    --color--gris: rgba(232, 232, 232, 1);
+    --color--gris__oscuro: rgb(54, 54, 54);
+    --color--gris--hover: rgb(187, 187, 187);
+    --tamaño--titulos__grandes: 40px;
+    --verde--opcaidad: rgba(7, 96, 16, 0.33);
+    --color--amarillo: #87f192;
+    --verde--lote: rgba(7, 96, 16, 0.74);
+    --botones--interaccion: rgba(218, 218, 218, 1);
+    --color--rojo_alertaBoton: rgba(145, 0, 0, 0.808);
+    --tamaño--26: 24px;
+    --padding: 10px;
+    --margen: 10px;
+}
+
+    
+
+body {
+    font-family: var(--tipo--fuente);
+    font-size: var(--tamaño--texto);
+    background-color: var(--color--fondo);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a{
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    header{
+        padding: 0 10px;
+    }
+    
+}

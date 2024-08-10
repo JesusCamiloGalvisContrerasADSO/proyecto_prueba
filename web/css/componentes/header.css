@@ -1,0 +1,63 @@
+/* en este documento se va a trabajar todo el estilo que tenga el header  */
+
+.fondo_header {
+  background-color: var(--color--encabezado);
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 26px;
+  height: 60px;
+  color: var(--color--blanco);
+  font-weight: 600;
+  padding: 10px;
+}
+
+.logo {
+  height: 44px;
+  width: 44px;
+}
+
+.boton_salir {    
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  height: 44px;
+  width: 44px;
+  font-size: 24px;
+  color: var(--color--gris);
+}
+
+.boton_salir:hover {
+  color: var(--color--blanco);
+  border-radius: 10px;
+  background-color: rgb(17, 128, 7);
+}
+
+.encabezado__lista {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  list-style: none;
+  font-weight: 200;
+  font-size: 14px;
+  align-items: center;
+}
+
+.encabezado__lista--texto {
+  text-decoration: none;
+  color: var(--color--blanco);
+  padding: 10px 5px;
+  border-radius: 10px;
+}
+
+.encabezado__lista--texto:hover {
+  background-color: rgb(17, 128, 7);
+}
+
+.encabezado__lista--icono {
+  font-size: 35px;
+}

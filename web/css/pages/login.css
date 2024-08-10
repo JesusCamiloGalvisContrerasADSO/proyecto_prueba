@@ -1,0 +1,327 @@
+/* todos estos son los datos que se utilizan en el login, algunos se reutilizaran para el registro  */
+.ingresar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 90vh;
+  justify-items: center;
+  align-items: center;
+}
+
+.logo_apli {
+  width: 370px;
+  height: 570px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo_login {
+  height: 344px;
+  width: 344px;
+  padding-bottom: 30px;
+}
+
+.Nombre_login {
+  font-size: 64px;
+  font-weight: 800;
+}
+
+.texto_login {
+  font-size: 20px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+}
+
+
+.datos_logeo {
+  background-color: var(--fondo--contenedor);
+  width: 463px;
+  height: 428px;
+  border-radius: 15px;
+  gap: 25px;
+}
+
+.input_ingresar {
+  width: 373px;
+  height: 44px;
+  background-color: var(--color--blanco);
+  border: none;
+  margin-top: 16px;
+  border-radius: 10px;
+  padding: 12px;
+  color: rgb(134, 134, 134);
+}
+
+.boton {
+  width: 373px;
+  height: 44px;
+  border-radius: 10px;
+  background-color: var(--boton-ingresar);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color--blanco);
+  border: none;
+}
+
+.boton:hover {
+  background-color: rgba(70, 175, 81, 0.8);
+}
+
+.boton__usuario{
+  display:inline-grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+  width: 100%;
+  margin-right: 20px;
+}
+
+.boton_registro {
+  width: 178px;
+  background-color: var(
+    --verde--opcaidad
+  ); /* con esto se puede colocar opacidad solo al color */
+}
+
+.boton_registro:hover {
+  background-color: rgba(70, 175, 81, 0.8);
+}
+
+.boton__olvidar, .boton--modificador {
+  background: transparent;
+  color: #000;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 16px;
+  display: flex;
+  width: auto;
+  align-items: center;
+}
+
+.boton__olvidar:hover, .boton--modificador:hover {
+  background-color: rgb(255, 255, 255);
+  opacity: 50%;
+  color: #000000;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  opacity: 50%;
+  margin: 20px;
+}
+
+
+
+
+/* algunos cambios que se tuvieron que implementar para que el registro se viera bien 
+
+*/
+
+.registro__fondo {
+  padding: 40px;
+}
+
+.input_registro {
+  width: 460px;
+  height: 44px;
+  background-color: var(--color--blanco);
+  border: solid 0.1px var(--color--gris);
+  margin-bottom: 16px;
+  border-radius: 10px;
+  padding: 12px;
+  color: rgb(134, 134, 134);
+}
+
+.input_registro:focus, .input_ingresar:focus {
+  outline: none; 
+  border: solid 1px var(--verde--lote);
+    
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+} 
+
+.registro {
+  height: auto;
+  padding: 20px;
+  background-color: var(--fondo--contenedor);
+  border-radius: 15px;
+}
+
+.registro__linea {
+  margin: 20px;
+}
+
+.registro__titulo {
+  font-size: 42px;
+  font-weight: 700;
+  margin-top: 30px;
+  color: var(--color--gris__oscuro);
+}
+
+.registro__input {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-size: 14px;
+  gap: 6px;
+}
+
+
+.boton__registro {
+  margin: 20px;
+  width: 460px;
+}
+
+/* aqui voy a trabajar la pagina donde confirma que el registro se realizo con exito  */
+.registro__comfir{
+  height: 90vh;
+}
+
+.registro__comfir--container{
+  height: 500px;
+}
+
+
+
+/* se agregar ulgunos estilos al css para que funcione el olvidaste tu contraseña */
+
+.tamaño_fondo--olvidar {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+.olvidar {
+  /* height: 640px; */
+  width: 770px;
+  background-color: var(--fondo--contenedor);
+  gap: 40px;
+  border-radius: 20px;
+  padding: 0 15px;
+}
+
+.olvidar__contenedores {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.olvidar__contenedores--subtitulo {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.seleccion__cuadro {
+  display: grid;
+  grid-template-columns: 50px 300px;
+  text-align: start;
+  align-items: center;
+  height: 50px;
+}
+
+.olvidar__boton--radio {
+  height: 24px;
+}
+
+.seleccion__texto {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.titulo_mobile_login {
+  display: none;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 880px) {
+  
+  .ingresar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo_apli {
+    display: none;
+  }
+  .titulo_mobile_login {
+    display: block;
+    font-size: 50px;
+    color: #575757;
+    margin-bottom: 60px;
+    font-weight: 800;
+    border-bottom: solid 1px var(--verde--lote);
+  }
+
+  div.datos_logeo.center {
+    height: auto;
+    padding: var(--padding);
+    width: auto;
+    background-color: var(--color--fondo);
+    border: solid 0.1px var(--color--gris);
+    
+  }
+  .input_ingresar {
+    border: solid 0.5px var(--color--gris);
+  }
+  .boton__usuario{
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+    padding: var(--padding);
+    margin:0 var(--margen);
+  }
+
+  .input_ingresar, .boton--ingresar{
+    width: 0px;
+    min-width: 350px;
+    max-width: 373px;
+  }
+
+
+  /* aqui estan los @media del registro  */
+
+  .registro, .registro__linea {
+    width:90%;
+  }
+
+  .input_registro, .boton__registro{
+    width: 300px;
+  }
+
+  .encabezado__lista{
+    display: none;
+  }
+  .registro__fondo {
+    padding: 40px 0;
+}
+
+  /* aqui manejamos el olvidar contraseña  */
+  .espaciador{
+      padding: 10px;
+  }
+
+   .espaciador__recuperar{
+    margin: 50px 0px;
+      padding: 10px;
+  }
+
+  .tamaño_fondo--olvidar {
+    height: auto;
+    
+}
+
+}
+
