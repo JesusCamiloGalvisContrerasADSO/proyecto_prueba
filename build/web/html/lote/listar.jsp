@@ -13,7 +13,7 @@
     <body>
         <div>
             <div>
-                <a href="../../proyecto/paginasAcciones.html">Volver a Acciones</a>
+                <a href="ControlAcciones?accion=volver">Volver</a>
                 <h1>Lotes</h1>
             </div>
             <a href="controlLote?accion=add">Agregar Nuevo</a>

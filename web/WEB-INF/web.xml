@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                              http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>controlLote</servlet-name>
         <servlet-class>controlador.controlLote</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlTipoDoc</servlet-name>
+        <servlet-class>controlador.ControlTipoDoc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControlAcciones</servlet-name>
+        <servlet-class>controlador.ControlAcciones</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControlTipSan</servlet-name>
+        <servlet-class>controlador.ControlTipSan</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlTipoDoc</servlet-name>
+        <url-pattern>/ControlTipoDoc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlAcciones</servlet-name>
+        <url-pattern>/ControlAcciones</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlTipSan</servlet-name>
+        <url-pattern>/ControlTipSan</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -8,7 +8,7 @@
     <body>
         <h1>Agregar tipo de sangre</h1>
         
-        <form action="controladorTipSan" method="GET">
+        <form action="ControlTipSan" method="POST">
             Nombres:<br>
             <input type="text" name="txtNom"><br>
             <input type="submit" name="accion" value="Agregar"><br>

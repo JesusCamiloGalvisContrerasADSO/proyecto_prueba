@@ -13,7 +13,7 @@
     <body>
         <div>
             <div>
-                <a href="../../proyecto/paginasAcciones.html">Volver a Acciones</a>
+                <a href="ControlAcciones?accion=volver">Volver</a>
                 <h1>Tipos de documentos</h1>
             </div>
             <a href="ControlTipoDoc?accion=add">Agregar Nuevo</a>

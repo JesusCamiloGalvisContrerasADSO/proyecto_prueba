@@ -16,7 +16,7 @@
         %>
         <h1>Editar Tipo de Sangre</h1>
         
-        <form action="controladorTipSan" method="GET">
+        <form action="ControlTipSan" method="POST">
             Nombres:<br>
             <input type="text" name="txtNom" value="<%= Tip.getNom() %>"><br>
             <input type="hidden" name="txtid" value="<%= Tip.getId() %>">

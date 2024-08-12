@@ -45,16 +45,15 @@ public class controlLote extends HttpServlet {
             acceso = listar;
         } else if (action.equalsIgnoreCase("add")) {
             acceso = add;
-        } else if (action.equalsIgnoreCase("Agregar")) {
-            // Obtener el valor del parámetro y convertirlo a entero
-            String numStr = request.getParameter("txtNum");
-            int num = Integer.parseInt(numStr);
-            lot.setNum(num);
-            dao.add(lot);
-            acceso = listar;  // Redirige a la vista de listar después de agregar
         } else if (action.equalsIgnoreCase("editar")) {
             request.setAttribute("idLote", request.getParameter("id"));
             acceso = edit;
+        } 
+        else if (action.equalsIgnoreCase("eliminar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            lot.setId(id);
+            dao.eliminar(id);
+            acceso = listar;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
@@ -64,7 +63,46 @@ public class controlLote extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doGet(request, response);  // Redirige las solicitudes POST al manejo de GET
+        
+        String acceso = "";
+        String action = request.getParameter("accion");
+    
+if (action != null && action.equalsIgnoreCase("Actualizar")) {
+        try {
+            String idStr = request.getParameter("txtid");
+            String numStr = request.getParameter("txtNum");
+
+            if (idStr != null && numStr != null) {
+                int id = Integer.parseInt(idStr);
+                int num = Integer.parseInt(numStr);
+
+                lot.setId(id);
+                lot.setNum(num);
+
+                dao.edit(lot);
+
+                response.sendRedirect("controlLote?accion=listar");
+            } else {
+                // Manejo de error si los parámetros son nulos
+                response.sendRedirect("html/lote/edit.jsp"); // Redirige a la página de edición en caso de error
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();  // Imprime el error en los logs para depuración
+            response.sendRedirect("html/lote/edit.jsp");  // Redirige a la página de edición en caso de error
+        }
+    }else if (action.equalsIgnoreCase("Actualizar")) {
+            
+            int id = Integer.parseInt(request.getParameter("txtid"));
+            int num = Integer.parseInt(request.getParameter("txtNum"));
+            lot.setId(id);
+            lot.setNum(num);
+            dao.edit(lot);
+            acceso = listar;
+        }
+        
+        
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
+        vista.forward(request, response);
     }
 
     @Override

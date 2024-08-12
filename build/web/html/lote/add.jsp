@@ -10,7 +10,7 @@
         
         <form action="controlLote" method="POST">
             Numero del lote:<br>
-            <input type="text" name="txtNum"><br>
+            <input type="number" name="txtNum"><br>
             <input type="submit" name="accion" value="Agregar"><br>
         </form>
     </body>
