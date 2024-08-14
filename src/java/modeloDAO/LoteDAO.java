@@ -20,7 +20,7 @@ public class LoteDAO implements Lote {
     @Override
     public List<LoteM> listar() {
         List<LoteM> list = new ArrayList<>();
-        String sql = "SELECT * FROM lote";
+        String sql = "SELECT * FROM lote WHERE estado = 1";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -29,6 +29,7 @@ public class LoteDAO implements Lote {
                 LoteM lote = new LoteM();
                 lote.setId(rs.getInt("id"));
                 lote.setNum(rs.getInt("num"));
+                lote.setEst(rs.getInt("estado"));
                 list.add(lote);
             }
         } catch (Exception e) {
@@ -54,6 +55,7 @@ public class LoteDAO implements Lote {
             if (rs.next()) {
                 lote.setId(rs.getInt("id"));
                 lote.setNum(rs.getInt("num"));
+                lote.setEst(rs.getInt("estado"));
             }
         } catch (Exception e) {
             System.err.println("Error al listar el lote: " + e);
@@ -68,59 +70,55 @@ public class LoteDAO implements Lote {
 
     @Override
     public boolean add(LoteM lote) {
-        String sql = "INSERT INTO lote(num) VALUES(?)";
+        String sql = "INSERT INTO lote(num, estado) VALUES(?, ?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1, lote.getNum());
+            ps.setInt(2, lote.getEst());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
             System.err.println("Error al agregar el lote: " + e);
-            return false;
-        } finally {
-            // Cerrar conexiones para evitar fugas de memoria
-            try { ps.close(); } catch (Exception e) { /* Ignorar */ }
-            try { con.close(); } catch (Exception e) { /* Ignorar */ }
         }
+            return false;
     }
 
     @Override
     public boolean edit(LoteM lote) {
-        String sql = "UPDATE lote SET num=? WHERE id=?";
+        String sql = "UPDATE lote SET num=?, estado=? WHERE id=?";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1, lote.getNum());
+            ps.setInt(2, lote.getEst());
+            ps.setInt(3, lote.getId());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al editar el lote: " + e);
+        } 
+            return false;
+        }
+
+    @Override
+    public boolean cambiarFalse(LoteM lote) {
+        String sql = "UPDATE lote SET estado=? WHERE id=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, lote.getEst());
             ps.setInt(2, lote.getId());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
             System.err.println("Error al editar el lote: " + e);
+        } 
             return false;
-        } finally {
-            // Cerrar conexiones para evitar fugas de memoria
-            try { ps.close(); } catch (Exception e) { /* Ignorar */ }
-            try { con.close(); } catch (Exception e) { /* Ignorar */ }
-        }
     }
 
     @Override
     public boolean eliminar(int id) {
-        String sql = "DELETE FROM lote WHERE id=?";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.executeUpdate();
-            return true;
-        } catch (Exception e) {
-            System.err.println("Error al eliminar el lote: " + e);
-            return false;
-        } finally {
-            // Cerrar conexiones para evitar fugas de memoria
-            try { ps.close(); } catch (Exception e) { /* Ignorar */ }
-            try { con.close(); } catch (Exception e) { /* Ignorar */ }
-        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

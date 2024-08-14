@@ -17,5 +17,5 @@ public interface Lote {
     public boolean edit(LoteM lot);
     
     // Método para eliminar un lote por su ID
-    public boolean eliminar(int id);
+    public boolean cambiarFalse(LoteM lote);
 }

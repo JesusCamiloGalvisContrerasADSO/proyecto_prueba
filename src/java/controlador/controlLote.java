@@ -42,19 +42,40 @@ public class controlLote extends HttpServlet {
         String action = request.getParameter("accion");
 
         if (action.equalsIgnoreCase("listar")) {
+            
             acceso = listar;
         } else if (action.equalsIgnoreCase("add")) {
             acceso = add;
         } else if (action.equalsIgnoreCase("editar")) {
             request.setAttribute("idLote", request.getParameter("id"));
             acceso = edit;
-        } 
-        else if (action.equalsIgnoreCase("eliminar")) {
+        } else if (action.equalsIgnoreCase("cambiarFalse")) {
+        try {
             int id = Integer.parseInt(request.getParameter("id"));
             lot.setId(id);
-            dao.eliminar(id);
-            acceso = listar;
+            lot.setEst(0);
+            dao.cambiarFalse(lot);
+            
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "ID de lote inválido.");
         }
+        acceso = listar;
+        }
+        
+//        else if (action.equalsIgnoreCase("eliminar")) {
+//        try {
+//            int id = Integer.parseInt(request.getParameter("id"));
+//            lot.setId(id);
+//            boolean eliminado = dao.eliminar(id);
+//            if (!eliminado) {
+//                // Manejar el caso en que no se pudo eliminar, quizás debido a la conexión
+//                request.setAttribute("error", "No se pudo eliminar el lote con ID: " + id);
+//            }
+//        } catch (NumberFormatException e) {
+//            request.setAttribute("error", "ID de lote inválido.");
+//        }
+//        acceso = listar;
+//        }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
@@ -67,36 +88,21 @@ public class controlLote extends HttpServlet {
         String acceso = "";
         String action = request.getParameter("accion");
     
-if (action != null && action.equalsIgnoreCase("Actualizar")) {
-        try {
-            String idStr = request.getParameter("txtid");
-            String numStr = request.getParameter("txtNum");
-
-            if (idStr != null && numStr != null) {
-                int id = Integer.parseInt(idStr);
-                int num = Integer.parseInt(numStr);
-
-                lot.setId(id);
-                lot.setNum(num);
-
-                dao.edit(lot);
-
-                response.sendRedirect("controlLote?accion=listar");
-            } else {
-                // Manejo de error si los parámetros son nulos
-                response.sendRedirect("html/lote/edit.jsp"); // Redirige a la página de edición en caso de error
-            }
-        } catch (NumberFormatException e) {
-            e.printStackTrace();  // Imprime el error en los logs para depuración
-            response.sendRedirect("html/lote/edit.jsp");  // Redirige a la página de edición en caso de error
-        }
-    }else if (action.equalsIgnoreCase("Actualizar")) {
-            
+         if (action.equalsIgnoreCase("Actualizar")) {
             int id = Integer.parseInt(request.getParameter("txtid"));
+            int est = Integer.parseInt(request.getParameter("txtEst"));
             int num = Integer.parseInt(request.getParameter("txtNum"));
             lot.setId(id);
+            lot.setEst(est);
             lot.setNum(num);
             dao.edit(lot);
+            acceso = listar;
+        }else if (action.equalsIgnoreCase("Agregar")) {
+            int num = Integer.parseInt(request.getParameter("txtNum"));
+            int estado = 1;
+            lot.setNum(num);
+            lot.setEst(estado);
+            dao.add(lot);
             acceso = listar;
         }
         

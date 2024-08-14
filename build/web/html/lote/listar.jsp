@@ -39,7 +39,7 @@
                         <td><%= Tipo.getNum() %></td>
                         <td>
                             <a href="controlLote?accion=editar&id=<%= Tipo.getId() %>">Editar</a>
-                            <a href="controlLote?accion=eliminar&id=<%= Tipo.getId() %>">Eliminar</a>
+                            <a href="controlLote?accion=cambiarFalse&id=<%= Tipo.getId() %>">Eliminar</a>
                         </td>
                     </tr>
                 <% } %>

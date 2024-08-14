@@ -3,20 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/TipoDocum/listar.jsp</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/META-INF/context.xml</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/controlador/ControlAcciones.java</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/lote/add.jsp</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/interfaces/TipSan.java</file>
             <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/lote/listar.jsp</file>
             <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/controlador/controlLote.java</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/TipoDocum/add.jsp</file>
             <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modelo/TipoDocum.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modeloDAO/LoteDAO.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/controlador/ControlTipoDoc.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modeloDAO/TipoDocDAO.java</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modeloDAO/TipoSangreDAO.java</file>
             <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modelo/LoteM.java</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/TipoDocum/edit.jsp</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/lote/edit.jsp</file>
             <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/interfaces/Lote.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/config/conexion.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/interfaces/TipoDoc.java</file>
+            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/TipoSangre/add.jsp</file>
         </group>
     </open-files>
 </project-private>

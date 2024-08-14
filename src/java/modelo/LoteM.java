@@ -5,18 +5,18 @@ public class LoteM {
     // Atributos de la clase
     private int id;
     private int num;
+    private int est;
 
     // Constructor vacío
     public LoteM() {
     }
 
-    // Constructor con parámetros
-    public LoteM(int id, int num) {
+    public LoteM(int id, int num, int est) {
         this.id = id;
         this.num = num;
+        this.est = est;
     }
 
-    // Métodos getters y setters
     public int getId() {
         return id;
     }
@@ -32,4 +32,14 @@ public class LoteM {
     public void setNum(int num) {
         this.num = num;
     }
+
+    public int getEst() {
+        return est;
+    }
+
+    public void setEst(int est) {
+        this.est = est;
+    }
+
+    
 }
