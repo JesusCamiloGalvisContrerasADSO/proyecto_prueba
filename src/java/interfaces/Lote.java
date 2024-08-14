@@ -16,6 +16,9 @@ public interface Lote {
     // Método para editar un lote existente
     public boolean edit(LoteM lot);
     
-    // Método para eliminar un lote por su ID
+    // Método para mandar a papelera un lote por su ID
     public boolean cambiarFalse(LoteM lote);
+    
+    //Metodo para eliminar un lote por su ID
+    public boolean eliminar(int id);
 }

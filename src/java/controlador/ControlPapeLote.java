@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.LoteM;
+import modeloDAO.LoteDAO;
 
 /**
  *
@@ -17,15 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControlPapeLote extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    LoteM lot = new LoteM();
+    LoteDAO dao = new LoteDAO();
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -43,29 +39,31 @@ public class ControlPapeLote extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String acceso = "";
+        String action = request.getParameter("accion");
+        
+        if (action.equalsIgnoreCase("eliminar")) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                lot.setId(id);
+                boolean eliminado = dao.eliminar(id);
+                if (!eliminado) {
+                    // Manejar el caso en que no se pudo eliminar, quizás debido a la conexión
+                    request.setAttribute("error", "No se pudo eliminar el lote con ID: " + id);
+                }
+            } catch (NumberFormatException e) {
+                request.setAttribute("error", "ID de lote inválido.");
+            }
+            acceso = listar;
+            }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -15,6 +15,7 @@ public class controlLote extends HttpServlet {
     String listar = "html/lote/listar.jsp";
     String add = "html/lote/add.jsp";
     String edit = "html/lote/edit.jsp";
+    String papelera = "html/Papelera/Lotes/listar.jsp";
     LoteM lot = new LoteM();
     LoteDAO dao = new LoteDAO();
 
@@ -62,20 +63,6 @@ public class controlLote extends HttpServlet {
         acceso = listar;
         }
         
-//        else if (action.equalsIgnoreCase("eliminar")) {
-//        try {
-//            int id = Integer.parseInt(request.getParameter("id"));
-//            lot.setId(id);
-//            boolean eliminado = dao.eliminar(id);
-//            if (!eliminado) {
-//                // Manejar el caso en que no se pudo eliminar, quizás debido a la conexión
-//                request.setAttribute("error", "No se pudo eliminar el lote con ID: " + id);
-//            }
-//        } catch (NumberFormatException e) {
-//            request.setAttribute("error", "ID de lote inválido.");
-//        }
-//        acceso = listar;
-//        }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);

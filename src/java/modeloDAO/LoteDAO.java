@@ -119,6 +119,15 @@ public class LoteDAO implements Lote {
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM lote WHERE id=" + id;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al eliminar tipo de documento: " + e);
+        }
+        return false;
     }
 }
