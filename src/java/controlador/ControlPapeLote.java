@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,12 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.LoteM;
 import modeloDAO.LoteDAO;
 
-/**
- *
- * @author hp
- */
+
 public class ControlPapeLote extends HttpServlet {
 
+    String listar = "html/Papelera/lote/listar.jsp";
     LoteM lot = new LoteM();
     LoteDAO dao = new LoteDAO();
     
@@ -47,7 +43,9 @@ public class ControlPapeLote extends HttpServlet {
         String acceso = "";
         String action = request.getParameter("accion");
         
-        if (action.equalsIgnoreCase("eliminar")) {
+        if (action.equalsIgnoreCase("listarPapelera")) {
+            acceso = listar;
+        }else if (action.equalsIgnoreCase("eliminar")) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
                 lot.setId(id);
@@ -60,7 +58,22 @@ public class ControlPapeLote extends HttpServlet {
                 request.setAttribute("error", "ID de lote inválido.");
             }
             acceso = listar;
-            }
+            
+        }else if (action.equalsIgnoreCase("cambiarVerdad")) {
+        try {
+            int id = Integer.parseInt(request.getParameter("id"));
+            lot.setId(id);
+            lot.setEst(1);
+            dao.cambiarFalse(lot);
+            
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "ID de lote inválido.");
+        }
+        acceso = listar;
+        }
+        
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
+        vista.forward(request, response);
     }
 
 
@@ -70,11 +83,7 @@ public class ControlPapeLote extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+
     @Override
     public String getServletInfo() {
         return "Short description";
