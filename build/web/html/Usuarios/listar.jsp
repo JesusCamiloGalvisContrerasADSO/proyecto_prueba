@@ -1,8 +1,9 @@
 <%@ page import="java.util.List" %>
-<%@ page import="modelo.Perfil" %>
+<%@ page import="java.util.Iterator" %>
 <%@ page import="modelo.Usuario" %>
-<%@ page import="modeloDAO.PerfilDAO" %>
 <%@ page import="modeloDAO.UsuarioDAO" %>
+<%@ page import="controlador.ControlUsuario" %>
+
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,56 +14,51 @@
 <body>
     <div>
         <div>
-            <a href="../../proyecto/paginasAcciones.html">Volver a Acciones</a>
+            <a href="ControlAcciones?accion=volver">Volver</a>
             <h1>Usuarios registrados</h1>
         </div>
         
-        <a href="controladorRegistro?accion=add">Agregar Nuevo</a>
+        <a href="ControlUsuario?accion=add">Agregar Nuevo</a>
         <table border="1">
             <thead>
                 <tr>
-                    <th>ID_perfil</th>
+                    <th>ID Usuario</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Teléfono</th>
                     <th>Correo Electrónico</th>
-                    <th>Dirección</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Tipo Doc</th>
-                    <th>Sangre</th>
-                    <th>ID Usuario</th>
-                    <th>Documento</th>
+                    <th>Fecha de Contrato</th>
+                    <th>Tipo de Documento</th>
+                    <th>Tipo de Sangre</th>
+                    <th>Número de Documento</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <% 
-                    PerfilDAO Pdao = new PerfilDAO();
-                    List<Perfil> Plista = Pdao.listar();
-                    
-                    UsuarioDAO Udao = new UsuarioDAO();
-                    List<Usuario> Ulista = Udao.listar();
-                  
-                    for (Perfil per : Plista) {
-                        Usuario user = Udao.list(per.getUsuarioId());
+                    UsuarioDAO dao = new UsuarioDAO();
+                    List<Usuario> lista = dao.listar();
+                    Iterator<Usuario> iter = lista.iterator();
+                    Usuario Tipo = null;
+                    while (iter.hasNext()) {
+                    Tipo = iter.next();
                 %>
                 <tr>
-                    <td><%= per.getIdPerfil() %></td>
-                    <td><%= per.getNombre() %></td>
-                    <td><%= per.getApellido() %></td>
-                    <td><%= per.getTelefono() %></td>
-                    <td><%= per.getEmail() %></td>
-                    <td><%= per.getDireccion() %></td>
-                    <td><%= per.getFechaNacimiento() %></td>
-                    <td><%= per.getTipoDocId() %></td>
-                    <td><%= per.getSangreId() %></td>
-                    <td><%= user.getIdUsuario() %></td>
-                    <td><%= user.getDocumento() %></td>
+                    <td><%= Tipo.getIdUsuario() %></td>
+                    <td><%= Tipo.getNombre() %></td>
+                    <td><%= Tipo.getApellido() %></td>
+                    <td><%= Tipo.getTelefono() %></td>
+                    <td><%= Tipo.getEmail() %></td>
+                    <td><%= Tipo.getFechaContra() %></td>
+                    <td><%= Tipo.getTipoDocum().getNom() %></td> <!-- Mostrar nombre del tipo de documento -->
+                    <td><%= Tipo.getTipoSangre().getNom() %></td> <!-- Mostrar nombre del tipo de sangre -->
+                    <td><%= Tipo.getDocumento() %></td>
                     <td>
-                        <a href="controladorRegistro?accion=editar&id=<%= per.getIdPerfil() %>">Editar</a>
-                        <a href="controladorRegistro?accion=eliminar&id=<%= per.getIdPerfil() %>">Eliminar</a>
+                        <a href="ControlUsuario?accion=editar&id=<%= Tipo.getIdUsuario() %>">Editar</a>
+                        <a href="ControlUsuario?accion=eliminar&id=<%= Tipo.getIdUsuario() %>">Eliminar</a>
                     </td>
                 </tr>
+
                 <% } %>
             </tbody>
         </table>

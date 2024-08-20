@@ -20,6 +20,10 @@
         <servlet-name>ControlPapeLote</servlet-name>
         <servlet-class>controlador.ControlPapeLote</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlUsuario</servlet-name>
+        <servlet-class>controlador.ControlUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ControlPapeLote</servlet-name>
         <url-pattern>/ControlPapeLote</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlUsuario</servlet-name>
+        <url-pattern>/ControlUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

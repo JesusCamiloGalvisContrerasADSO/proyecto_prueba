@@ -3,11 +3,11 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="modelo.TipoSangre" %>
 <%@ page import="modeloDAO.TipoSangreDAO" %>
-<%@ page import="controlador.controladorTipSan" %>
+<%@ page import="controlador.ControlTipSan" %>
 <%@ page import="modelo.TipoDocum" %>
 <%@ page import="modeloDAO.TipoDocDAO" %>
 <%@ page import="controlador.ControlTipoDoc" %>
-<%@ page import="controlador.controladorRegistro" %>
+<%@ page import="controlador.ControlUsuario" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,7 +47,7 @@
                   <h1 class="registro__titulo">Registrate para continuar</h1>
                   <hr class="registro__linea">
               </div>
-              <form action="controladorRegistro" method="GET">
+              <form action="ControlUsuario" method="GET">
                   <div class="registro__input">
                       <p>Nombre:</p>
                       <input class="input_registro" name="txtNom" type="text">
@@ -103,18 +103,10 @@
                       <p>Ingresa tu correo:</p>
                       <input class="input_registro" name="txtCorreo" type="email">
                   </div>
-                  <div class="registro__input">
-                      <p>Dirección:</p>
-                      <input class="input_registro" name="txtDirec" type="text">
-                  </div>
-                  <div class="registro__input">
-                      <p>Ingresa tu fecha de nacimiento:</p>
-                      <input class="input_registro" name="txtFechNaci" type="date">
-                  </div>
+                <div>
+                    <input type="submit" name="accion" value="Agregar"><br>
+                </div>
               </form>
-              <div>
-                  <a class="boton boton__registro" href="confir_registro.html">Regístrarse</a>
-              </div>
           </div>
       </section>
     </main>
