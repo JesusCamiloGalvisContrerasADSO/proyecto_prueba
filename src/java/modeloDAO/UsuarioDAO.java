@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import modelo.TipoDocum;
 import modelo.TipoSangre;
 import modelo.Usuario;
@@ -183,29 +184,6 @@ public boolean addPerfil(Usuario user) {
 }
 
 
-
-//Connection con = null;
-//    PreparedStatement ps = null;
-//    ResultSet rs = null;
-//
-//    try {
-//        // 1. Consulta para obtener el ID del usuario basado en su documento
-//        String sqlConsulta = "SELECT id FROM usuarios WHERE documento = ?";
-//        con = cn.getConnection();
-//        ps = con.prepareStatement(sqlConsulta);
-//        ps.setLong(1, user.getDocumento());
-//        rs = ps.executeQuery();
-//
-//        // 2. Verificar si se encontró un usuario y obtener su ID
-//        if (rs.next()) {
-//            int idUsuario = rs.getInt("id");
-//            user.setIdUsuario(idUsuario);
-
-           
-
-    
-
-
     @Override
     public boolean edit(Usuario usuario) {
         
@@ -225,5 +203,36 @@ public boolean addPerfil(Usuario user) {
             System.err.println("Error al eliminar usuario: " + e);
         }
         return false;
+    }
+
+    @Override
+    public boolean VerificarLogin(Usuario user) {
+        String sql = "SELECT documento, contrasena FROM usuarios WHERE documento = ? AND contrasena = ?;";
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql); 
+            ps.setLong(1, user.getDocumento());
+            ps.setString(2, user.getContrasena());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return true; // Credenciales válidas
+            } else {
+                return false; // Credenciales inválidas
+            }
+        } catch (Exception e) {
+            System.err.println("Error al verificar login: " + e);
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (con != null) con.close();
+            } catch (Exception e) {
+                System.err.println("Error al cerrar recursos: " + e);
+            }
+        }
+
+        return false; // Si ocurre un error, se retorna false
     }
 }

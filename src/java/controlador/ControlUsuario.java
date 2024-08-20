@@ -105,6 +105,29 @@ public class ControlUsuario extends HttpServlet {
 //            dao.eliminar(id);
 //            acceso = listar;
 //        } 
+        else if (action.equalsIgnoreCase("Ingresar")) {
+            String documentoStr = request.getParameter("txtDocum");
+            Long numDoc = Long.parseLong(documentoStr);
+            String contrasena = request.getParameter("txtContra");
+
+            user.setDocumento(numDoc);
+            user.setContrasena(contrasena);
+
+            boolean isValid = dao.VerificarLogin(user);
+
+            if (isValid) {
+                // Redirigir a la página de inicio o dashboard
+                request.getSession().setAttribute("user", user);
+                acceso = listar;
+//                response.sendRedirect("home.jsp");
+            } else {
+                // Redirigir a la página de login con un mensaje de error
+                request.setAttribute("error", "Credenciales inválidas");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        }
+
+
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);

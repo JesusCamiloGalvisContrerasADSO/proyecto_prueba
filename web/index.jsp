@@ -1,4 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 20/08/2024, 10:20:57 a. m.
+    Author     : Aprendiz
+--%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -33,24 +39,17 @@
         </div>
         <h1 class="titulo_mobile_login">Iniciar sesión</h1>
         <div class="datos_logeo center">
-          <form action="" class="center">
-            
-            <!-- seccion de seleccion multiple -->
-            <select class=" input_ingresar" name="" id="tipo_doc" >
-              <option value="">Selecciona el tipo de documento</option>
-              <option value="">Cedula de ciudadania</option>
-              <option value="">Tarjeta de identidad</option>
-              <option value="">Cedula extranjeria</option>
-            </select>
+            <form action="ControlUsuario" method="GET" class="center">
             <!-- ingresar numero de documento y contraseña  -->
 
-            <input class="input_ingresar" id="num_doc" placeholder="Ingresa el numero de documento" type="number" >
+            <input class="input_ingresar" name="txtDocum" id="num_doc" placeholder="Ingresa el numero de documento" type="number" >
             
-            <input class="input_ingresar" placeholder="Ingresa tu contraseña" type="password" >  
+            <input class="input_ingresar" name="txtContra" placeholder="Ingresa tu contraseña" type="password" >  
+            <br>
+            <button class="boton boton--ingresar" type="submit" name="accion" value="Ingresar">Ingresar</button>
           </form>
           <!-- botones de ingreso, olvido contraseña o registrarse  -->
           <div class="center">
-            <a class="boton boton--ingresar" href="html/Vista_usuario/vista_lote.html">Ingresar</a>
             <hr>
             <div class="boton__usuario">
                 <a class="boton boton--modificador" href="html/registro/Registro.jsp">Registrarse</a>
