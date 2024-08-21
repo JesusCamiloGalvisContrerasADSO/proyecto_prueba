@@ -39,7 +39,7 @@
         </div>
         <h1 class="titulo_mobile_login">Iniciar sesión</h1>
         <div class="datos_logeo center">
-            <form action="ControlUsuario" method="GET" class="center">
+            <form action="ControlUsuario" method="POST" class="center">
             <!-- ingresar numero de documento y contraseña  -->
 
             <input class="input_ingresar" name="txtDocum" id="num_doc" placeholder="Ingresa el numero de documento" type="number" >
@@ -52,7 +52,7 @@
           <div class="center">
             <hr>
             <div class="boton__usuario">
-                <a class="boton boton--modificador" href="html/registro/Registro.jsp">Registrarse</a>
+                <a class="boton boton--modificador" href="ControlUsuario?accion=add">Registrarse</a>
               <a class="boton boton__olvidar " href="html/Olvidar_contra/RecuperarCuenta.html">¿Olvidaste tu contraseña?</a>
               <br>
               <a class="boton boton__olvidar " href="paginasAcciones.html">Todas las paginas</a>

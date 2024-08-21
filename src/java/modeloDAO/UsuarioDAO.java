@@ -121,15 +121,15 @@ public List<Usuario> listar() {
     }
     
     @Override
-public boolean add(Usuario user) {
-    int userId = addUsuario(user);
-    if (userId != -1) {
-        user.setIdUsuario(userId); // Establece el ID del usuario en el objeto Usuario
-        return addPerfil(user);
-    } else {
-        return false;
+    public boolean add(Usuario user) {
+        int userId = addUsuario(user);
+        if (userId != -1) {
+            user.setIdUsuario(userId); // Establece el ID del usuario en el objeto Usuario
+            return addPerfil(user);
+        } else {
+            return false;
+        }
     }
-}
 
 
    @Override
@@ -221,18 +221,11 @@ public boolean addPerfil(Usuario user) {
             } else {
                 return false; // Credenciales inválidas
             }
+            
         } catch (Exception e) {
             System.err.println("Error al verificar login: " + e);
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (con != null) con.close();
-            } catch (Exception e) {
-                System.err.println("Error al cerrar recursos: " + e);
-            }
         }
-
+        
         return false; // Si ocurre un error, se retorna false
     }
 }

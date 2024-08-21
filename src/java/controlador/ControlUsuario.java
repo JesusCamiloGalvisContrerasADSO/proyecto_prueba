@@ -20,6 +20,8 @@ public class ControlUsuario extends HttpServlet {
     String listar = "html/Usuarios/listar.jsp";
     String add = "html/Usuarios/add.jsp";
     String edit = "html/Usuarios/edit.jsp";
+    String index = "index.jsp";
+    String confir = "html/Usuarios/ConfirRegistro.jsp";
     Usuario user = new Usuario();
     UsuarioDAO dao = new UsuarioDAO();
 
@@ -52,7 +54,40 @@ public class ControlUsuario extends HttpServlet {
         else if (action.equalsIgnoreCase("add")) {
             acceso = add;
         } 
-        else if (action.equalsIgnoreCase("Agregar")) {
+        
+//        else if (action.equalsIgnoreCase("editar")) {
+//            request.setAttribute("idTipo", request.getParameter("id"));
+//            acceso = edit;
+//        } else if (action.equalsIgnoreCase("Actualizar")) {
+//            int id = Integer.parseInt(request.getParameter("txtid"));
+//            String nom = request.getParameter("txtNom");
+//            Tip.setId(id);
+//            Tip.setNom(nom);
+//            dao.edit(Tip);
+//            acceso = listar;
+//        } else if (action.equalsIgnoreCase("eliminar")) {
+//            int id = Integer.parseInt(request.getParameter("id"));
+//            Tip.setId(id);
+//            dao.eliminar(id);
+//            acceso = listar;
+//        } 
+        
+
+
+
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
+        vista.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String acceso = "";
+        String action = request.getParameter("accion");
+        System.out.println("Accion: " + action);
+    
+        if (action.equalsIgnoreCase("Agregar")) {
             String nom = request.getParameter("txtNom");
             String apell = request.getParameter("txtApell");
 
@@ -87,25 +122,10 @@ public class ControlUsuario extends HttpServlet {
             user.setSanid(tipoSan);
 
             dao.add(user);
-            acceso = listar;
-        }
-//        else if (action.equalsIgnoreCase("editar")) {
-//            request.setAttribute("idTipo", request.getParameter("id"));
-//            acceso = edit;
-//        } else if (action.equalsIgnoreCase("Actualizar")) {
-//            int id = Integer.parseInt(request.getParameter("txtid"));
-//            String nom = request.getParameter("txtNom");
-//            Tip.setId(id);
-//            Tip.setNom(nom);
-//            dao.edit(Tip);
-//            acceso = listar;
-//        } else if (action.equalsIgnoreCase("eliminar")) {
-//            int id = Integer.parseInt(request.getParameter("id"));
-//            Tip.setId(id);
-//            dao.eliminar(id);
-//            acceso = listar;
-//        } 
-        else if (action.equalsIgnoreCase("Ingresar")) {
+            acceso = confir;
+        }else if (action.equalsIgnoreCase("index")){
+            acceso = index;
+        }else if (action.equalsIgnoreCase("Ingresar")) {
             String documentoStr = request.getParameter("txtDocum");
             Long numDoc = Long.parseLong(documentoStr);
             String contrasena = request.getParameter("txtContra");
@@ -118,25 +138,18 @@ public class ControlUsuario extends HttpServlet {
             if (isValid) {
                 // Redirigir a la página de inicio o dashboard
                 request.getSession().setAttribute("user", user);
-                acceso = listar;
+                acceso = "html/Usuarios/listar.jsp";
+//                acceso = listar;
 //                response.sendRedirect("home.jsp");
             } else {
                 // Redirigir a la página de login con un mensaje de error
                 request.setAttribute("error", "Credenciales inválidas");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                acceso = "index.jsp";
             }
         }
-
-
-
+        
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     @Override

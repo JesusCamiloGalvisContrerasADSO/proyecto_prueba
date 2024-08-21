@@ -3,23 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/controlador/ControlAcciones.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modelo/TipoSangre.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/controlador/ControlPapeLote.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/interfaces/usuario.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modeloDAO/UsuarioDAO.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/Usuarios/listar.jsp</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modelo/TipoDocum.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/controlador/ControlUsuario.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modeloDAO/LoteDAO.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modeloDAO/TipoDocDAO.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/modeloDAO/TipoSangreDAO.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/Usuarios/add.jsp</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/interfaces/Lote.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/paginasAcciones.html</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/Papelera/lote/listar.jsp</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/src/java/interfaces/TipoDoc.java</file>
-            <file>file:/C:/Users/hp/OneDrive/Documentos/NetBeansProjects/JSP__proyecto7/web/html/TipoSangre/add.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/add.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/html/registro/Registro.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlUsuario.java</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/index2.html</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/ConfirRegistro.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/listar.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/login.css</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

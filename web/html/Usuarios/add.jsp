@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     
 </head>
 <body>
@@ -47,7 +47,7 @@
                   <h1 class="registro__titulo">Registrate para continuar</h1>
                   <hr class="registro__linea">
               </div>
-              <form action="ControlUsuario" method="GET">
+              <form action="ControlUsuario" method="POST">
                   <div class="registro__input">
                       <p>Nombre:</p>
                       <input class="input_registro" name="txtNom" type="text">
@@ -104,7 +104,9 @@
                       <input class="input_registro" name="txtCorreo" type="email">
                   </div>
                 <div>
-                    <input type="submit" name="accion" value="Agregar"><br>
+                    
+                    <button class="boton boton__registro" type="submit" name="accion" value="Agregar">Registrarse</button>
+                    
                 </div>
               </form>
           </div>
