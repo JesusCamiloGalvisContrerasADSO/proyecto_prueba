@@ -1,0 +1,56 @@
+.btn--agregarSangre{
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-size: 20px;
+    align-items: center;
+}
+
+.tamaño--cinta{
+    height: 100px;
+}
+
+.listar--cabecero{
+    background-color: var(--verde--lote);
+    color: var(--color--blanco);
+}
+
+.tabla__listar{
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+    max-width: 800px;
+    min-width: 370px;
+}
+
+.tabla__listar--datos{
+    border-collapse: collapse;
+}
+
+
+.listar--datos{
+    padding: 10px 30px;
+    border: solid 1px var(--verde--lote);
+    font-weight: 600;
+    font-size: 20px;
+}
+.listar--elementos:hover{
+    background-color: var(--color--gris);
+}
+
+.boton--listar{
+    width: 100px;
+    margin: 10px 0;
+    border: solid 1px black;
+    font-size: 15px;
+    background-color: rgba(126, 183, 129, 120);
+}
+
+.listar--eliminar{
+    background-color: rgba(96, 7, 7, 0.74);
+}
+
+.listar--eliminar:hover{
+    background-color: var(--color--rojo_alertaBoton);
+}

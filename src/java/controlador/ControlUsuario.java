@@ -138,7 +138,7 @@ public class ControlUsuario extends HttpServlet {
             if (isValid) {
                 // Redirigir a la página de inicio o dashboard
                 request.getSession().setAttribute("user", user);
-                acceso = "html/Usuarios/listar.jsp";
+                acceso = "html/lote/listar.jsp";
 //                acceso = listar;
 //                response.sendRedirect("home.jsp");
             } else {

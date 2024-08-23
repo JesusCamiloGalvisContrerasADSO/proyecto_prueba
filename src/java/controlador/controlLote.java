@@ -50,20 +50,7 @@ public class controlLote extends HttpServlet {
         } else if (action.equalsIgnoreCase("editar")) {
             request.setAttribute("idLote", request.getParameter("id"));
             acceso = edit;
-        } else if (action.equalsIgnoreCase("cambiarFalse")) {
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            lot.setId(id);
-            lot.setEst(0);
-            dao.cambiarFalse(lot);
-            
-        } catch (NumberFormatException e) {
-            request.setAttribute("error", "ID de lote inválido.");
-        }
-        acceso = listar;
-        }
-        
-
+        } 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }
@@ -91,6 +78,19 @@ public class controlLote extends HttpServlet {
             lot.setEst(estado);
             dao.add(lot);
             acceso = listar;
+        }else if (action.equalsIgnoreCase("cambiarFalse")) {
+            String[] selectedLotes = request.getParameterValues("selectedLotes");
+
+            if (selectedLotes != null) {
+                for (String id : selectedLotes) {
+                    int loteId = Integer.parseInt(id);
+                    lot.setId(loteId);
+                    lot.setEst(0); // Cambiar el estado a false (0)
+                    dao.cambiarFalse(lot);
+                }
+            }
+
+            acceso = listar; 
         }
         
         

@@ -1,0 +1,335 @@
+
+
+/* aqui se va a trabajar los estilos de la vista de los lotes  */
+
+.fondo__cinta{
+  background-color: var(--color--gris);
+}
+
+.cinta__opciones{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  padding: 10px;
+}
+
+.cinta__opciones--titulo{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+}
+
+.cinta__logo{
+  height: 90px;
+  width: 90px;
+}
+
+.cinta__Titulo{
+  font-size: var(--tamaño--titulos__grandes);
+  font-weight: 500 ;
+}
+
+.linea__cinta{
+  height: 12px;
+  background-color: var(--verde--opcaidad);
+  margin: 0;
+}
+
+.cinta__iconos{
+  color: #000000;
+  
+}
+
+/* aqui voy a trabajar el titulo de lo que se ve y el contenido que lleve  */
+
+.Tipo__vista{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 10px auto;
+}
+
+.Tipo__vista--punto{
+  border-radius: 100%;
+  background-color: rgba(255, 178, 15, 1);
+  height: 12px;
+  width: 12px;
+}
+
+/* aqui esta la linea de las separaciones de los lotes*/
+
+.linea__datos{
+  width: 90%;
+  margin: auto;
+}
+
+/* datos que tiene el lote  */
+
+.Datos__lote{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 25px auto;
+  text-decoration: none;
+  color: #000;
+}
+
+.boton__lote{
+  height: 50px;
+  width: 100px;
+  background-color: var(--verde--lote);
+  font-size: 20px;
+}
+
+.num__lote{
+  display: flex;
+  gap: 20px;
+}
+
+.checkbox{
+  width: 20px;
+  
+}
+
+.checkbox:checked{
+  margin: auto 0;
+  height: 20px;
+  appearance: none;
+  border: solid 1px black;
+  border-radius: 5px;
+  background-color:var(--color--rojo_alertaBoton);
+}
+
+.Datos__lote--numero{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 100px;
+}
+
+.Datos__lote--texto{
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.opciones__botones{
+  display: flex;
+  flex-direction: row;
+  gap: 34px;
+  list-style: none;
+}
+
+.opciones__botones--boton,.opciones__botones--pendiente {
+  height: 44px;
+  width: 44px;
+  font-size: 24px;
+  padding: auto;
+  border-radius: 10px;
+  border:solid 1px #adadad;
+  background-color:var(--botones--interaccion) ;
+  transition: 0.5s;
+}
+
+.opciones__botones--boton:hover{
+  background-color: var(--color--gris--hover);
+}
+
+/* aqui voy a trabajar algunos cambios que se deben agregar cuando se ingresa a la vista animal */
+.cinta__animal{
+  justify-content: space-evenly;
+}
+
+.cinta__opciones--animal{
+gap: 20px;
+}
+
+.opciones__buscador--input{
+  border: none;
+  background-color: transparent;
+  outline: none;
+  padding: 10px;
+  width: 100%;
+}
+
+.opciones__buscador{
+  display: flex;
+  flex-direction: row;
+  height: 44px;
+  width: 220px;
+  font-size: 14px;
+  background-color: var(--botones--interaccion) ;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px var(--color--gris--hover);
+  padding: 15px;
+  border-radius: 10px;
+  
+}
+
+.opciones__buscador:hover{
+  background-color: var(--color--gris--hover);
+  border:solid 1px var(--color--gris__oscuro);
+}
+
+
+.opciones__buscador--icono{
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  padding: auto;
+}
+
+.modificar__animal{
+  height: 44px;
+  width: auto;
+}
+
+.modificar__animal--direccion{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+
+}
+
+.modificar__animal--texto{
+  font-style: normal;
+  font-family: var(--tipo--fuente);
+  font-size: 14px;
+}
+
+.modificar__animal--circulo{
+  height: 25px;
+  width: 25px;
+  background-color: var(--color--rojo_alertaBoton) ;
+  border: solid 1px #000000;
+  border-radius: 100%;
+}
+
+.cinta__fechaCambios{
+  font-size: 14px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  
+}
+
+.opciones__botones--espacio{
+  gap: 24px;
+  padding: 0px;
+}
+
+.cinta__linea--divisora{
+  rotate: revert;
+
+  height: 80px;
+  width: 1px;
+}
+
+/* aqui se va a trabajar el estilo de la tabla donde se van a encontrar los animales */
+/* Estilos generales para la tabla */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* font-family: Arial, sans-serif; */
+}
+
+/* Estilos para el encabezado de la tabla */
+.data-table thead {
+  background-color:var(--color--encabezado); /* Color de fondo del encabezado */
+  color: white; /* Color del texto del encabezado */
+}
+
+.data-table thead th {
+  padding: 12px; /* Espaciado dentro de las celdas del encabezado */
+  text-align: center; /* Alineación del texto del encabezado */
+  border: 1px solid #ddd; /* Borde alrededor de las celdas del encabezado */
+}
+
+/* Estilos para las filas de la tabla */
+.data-table tbody tr {
+  background-color: #f9f9f9; /* Color de fondo de las filas */
+  border-bottom: 1px solid #ddd; /* Borde inferior de las filas */
+}
+
+.data-table tbody tr:hover {
+  background-color: #f1f1f1; /* Color de fondo al pasar el cursor */
+}
+
+/* Estilos para las celdas de la tabla */
+.data-table tbody td {
+  padding: 12px; /* Espaciado dentro de las celdas */
+  text-align: center; /* Alineación del texto de las celdas */
+  border: 1px solid #ddd; /* Borde alrededor de las celdas */
+}
+
+/* Estilos para el botón de historia clínica */
+.history-button {
+  background-color: rgba(62, 134, 65, 0.8); /* Color de fondo del botón */
+  border: none; /* Sin borde */
+  color: white; /* Color del texto */
+  padding: 8px 16px; /* Espaciado interno del botón */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Mostrar como bloque en línea */
+  font-size: 14px; /* Tamaño del texto */
+  margin: 4px 2px; /* Espaciado exterior */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  border-radius: 4px; /* Bordes redondeados */
+}
+
+.history-button:hover {
+  background-color: #45a049; /* Color de fondo al pasar el cursor */
+}
+
+.lista{
+  display: none;
+}
+
+@media (max-width: 768px){
+  /* inicio con la @media de la vista lote  */
+  .cinta__logo, .opciones__botones, .Datos__lote--tipo{
+    display: none;
+  }
+  
+  .Datos__lote--numero{
+    gap: 20px;
+  }
+  .Datos__lote--texto2{
+    width: 140px;
+    font-weight: 600;
+    color: var(--color--encabezado);
+  }
+}
+
+@media (max-width: 1310px){
+  /* @media para movil de la vista animales  */
+  .opciones__botones--espacio, .animal--tablet{
+    display: none;
+  }
+  .lista{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    
+  }
+}
+
+@media (max-width: 680px){
+  .animal--movil, .opciones__buscador, .linea--celular{
+    display: none;
+  }
+  .cinta__opciones--animal{
+    gap: 10px;
+  }
+}
+
+

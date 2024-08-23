@@ -1,0 +1,30 @@
+
+
+.lote--ventas{
+    background-color: var(--color--rojo_alertaBoton);
+}
+
+.lote--ventas:hover{
+    background-color: rgba(96, 7, 7, 0.74);
+}
+
+.lote--datos{
+    padding: 5px 0;
+
+}
+
+.checkbox:checked{
+     background-color: rgba(255, 0, 0, 1);
+}
+
+@media(max-width: 768px){
+    .cinta--ventas{
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .Botones--Ventas{
+        display: flex;
+        padding: 0;
+    }
+}
