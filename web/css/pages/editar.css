@@ -1,0 +1,23 @@
+.alinear__Row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.input--editar{
+  margin: 0;
+  
+}
+
+.alinear__colum{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 530px){
+  .alinear__Row{
+    flex-direction: column;
+  }
+}

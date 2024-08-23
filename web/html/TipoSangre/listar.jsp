@@ -33,7 +33,7 @@
               </div>
             </div>
         </header>
-    <body>
+    
         <main>
             <section class="fondo__cinta">
 
@@ -49,7 +49,7 @@
                     <div class="menu">
                         <ul class="opciones__botones">
                             <li>
-                                <a href="controlLote?accion=add"><button class="opciones__botones--boton btn--agregarSangre" ><i class="bi bi-plus"></i> <p>Agregar</p> </button> </a>
+                                <a href="ControlTipSan?accion=add"><button class="opciones__botones--boton btn--agregarSangre" ><i class="bi bi-plus"></i> <p>Agregar</p> </button> </a>
                             </li>
                             <li>
                                 

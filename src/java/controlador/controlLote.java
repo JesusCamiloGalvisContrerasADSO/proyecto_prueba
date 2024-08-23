@@ -12,6 +12,8 @@ import modeloDAO.LoteDAO;
 
 public class controlLote extends HttpServlet {
 
+//    aqui se declaran las varibles que van a guardar las rutas, tambien estaran las instancias 
+//    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String listar = "html/lote/listar.jsp";
     String add = "html/lote/add.jsp";
     String edit = "html/lote/edit.jsp";
@@ -34,14 +36,21 @@ public class controlLote extends HttpServlet {
             out.println("</html>");
         }
     }
-
+    
+//aqui en el metodo doGet se estan manejando las peticiones de volver, retorna a 
+//  una pagina exclusivamente de administrador
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+//        se crean las variables de acceso y a action se le asigna la accion 
+//       que le manda el boton o enlace al que estamos dando click   
         String acceso = "";
         String action = request.getParameter("accion");
-
+        
+//        aqui se realizan los ciclos en los cuales se determina la accion para poder 
+//        hacer el envio o solicitud de datos, se manda ya sea al controlador o al 
+//        modelo dao
         if (action.equalsIgnoreCase("listar")) {
             
             acceso = listar;
@@ -51,17 +60,28 @@ public class controlLote extends HttpServlet {
             request.setAttribute("idLote", request.getParameter("id"));
             acceso = edit;
         } 
+        
+//        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
+//        rutas de manera correcta, se llama al request y response
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }
-
+    
+//    este es el metodo doPost donde se van a realizar los envios de informacion 
+//    a la base de datos, con este metodo no se muestra en la url la accion ni los datos
+//    que se estan realizando en la accion
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+//        se crean las variables de acceso y a action se le asigna la accion 
+//       que le manda el boton o enlace al que estamos dando click  
         String acceso = "";
         String action = request.getParameter("accion");
     
+//        aqui se realizan los ciclos en los cuales se determina la accion para poder 
+//        hacer el envio o solicitud de datos, se manda ya sea al controlador o al 
+//        modelo dao
          if (action.equalsIgnoreCase("Actualizar")) {
             int id = Integer.parseInt(request.getParameter("txtid"));
             int est = Integer.parseInt(request.getParameter("txtEst"));
@@ -93,7 +113,8 @@ public class controlLote extends HttpServlet {
             acceso = listar; 
         }
         
-        
+//        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
+//        rutas de manera correcta, se llama al request y response
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }
