@@ -66,17 +66,47 @@ public class ControlUsuario extends HttpServlet {
             acceso = add;
         } 
         
-//        else if (action.equalsIgnoreCase("editar")) {
-//            request.setAttribute("idTipo", request.getParameter("id"));
-//            acceso = edit;
-//        } else if (action.equalsIgnoreCase("Actualizar")) {
-//            int id = Integer.parseInt(request.getParameter("txtid"));
-//            String nom = request.getParameter("txtNom");
-//            Tip.setId(id);
-//            Tip.setNom(nom);
-//            dao.edit(Tip);
-//            acceso = listar;
-//        } else if (action.equalsIgnoreCase("eliminar")) {
+        else if (action.equalsIgnoreCase("editar")) {
+            request.setAttribute("idTipo", request.getParameter("id"));
+            acceso = edit;
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            String nom = request.getParameter("txtNom");
+            String apell = request.getParameter("txtApell");
+
+            // Obtener el valor correcto de 'txtNumDoc' pasando el string a long
+            String numDocStr = request.getParameter("txtNumDoc");
+            Long numDoc = Long.parseLong(numDocStr);  // Aquí convertimos el string a Long
+
+            int tipoDoc = Integer.parseInt(request.getParameter("txtTipDoc"));
+            int tipoSan = Integer.parseInt(request.getParameter("txtTipSang"));
+
+            // Obtener el valor correcto de 'txtTel'
+            String telStr = request.getParameter("txtTel");
+            Long tel = Long.parseLong(telStr);  // Aquí convertimos el string a Long
+
+            String contra = request.getParameter("txtContra");
+            String correo = request.getParameter("txtCorreo");
+            
+            user.setDocumento(numDoc);
+            user.setContrasena(contra);
+            user.setNombre(nom);
+            user.setApellido(apell);
+            user.setTelefono(tel);
+            user.setEmail(correo);
+//            user.setRol(0);
+
+            Date date = new Date(); 
+            user.setFechaContra(date);
+
+            // Mapeo del TipoDocumento
+            user.setDocid(tipoDoc);
+
+            // Mapeo del TipoSangre
+            user.setSanid(tipoSan);
+            dao.edit(user);
+            acceso = listar;
+        }
+//          else if (action.equalsIgnoreCase("eliminar")) {
 //            int id = Integer.parseInt(request.getParameter("id"));
 //            Tip.setId(id);
 //            dao.eliminar(id);
@@ -131,6 +161,7 @@ public class ControlUsuario extends HttpServlet {
             user.setApellido(apell);
             user.setTelefono(tel);
             user.setEmail(correo);
+//            user.setRol(0);
 
             Date date = new Date(); 
             user.setFechaContra(date);
@@ -143,9 +174,9 @@ public class ControlUsuario extends HttpServlet {
 
             dao.add(user);
             acceso = confir;
-        }else if (action.equalsIgnoreCase("index")){
+        } else if (action.equalsIgnoreCase("index")){
             acceso = index;
-        }else if (action.equalsIgnoreCase("Ingresar")) {
+        } else if (action.equalsIgnoreCase("Ingresar")) {
             String documentoStr = request.getParameter("txtDocum");
             Long numDoc = Long.parseLong(documentoStr);
             String contrasena = request.getParameter("txtContra");

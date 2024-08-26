@@ -17,6 +17,8 @@ public class Usuario {
     TipoDocum TipoDocum;
     TipoSangre TipoSangre;
     
+    String nomRol;
+    int rol;
     int idPerfil;
     int Docid;
     int Sanid;
@@ -24,11 +26,10 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, long documento, String contrasena, int idPerfil, String nombre, String apellido, long telefono, String email, Date fechaContra, TipoDocum TipoDocum, TipoSangre TipoSangre, int Docid, int Sanid) {
+    public Usuario(int idUsuario, long documento, String contrasena, String nombre, String apellido, long telefono, String email, Date fechaContra, TipoDocum TipoDocum, TipoSangre TipoSangre, String nomRol, int rol, int idPerfil, int Docid, int Sanid) {
         this.idUsuario = idUsuario;
         this.documento = documento;
         this.contrasena = contrasena;
-        this.idPerfil = idPerfil;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
@@ -36,6 +37,9 @@ public class Usuario {
         this.fechaContra = fechaContra;
         this.TipoDocum = TipoDocum;
         this.TipoSangre = TipoSangre;
+        this.nomRol = nomRol;
+        this.rol = rol;
+        this.idPerfil = idPerfil;
         this.Docid = Docid;
         this.Sanid = Sanid;
     }
@@ -62,14 +66,6 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
-    }
-
-    public int getIdPerfil() {
-        return idPerfil;
-    }
-
-    public void setIdPerfil(int idPerfil) {
-        this.idPerfil = idPerfil;
     }
 
     public String getNombre() {
@@ -128,6 +124,30 @@ public class Usuario {
         this.TipoSangre = TipoSangre;
     }
 
+    public String getNomRol() {
+        return nomRol;
+    }
+
+    public void setNomRol(String nomRol) {
+        this.nomRol = nomRol;
+    }
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
+
+    public int getIdPerfil() {
+        return idPerfil;
+    }
+
+    public void setIdPerfil(int idPerfil) {
+        this.idPerfil = idPerfil;
+    }
+
     public int getDocid() {
         return Docid;
     }
@@ -144,6 +164,7 @@ public class Usuario {
         this.Sanid = Sanid;
     }
 
-   
+    
+    
     
 }

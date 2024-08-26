@@ -32,10 +32,13 @@ public List<Usuario> listar() {
                          "p.fechaContrato, " +
                          "u.documento, " +
                          "u.contrasena, " +
+                         "u.rol_id,"+
+                         "r.nombre AS nombre_rol,"+
                          "td.nombre AS tipo_documento, " +
                          "ts.nombre AS tipo_sangre " +
                          "FROM perfil p " +
                          "INNER JOIN usuarios u ON p.usuario_id = u.id " +
+                         "INNER JOIN tb_roles r ON u.rol_id = r.id " +
                          "INNER JOIN tipo_documento td ON p.tipo_doc_id = td.id " +
                          "INNER JOIN tipo_sangre ts ON p.sangre_id = ts.id " +
                          "WHERE p.estado = 1";
@@ -55,6 +58,8 @@ public List<Usuario> listar() {
             usuario.setTelefono(rs.getLong("telefono"));
             usuario.setEmail(rs.getString("email"));
             usuario.setFechaContra(rs.getDate("fechaContrato"));
+            usuario.setRol(rs.getInt("rol_id"));
+            usuario.setNomRol(rs.getString("nombre_rol"));
 
             // Mapeo del TipoDocumento
             TipoDocum tipoDocum = new TipoDocum();
@@ -78,46 +83,56 @@ public List<Usuario> listar() {
 
     @Override
     public Usuario list(int id) {
-        Usuario usuario = new Usuario();
+        
         String sql = "SELECT p.id AS persona_id, p.nombre, p.apellido, p.telefono, " +
-             "p.email, p.fechaContrato, u.documento, u.contrasena, " +
+             "p.email, p.fechaContrato, u.documento, u.contrasena, u.rol_id, " +
+             "r.nombre AS nombre_rol, " +
              "td.nombre AS tipo_documento, ts.nombre AS tipo_sangre " +
              "FROM perfil p " +
              "INNER JOIN usuarios u ON p.usuario_id = u.id " +
+             "INNER JOIN tb_roles r ON u.rol_id = r.id " +
              "INNER JOIN tipo_documento td ON p.tipo_doc_id = td.id " +
-             "INNER JOIN tipo_sangre ts ON p.sangre_id = ts.id"+
+             "INNER JOIN tipo_sangre ts ON p.sangre_id = ts.id " +
              "WHERE p.id = ?";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
+                user.setIdUsuario(rs.getInt("persona_id"));
+                user.setNombre(rs.getString("nombre"));
+                user.setApellido(rs.getString("apellido")); 
+                user.setTelefono(rs.getLong("telefono")); 
+                user.setEmail(rs.getString("email")); 
+                user.setFechaContra(rs.getDate("fechaContrato"));
+                user.setDocumento(rs.getLong("documento"));
+                user.setContrasena(rs.getString("contrasena"));
+                user.setRol(rs.getInt("rol_id"));
                 
-                usuario.setIdUsuario(rs.getInt("usuario_id"));
-                usuario.setDocumento(rs.getInt("documento"));
-                usuario.setContrasena(rs.getString("contrasena"));
-                usuario.setNombre(rs.getString("nombre"));
-                usuario.setApellido(rs.getString("apellido"));
-                usuario.setTelefono(rs.getInt("telefono"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setFechaContra(rs.getDate("fechaContrato"));
-
                 // Mapeo del TipoDocumento
                 TipoDocum tipoDocum = new TipoDocum();
                 tipoDocum.setNom(rs.getString("tipo_documento"));
-                usuario.setTipoDocum(tipoDocum);
+                user.setTipoDocum(tipoDocum);
 
                 // Mapeo del TipoSangre
                 TipoSangre tipoSangre = new TipoSangre();
                 tipoSangre.setNom(rs.getString("tipo_sangre"));
-                usuario.setTipoSangre(tipoSangre);
+                user.setTipoSangre(tipoSangre);
+//                user.setTipoDocum(rs.getString("tipo_documento"));
+//                user.setTipoSangre(rs.getString("tipo_sangre"));
+//            String nombreRol = rs.getString("nombre_rol");
+//            String tipoDocumento = rs.getString("tipo_documento");
+//            String tipoSangre = rs.getString("tipo_sangre");
 
+            // Aquí puedes usar los valores obtenidos, por ejemplo:
+//            System.out.println("ID: " + personaId + ", Nombre: " + nombre + ", Rol: " + nombreRol);
             }
+        
         } catch (Exception e) {
             System.err.println("Error al obtener usuario por ID: " + e);
         }
-        return usuario;
+        return user;
     }
     
     @Override
@@ -134,7 +149,7 @@ public List<Usuario> listar() {
 
    @Override
     public int addUsuario(Usuario user) {
-    String sqlUsuario = "INSERT INTO usuarios(documento, contrasena) VALUES(?, ?)";
+    String sqlUsuario = "INSERT INTO usuarios(documento, contrasena, rol_id) VALUES(?, ?, ?)";
     int userId = -1;
     
     try {
@@ -142,6 +157,7 @@ public List<Usuario> listar() {
         ps = con.prepareStatement(sqlUsuario, PreparedStatement.RETURN_GENERATED_KEYS);
         ps.setLong(1, user.getDocumento());
         ps.setString(2, user.getContrasena());
+        ps.setInt(3, 0);
         ps.executeUpdate();
         
         // Obtener el ID generado automáticamente

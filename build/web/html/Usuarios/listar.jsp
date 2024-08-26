@@ -31,6 +31,7 @@
                     <th>Tipo de Documento</th>
                     <th>Tipo de Sangre</th>
                     <th>Número de Documento</th>
+                    <th>Rol</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -53,6 +54,7 @@
                     <td><%= Tipo.getTipoDocum().getNom() %></td> <!-- Mostrar nombre del tipo de documento -->
                     <td><%= Tipo.getTipoSangre().getNom() %></td> <!-- Mostrar nombre del tipo de sangre -->
                     <td><%= Tipo.getDocumento() %></td>
+                    <td><%= Tipo.getNomRol()%></td>
                     <td>
                         <a href="ControlUsuario?accion=editar&id=<%= Tipo.getIdUsuario() %>">Editar</a>
                         <a href="ControlUsuario?accion=eliminar&id=<%= Tipo.getIdUsuario() %>">Eliminar</a>

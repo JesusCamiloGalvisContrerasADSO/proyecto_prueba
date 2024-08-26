@@ -1,20 +1,12 @@
-<%-- 
-    Document   : index
-    Created on : 20/08/2024, 10:20:57 a. m.
-    Author     : Aprendiz
---%>
 
+<%
+    request.setAttribute("pageTitle", "Iniciar secion");
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicia sección</title>
-  <link rel="stylesheet" href="css/style.css">
-
-</head>
+<%@ include file="componentes/head.jsp" %>
 
 <body>
   <!-- este es el encabezado de la pagina -->
@@ -53,7 +45,7 @@
             <hr>
             <div class="boton__usuario">
                 <a class="boton boton--modificador" href="ControlUsuario?accion=add">Registrarse</a>
-              <a class="boton boton__olvidar " href="html/Olvidar_contra/RecuperarCuenta.html">¿Olvidaste tu contraseña?</a>
+              <a class="boton boton__olvidar " href="">¿Olvidaste tu contraseña?</a>
               <br>
               <a class="boton boton__olvidar " href="paginasAcciones.html">Todas las paginas</a>
             </div>
