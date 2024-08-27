@@ -204,6 +204,34 @@ public boolean addPerfil(Usuario user) {
     @Override
     public boolean edit(Usuario usuario) {
         
+        String sql = "UPDATE usuarios "
+                       + "INNER JOIN perfil ON usuarios.id = perfil.usuario_id "
+                       + "SET perfil.nombre = 'holaaa'"
+//                       + "usuarios.documento = ?, usuarios.contrasena = ?, usuarios.rol_id = ? "
+                       + "WHERE perfil.id = ?";
+//        String sql = "UPDATE usuarios "
+//                       + "INNER JOIN perfil ON usuarios.id = perfil.usuario_id "
+//                       + "SET perfil.nombre = ?, perfil.apellido = ?, perfil.telefono = ?, perfil.email = ?, perfil.tipo_doc_id = ?, perfil.sangre_id = ?, "
+//                       + "usuarios.documento = ?, usuarios.contrasena = ?, usuarios.rol_id = ? "
+//                       + "WHERE perfil.id = ?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+//            ps.setString(1,user.getNombre());
+//            ps.setString(2,user.getApellido());
+//            ps.setLong(3,user.getTelefono());
+//            ps.setString(4,user.getEmail());
+//            ps.setInt(5, user.getDocid());
+//            ps.setInt(6, user.getSanid());
+//            ps.setLong(7, user.getDocumento());
+//            ps.setString(8, user.getContrasena());
+//            ps.setInt(9, user.getRol());
+            ps.setInt(1, user.getIdUsuario());
+            
+            
+        } catch (Exception e) {
+        }
+        
         return false;
     }
 

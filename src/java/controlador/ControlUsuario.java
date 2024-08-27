@@ -69,43 +69,7 @@ public class ControlUsuario extends HttpServlet {
         else if (action.equalsIgnoreCase("editar")) {
             request.setAttribute("idTipo", request.getParameter("id"));
             acceso = edit;
-        } else if (action.equalsIgnoreCase("Actualizar")) {
-            String nom = request.getParameter("txtNom");
-            String apell = request.getParameter("txtApell");
-
-            // Obtener el valor correcto de 'txtNumDoc' pasando el string a long
-            String numDocStr = request.getParameter("txtNumDoc");
-            Long numDoc = Long.parseLong(numDocStr);  // Aquí convertimos el string a Long
-
-            int tipoDoc = Integer.parseInt(request.getParameter("txtTipDoc"));
-            int tipoSan = Integer.parseInt(request.getParameter("txtTipSang"));
-
-            // Obtener el valor correcto de 'txtTel'
-            String telStr = request.getParameter("txtTel");
-            Long tel = Long.parseLong(telStr);  // Aquí convertimos el string a Long
-
-            String contra = request.getParameter("txtContra");
-            String correo = request.getParameter("txtCorreo");
-            
-            user.setDocumento(numDoc);
-            user.setContrasena(contra);
-            user.setNombre(nom);
-            user.setApellido(apell);
-            user.setTelefono(tel);
-            user.setEmail(correo);
-//            user.setRol(0);
-
-            Date date = new Date(); 
-            user.setFechaContra(date);
-
-            // Mapeo del TipoDocumento
-            user.setDocid(tipoDoc);
-
-            // Mapeo del TipoSangre
-            user.setSanid(tipoSan);
-            dao.edit(user);
-            acceso = listar;
-        }
+        } 
 //          else if (action.equalsIgnoreCase("eliminar")) {
 //            int id = Integer.parseInt(request.getParameter("id"));
 //            Tip.setId(id);
@@ -197,6 +161,44 @@ public class ControlUsuario extends HttpServlet {
                 request.setAttribute("error", "Credenciales inválidas");
                 acceso = "index.jsp";
             }
+        }else if (action.equalsIgnoreCase("Actualizar")) {
+            
+            int idUser = Integer.parseInt(request.getParameter("txtid"));
+            String nom = request.getParameter("txtNom");
+            String apell = request.getParameter("txtApell");
+            String contra = request.getParameter("txtContra");
+            int rol = Integer.parseInt(request.getParameter("txtRol"));
+
+            // Obtener el valor correcto de 'txtNumDoc' pasando el string a long
+            String numDocStr = request.getParameter("txtNumDoc");
+            Long numDoc = Long.parseLong(numDocStr);  // Aquí convertimos el string a Long
+
+            int tipoDoc = Integer.parseInt(request.getParameter("txtTipDoc"));
+            int tipoSan = Integer.parseInt(request.getParameter("txtTipSang"));
+
+            // Obtener el valor correcto de 'txtTel'
+            String telStr = request.getParameter("txtTel");
+            Long tel = Long.parseLong(telStr);  // Aquí convertimos el string a Long
+            
+            String correo = request.getParameter("txtCorreo");
+            
+            user.setIdUsuario(idUser);
+            user.setDocumento(numDoc);
+            user.setContrasena(contra);
+            user.setNombre(nom);
+            user.setApellido(apell);
+            user.setTelefono(tel);
+            user.setEmail(correo);
+            user.setRol(rol);
+//            user.setRol(0);
+
+            // Mapeo del TipoDocumento
+            user.setDocid(tipoDoc);
+
+            // Mapeo del TipoSangre
+            user.setSanid(tipoSan);
+            dao.edit(user);
+            acceso = listar;
         }
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las

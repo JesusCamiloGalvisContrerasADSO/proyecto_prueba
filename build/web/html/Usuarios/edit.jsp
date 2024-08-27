@@ -1,3 +1,5 @@
+<%@page import="modelo.Roles"%>
+<%@page import="modeloDAO.RolesDAO"%>
 <%@page import="modelo.TipoDocum"%>
 <%@page import="modeloDAO.TipoDocDAO"%>
 <%@page import="modelo.TipoSangre"%>
@@ -22,37 +24,48 @@
        Usuario user = dao.list(id);
      %>
     
-    <form action="ControlUsuario" method="GET">
-        <input type="hidden" name="accion" value="actualizar">
-        <input type="hidden" name="id" value="<%= user.getIdUsuario()%>">
+    <form action="ControlUsuario" method="POST">
+        <label>id</label>
+        <input type="number" name="txtid" value="<%= user.getIdUsuario()%>"><br>
 
         <label for="documento">Documento:</label>
-        <input type="number" id="documento" name="documento" value="<%=user.getDocumento()%>" readonly><br>
+        <input type="number" id="documento" name="txtNumDoc" value="<%=user.getDocumento()%>" ><br>
 
         <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" value="<%=user.getContrasena()%>"><br>
+        <input type="password" id="contrasena" name="txtContra" value="<%=user.getContrasena()%>"><br>
 
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value="<%=user.getNombre()%>"><br>
+        <input type="text" id="nombre" name="txtNom" value="<%=user.getNombre()%>"><br>
 
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" value="<%=user.getApellido()%>"><br>
+        <input type="text" id="apellido" name="txtApell" value="<%=user.getApellido()%>"><br>
 
         <label for="telefono">Teléfono:</label>
-        <input type="text" id="telefono" name="telefono" value="<%=user.getTelefono()%>"><br>
+        <input type="text" id="telefono" name="txtTel" value="<%=user.getTelefono()%>"><br>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<%=user.getEmail()%>"><br>
+        <input type="email" id="email" name="txtCorreo" value="<%=user.getEmail()%>"><br>
 
         <label for="fechaContrato">Fecha inicio de Contrato:</label>
         <input type="text" id="fechaContrato" name="fechaContrato" value="<%=user.getFechaContra()%>" readonly><br>
 
         <label for="rol">Rol:</label>
-        <input type="text" id="rol" name="rol" value="<%=user.getNomRol()%>" readonly><br>
+        <select class="input_registro" name="txtRol" id="">
+                        <option id="rol" value="<%= user.getRol() %>" disabled="" selected=""><%=user.getNomRol()%></option>
+                        <% 
+                        RolesDAO Dao = new RolesDAO();
+                        List<Roles> Lista = Dao.listar();
+                        Iterator<Roles> rolIter = Lista.iterator();
+                        while (rolIter.hasNext()) {
+                            Roles rol = rolIter.next();
+                        %>
+                            <option value="<%= rol.getId() %>"><%= rol.getNom() %></option>
+                        <% } %>
+        </select><br>
 
         <label for="tipoDocumento">Tipo de Documento:</label>
         <select class="input_registro" name="txtTipDoc" id="">
-                        <option id="tipoDocumento" name="tipoDocumento" value="<%= user.getSanid() %>" disabled="" selected=""><%=user.getTipoDocum().getNom()%></option>
+                        <option id="tipoDocumento" name="txtTipDoc" value="<%= user.getSanid() %>" disabled="" selected=""><%=user.getTipoDocum().getNom()%></option>
                         <% 
                         TipoDocDAO docDao = new TipoDocDAO();
                         List<TipoDocum> docLista = docDao.listar();
@@ -62,7 +75,7 @@
                         %>
                             <option value="<%= docTipo.getId() %>"><%= docTipo.getNom() %></option>
                         <% } %>
-                    </select>
+                    </select><br>
                     
         <label for="tipoSangre">Tipo de Sangre:</label>
         <select class="input_registro" name="txtTipSang" id="">
@@ -76,9 +89,10 @@
                         %>
                         <option value="<%= sangreTipo.getId() %>"><%= sangreTipo.getNom() %></option>
                         <% } %>
-                    </select>
+                    </select><br>
                     
-        <input type="submit" value="Actualizar">
+                    <!--<button type="submit" name="accion" value="Actualizar">Guardar</button>
+        --><input type="submit" name="accion" value="Actualizar"><br>
     </form>
 </body>
 </html>
