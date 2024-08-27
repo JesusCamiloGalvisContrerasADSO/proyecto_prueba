@@ -109,6 +109,7 @@ public List<Usuario> listar() {
                 user.setDocumento(rs.getLong("documento"));
                 user.setContrasena(rs.getString("contrasena"));
                 user.setRol(rs.getInt("rol_id"));
+                user.setNomRol(rs.getString("nombre_rol"));
                 
                 // Mapeo del TipoDocumento
                 TipoDocum tipoDocum = new TipoDocum();

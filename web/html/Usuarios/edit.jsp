@@ -1,3 +1,7 @@
+<%@page import="modelo.TipoDocum"%>
+<%@page import="modeloDAO.TipoDocDAO"%>
+<%@page import="modelo.TipoSangre"%>
+<%@page import="modeloDAO.TipoSangreDAO"%>
 <%@ page import="java.util.*" %>
 <%@ page import="modelo.Usuario" %>
 <%@ page import="modeloDAO.UsuarioDAO" %>
@@ -40,18 +44,40 @@
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value="<%=user.getEmail()%>"><br>
 
-        <label for="fechaContrato">Fecha de Contrato:</label>
+        <label for="fechaContrato">Fecha inicio de Contrato:</label>
         <input type="text" id="fechaContrato" name="fechaContrato" value="<%=user.getFechaContra()%>" readonly><br>
 
         <label for="rol">Rol:</label>
-        <input type="text" id="rol" name="rol" value="<%=user.getRol()%>" readonly><br>
+        <input type="text" id="rol" name="rol" value="<%=user.getNomRol()%>" readonly><br>
 
         <label for="tipoDocumento">Tipo de Documento:</label>
-        <input type="text" id="tipoDocumento" name="tipoDocumento" value="<%=user.getTipoDocum()%>" readonly><br>
-
+        <select class="input_registro" name="txtTipDoc" id="">
+                        <option id="tipoDocumento" name="tipoDocumento" value="<%= user.getSanid() %>" disabled="" selected=""><%=user.getTipoDocum().getNom()%></option>
+                        <% 
+                        TipoDocDAO docDao = new TipoDocDAO();
+                        List<TipoDocum> docLista = docDao.listar();
+                        Iterator<TipoDocum> docIter = docLista.iterator();
+                        while (docIter.hasNext()) {
+                            TipoDocum docTipo = docIter.next();
+                        %>
+                            <option value="<%= docTipo.getId() %>"><%= docTipo.getNom() %></option>
+                        <% } %>
+                    </select>
+                    
         <label for="tipoSangre">Tipo de Sangre:</label>
-        <input type="text" id="tipoSangre" name="tipoSangre" value="<%=user.getTipoSangre()%>" readonly><br>
-
+        <select class="input_registro" name="txtTipSang" id="">
+                        <option value="<%= user.getSanid() %>" disabled="" selected=""><%=user.getTipoSangre().getNom()%></option>
+                        <% 
+                        TipoSangreDAO sangreDao = new TipoSangreDAO();
+                        List<TipoSangre> sangreLista = sangreDao.listar();
+                        Iterator<TipoSangre> sangreIter = sangreLista.iterator();
+                        while (sangreIter.hasNext()) {
+                            TipoSangre sangreTipo = sangreIter.next();
+                        %>
+                        <option value="<%= sangreTipo.getId() %>"><%= sangreTipo.getNom() %></option>
+                        <% } %>
+                    </select>
+                    
         <input type="submit" value="Actualizar">
     </form>
 </body>
