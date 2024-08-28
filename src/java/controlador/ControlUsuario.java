@@ -200,7 +200,6 @@ public class ControlUsuario extends HttpServlet {
             dao.edit(user);
             acceso = listar;
         }
-        // Enviar el request y response al acceso correspondiente
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }
