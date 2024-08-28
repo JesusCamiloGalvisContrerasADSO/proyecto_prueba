@@ -162,26 +162,32 @@ public class ControlUsuario extends HttpServlet {
                 acceso = "index.jsp";
             }
         }else if (action.equalsIgnoreCase("Actualizar")) {
-            
             int idUser = Integer.parseInt(request.getParameter("txtid"));
             String nom = request.getParameter("txtNom");
             String apell = request.getParameter("txtApell");
             String contra = request.getParameter("txtContra");
             int rol = Integer.parseInt(request.getParameter("txtRol"));
 
-            // Obtener el valor correcto de 'txtNumDoc' pasando el string a long
             String numDocStr = request.getParameter("txtNumDoc");
-            Long numDoc = Long.parseLong(numDocStr);  // Aquí convertimos el string a Long
+            Long numDoc = Long.parseLong(numDocStr);
 
             int tipoDoc = Integer.parseInt(request.getParameter("txtTipDoc"));
             int tipoSan = Integer.parseInt(request.getParameter("txtTipSang"));
 
-            // Obtener el valor correcto de 'txtTel'
             String telStr = request.getParameter("txtTel");
-            Long tel = Long.parseLong(telStr);  // Aquí convertimos el string a Long
-            
+            Long tel = Long.parseLong(telStr);
+
             String correo = request.getParameter("txtCorreo");
-            
+
+            // Inicializar y asignar TipoDocum y TipoSangre al usuario
+            TipoDocum tipoDocum = new TipoDocum();
+            tipoDocum.setId(tipoDoc);
+            user.setTipoDocum(tipoDocum);
+
+            TipoSangre tipoSangre = new TipoSangre();
+            tipoSangre.setId(tipoSan);
+            user.setTipoSangre(tipoSangre);
+
             user.setIdUsuario(idUser);
             user.setDocumento(numDoc);
             user.setContrasena(contra);
@@ -190,22 +196,15 @@ public class ControlUsuario extends HttpServlet {
             user.setTelefono(tel);
             user.setEmail(correo);
             user.setRol(rol);
-//            user.setRol(0);
 
-            // Mapeo del TipoDocumento
-            user.setDocid(tipoDoc);
-
-            // Mapeo del TipoSangre
-            user.setSanid(tipoSan);
             dao.edit(user);
             acceso = listar;
         }
-        
-//        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
-//        rutas de manera correcta, se llama al request y response
+        // Enviar el request y response al acceso correspondiente
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }
+
 
     @Override
     public String getServletInfo() {

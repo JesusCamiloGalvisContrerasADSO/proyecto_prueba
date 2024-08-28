@@ -25,8 +25,7 @@
      %>
     
     <form action="ControlUsuario" method="POST">
-        <label>id</label>
-        <input type="number" name="txtid" value="<%= user.getIdUsuario()%>"><br>
+        <input type="hidden" name="txtid" value="<%= user.getIdUsuario()%>">
 
         <label for="documento">Documento:</label>
         <input type="number" id="documento" name="txtNumDoc" value="<%=user.getDocumento()%>" ><br>
@@ -51,7 +50,7 @@
 
         <label for="rol">Rol:</label>
         <select class="input_registro" name="txtRol" id="">
-                        <option id="rol" value="<%= user.getRol() %>" disabled="" selected=""><%=user.getNomRol()%></option>
+                        <option id="rol" name="txtRol" value="<%= user.getRol()%>" selected=""><%= user.getNomRol()%></option>
                         <% 
                         RolesDAO Dao = new RolesDAO();
                         List<Roles> Lista = Dao.listar();
@@ -65,7 +64,7 @@
 
         <label for="tipoDocumento">Tipo de Documento:</label>
         <select class="input_registro" name="txtTipDoc" id="">
-                        <option id="tipoDocumento" name="txtTipDoc" value="<%= user.getSanid() %>" disabled="" selected=""><%=user.getTipoDocum().getNom()%></option>
+                        <option id="tipoDocumento" name="txtTipDoc" value="<%= user.getDocid() %>" selected=""><%=user.getTipoDocum().getNom()%></option>
                         <% 
                         TipoDocDAO docDao = new TipoDocDAO();
                         List<TipoDocum> docLista = docDao.listar();
@@ -79,7 +78,7 @@
                     
         <label for="tipoSangre">Tipo de Sangre:</label>
         <select class="input_registro" name="txtTipSang" id="">
-                        <option value="<%= user.getSanid() %>" disabled="" selected=""><%=user.getTipoSangre().getNom()%></option>
+                        <option  name="txtTipSang" value="<%= user.getSanid() %>" selected=""><%=user.getTipoSangre().getNom()%></option>
                         <% 
                         TipoSangreDAO sangreDao = new TipoSangreDAO();
                         List<TipoSangre> sangreLista = sangreDao.listar();
@@ -91,8 +90,8 @@
                         <% } %>
                     </select><br>
                     
-                    <!--<button type="submit" name="accion" value="Actualizar">Guardar</button>
-        --><input type="submit" name="accion" value="Actualizar"><br>
+                    <button type="submit" name="accion" value="Actualizar">Guardar</button>
+        <!--<input type="submit" name="accion" value="Actualizar"><br>-->
     </form>
 </body>
 </html>

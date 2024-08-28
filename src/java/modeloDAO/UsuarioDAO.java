@@ -85,7 +85,7 @@ public List<Usuario> listar() {
     public Usuario list(int id) {
         
         String sql = "SELECT p.id AS persona_id, p.nombre, p.apellido, p.telefono, " +
-             "p.email, p.fechaContrato, u.documento, u.contrasena, u.rol_id, " +
+             "p.email, p.fechaContrato, p.tipo_doc_id, p.sangre_id, u.documento, u.contrasena, u.rol_id, " +
              "r.nombre AS nombre_rol, " +
              "td.nombre AS tipo_documento, ts.nombre AS tipo_sangre " +
              "FROM perfil p " +
@@ -112,19 +112,16 @@ public List<Usuario> listar() {
                 user.setNomRol(rs.getString("nombre_rol"));
                 
                 // Mapeo del TipoDocumento
+                user.setDocid(rs.getInt("tipo_doc_id"));
                 TipoDocum tipoDocum = new TipoDocum();
                 tipoDocum.setNom(rs.getString("tipo_documento"));
                 user.setTipoDocum(tipoDocum);
 
                 // Mapeo del TipoSangre
+                user.setSanid(rs.getInt("sangre_id"));
                 TipoSangre tipoSangre = new TipoSangre();
                 tipoSangre.setNom(rs.getString("tipo_sangre"));
                 user.setTipoSangre(tipoSangre);
-//                user.setTipoDocum(rs.getString("tipo_documento"));
-//                user.setTipoSangre(rs.getString("tipo_sangre"));
-//            String nombreRol = rs.getString("nombre_rol");
-//            String tipoDocumento = rs.getString("tipo_documento");
-//            String tipoSangre = rs.getString("tipo_sangre");
 
             // Aquí puedes usar los valores obtenidos, por ejemplo:
 //            System.out.println("ID: " + personaId + ", Nombre: " + nombre + ", Rol: " + nombreRol);
@@ -202,38 +199,48 @@ public boolean addPerfil(Usuario user) {
 
 
     @Override
-    public boolean edit(Usuario usuario) {
-        
-        String sql = "UPDATE usuarios "
-                       + "INNER JOIN perfil ON usuarios.id = perfil.usuario_id "
-                       + "SET perfil.nombre = 'holaaa'"
-//                       + "usuarios.documento = ?, usuarios.contrasena = ?, usuarios.rol_id = ? "
-                       + "WHERE perfil.id = ?";
-//        String sql = "UPDATE usuarios "
-//                       + "INNER JOIN perfil ON usuarios.id = perfil.usuario_id "
-//                       + "SET perfil.nombre = ?, perfil.apellido = ?, perfil.telefono = ?, perfil.email = ?, perfil.tipo_doc_id = ?, perfil.sangre_id = ?, "
-//                       + "usuarios.documento = ?, usuarios.contrasena = ?, usuarios.rol_id = ? "
-//                       + "WHERE perfil.id = ?";
+    public boolean edit(Usuario user) {
+        // La consulta SQL completa con los campos necesarios
+        String sql = "UPDATE perfil "
+            + "INNER JOIN usuarios ON perfil.usuario_id = usuarios.id "
+            + "SET perfil.nombre = ?, "
+            + "perfil.apellido = ?, "
+            + "perfil.telefono = ?, "
+            + "perfil.email = ?, "
+            + "usuarios.documento = ?, "
+            + "usuarios.contrasena = ?, "
+            + "usuarios.rol_id = ?, "
+            + "perfil.tipo_doc_id = ?, "
+            + "perfil.sangre_id = ? "
+            + "WHERE perfil.id = ?";
+
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-//            ps.setString(1,user.getNombre());
-//            ps.setString(2,user.getApellido());
-//            ps.setLong(3,user.getTelefono());
-//            ps.setString(4,user.getEmail());
-//            ps.setInt(5, user.getDocid());
-//            ps.setInt(6, user.getSanid());
-//            ps.setLong(7, user.getDocumento());
-//            ps.setString(8, user.getContrasena());
-//            ps.setInt(9, user.getRol());
-            ps.setInt(1, user.getIdUsuario());
-            
-            
+
+            ps.setString(1, user.getNombre());
+            ps.setString(2, user.getApellido());
+            ps.setLong(3, user.getTelefono());
+            ps.setString(4, user.getEmail());
+            ps.setLong(5, user.getDocumento());
+            ps.setString(6, user.getContrasena());
+            ps.setInt(7, user.getRol());
+            ps.setInt(8, user.getTipoDocum().getId());
+            ps.setInt(9, user.getTipoSangre().getId());
+            ps.setInt(10, user.getIdUsuario()); // Este es el ID del perfil
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("El usuario fue actualizado exitosamente.");
+                return true;
+            }
         } catch (Exception e) {
+            System.err.println("Error al actualizar el usuario: " + e);
         }
-        
+
         return false;
     }
+
 
     @Override
     public boolean eliminar(int id) {
