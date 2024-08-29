@@ -1,5 +1,5 @@
 <%
-    request.setAttribute("pageTitle", "Iniciar secion");
+    request.setAttribute("pageTitle", "Usuarios");
 %>
 
 <%@ page import="java.util.List" %>
@@ -12,7 +12,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/pages/Usuarios_Btns.css">-->
     <%@ include file="../../componentes/head.jsp" %>
 </head>
 <body>
@@ -65,29 +67,14 @@
         <section>
                 <div class="Tipo__vista container">
                     <div class="Tipo__vista--punto"></div>
-                    <p class="Tipo__vista--texto">Número de lote</p>
+                    <p class="Tipo__vista--texto">Usuarios</p>
                 </div>
         </section>
         
         <section>
-            <div class="container">
-                <table >
-                    <!--<thead>
-                        <tr>
-                            <th>ID Usuario</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Teléfono</th>
-                            <th>Correo Electrónico</th>
-                            <th>Fecha de Contrato</th>
-                            <th>Tipo de Documento</th>
-                            <th>Tipo de Sangre</th>
-                            <th>Número de Documento</th>
-                            <th>Rol</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>-->
-                    <tbody>
+             <div class="container tabla__scroll">
+                    <table class="datos__persona ">
+                        <tbody class="persona__usuario">
                         <% 
                             UsuarioDAO dao = new UsuarioDAO();
                             List<Usuario> lista = dao.listar();
@@ -95,27 +82,39 @@
                             Usuario Tipo = null;
                             while (iter.hasNext()) {
                             Tipo = iter.next();
+                            if((Tipo.getIdUsuario()) != (1))
+                            {
                         %>
-                        <tr>
-                            <td><i class="bi bi-person-circle"></i></td>
-                            <td><%= Tipo.getNombre() %> <%= Tipo.getApellido() %></td>
-                            <td><%= Tipo.getTelefono() %></td>
-                            <td><%= Tipo.getEmail() %></td>
-                            <td><%= Tipo.getFechaContra() %></td>
-                            <td><%= Tipo.getTipoDocum().getNom() %></td> <!-- Mostrar nombre del tipo de documento -->
-                            <td><%= Tipo.getTipoSangre().getNom() %></td> <!-- Mostrar nombre del tipo de sangre -->
-                            <td><%= Tipo.getDocumento() %></td>
-                            <td><%= Tipo.getNomRol()%></td>
-                            <td>
-                                <a href="ControlUsuario?accion=editar&id=<%= Tipo.getIdUsuario() %>">Editar</a>
-                                <a href="ControlUsuario?accion=eliminar&id=<%= Tipo.getIdUsuario() %>">Eliminar</a>
+                          <tr class="personas__fila listar--elementos">
+                            <td class="persona__dato persona--icono"><i class="bi bi-person-circle"></i></td>
+                            <td class="persona__dato">
+                              <p class="persona--subTitulos"><%= Tipo.getNombre() %> <%= Tipo.getApellido() %></p>
+                              <p><span > <%= Tipo.getTipoDocum().getNom() %>: </span> <%= Tipo.getDocumento() %></p>
                             </td>
-                        </tr>
+                            <td class="persona__dato">
+                              <p><span >Telefono: </span><%= Tipo.getTelefono() %></p>
+                              <p class="persona--subTitulos"> <%= Tipo.getEmail() %></p>
+                            </td>
+                            <td class="persona__dato persona--sangre"><%= Tipo.getTipoSangre().getNom() %></td>
+                            
+                            <td class="persona__dato">
+                                <span >Inicio de contrato:</span>
+                                <p class="persona--subTitulos"><%= Tipo.getFechaContra() %></p>
+                            </td>
+                            <td class="persona__dato">
+                                
+                                <p class="persona--subTitulos"><%= Tipo.getNomRol()%></p>
+                            </td>
 
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
+                            <td class="persona__acciones">
+                                <a class=" boton boton--editar" href="ControlUsuario?accion=editar&id=<%= Tipo.getIdUsuario() %>"><i class="bi bi-pencil"></i></a>
+                                <a class=" boton boton--eliminar" href="ControlUsuario?accion=eliminar&id=<%= Tipo.getIdUsuario() %>"><i class="bi bi-trash3"></i></a>
+                            </td>
+                          </tr>
+                          <% }} %>
+                        </tbody>
+                    </table>
+             </div>
         </section>
         
     </main>

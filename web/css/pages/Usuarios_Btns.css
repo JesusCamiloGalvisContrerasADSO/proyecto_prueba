@@ -1,0 +1,82 @@
+.tabla__scroll{
+    overflow-x: auto;
+    margin-bottom: 20px;
+    padding: 0px 20px;
+}
+
+.datos__persona{
+    border-collapse: separate; 
+    border-spacing: 0 50px; 
+    width: 100%;
+}
+
+.personas__fila{
+    height: auto;
+    border-bottom: solid 1px var(--color--gris__oscuro);
+
+}
+
+.persona__dato{
+    border-right: solid 1px var(--color--gris__oscuro);
+    height: 50px;
+    margin:30px 10px;
+    padding: 10px 30px;
+    align-items: center;
+    font-weight: 500;
+}
+
+
+
+.persona--icono{
+    font-size: 45px;
+}
+
+.persona--sangre{
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.persona--subTitulos{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.persona__acciones{
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start;
+    gap: 10px;
+    padding: 30px ;
+    height: 50px;
+}
+
+.boton--eliminar, .boton--editar{
+    width: 50px;
+    font-size: 20px;
+}
+
+.boton--eliminar{
+    background-color: var(--color--alertaBoton_Claro);
+    border: solid 2px var(--color--rojo_alertaBoton);
+    color: var(--color--rojo_alertaBoton);
+
+}
+
+.boton--editar{
+    background-color: var(--BtnEditar);
+    border: solid 2px var(--verde--lote);
+    color: var(--verde--lote);
+}
+
+.boton--eliminar:hover{
+    background-color: var(--color--rojo_alertaBoton);
+    border: solid 2px var(--color--rojo_alertaBoton);
+    color: var(--color--blanco);
+
+}
+
+.boton--editar:hover{
+    background-color: var(--verde--lote);
+    border: solid 2px var(--verde--lote);
+    color: var(--color--blanco);
+}
