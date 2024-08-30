@@ -4,9 +4,13 @@
     padding: 0px 20px;
 }
 
+.persona__linea{
+   border-bottom: 1px solid var(--color--gris__medio);
+}
+
 .datos__persona{
     border-collapse: separate; 
-    border-spacing: 0 50px; 
+    border-spacing: 0 30px; 
     width: 100%;
 }
 
@@ -17,18 +21,19 @@
 }
 
 .persona__dato{
-    border-right: solid 1px var(--color--gris__oscuro);
+    border-right: solid 1px var(--color--gris__medio);
     height: 50px;
     margin:30px 10px;
     padding: 10px 30px;
-    align-items: center;
     font-weight: 500;
+    font-size: 14px;
 }
 
 
 
 .persona--icono{
     font-size: 45px;
+    color: var(--color--gris__medio);
 }
 
 .persona--sangre{
@@ -44,15 +49,17 @@
 .persona__acciones{
     display: flex;
     flex-direction: row; 
-    align-items: flex-start;
+    align-items: stretch;
     gap: 10px;
     padding: 30px ;
     height: 50px;
+    
 }
 
 .boton--eliminar, .boton--editar{
     width: 50px;
     font-size: 20px;
+    transition: 0.5s;
 }
 
 .boton--eliminar{
@@ -79,4 +86,10 @@
     background-color: var(--verde--lote);
     border: solid 2px var(--verde--lote);
     color: var(--color--blanco);
+}
+
+.btn--acciones{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

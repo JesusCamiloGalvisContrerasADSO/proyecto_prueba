@@ -53,7 +53,7 @@
   width: 373px;
   height: 44px;
   background-color: var(--color--blanco);
-  border: none;
+  border: solid 1px rgb(134, 134, 134);
   margin-top: 16px;
   border-radius: 10px;
   padding: 12px;

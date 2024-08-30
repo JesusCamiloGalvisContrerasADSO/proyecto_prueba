@@ -21,7 +21,7 @@
   <!-- este es el cuerpo del aplicativo web -->
   <main>
     <section>
-      <div class="container ingresar">
+      <div class="container ingresar ">
         <!-- aqui se realizaron dos div, uno es el que corresponde al logo, nombre y eslogan y el otro corresponde a los datos donde se valida para ingresar  -->
         <div class="logo_apli">
             <img src="Recursos/logo-BoviControl.png" class="logo_login"  alt="logo">
@@ -30,7 +30,7 @@
 
         </div>
         <h1 class="titulo_mobile_login">Iniciar sesión</h1>
-        <div class="datos_logeo center">
+        <div class="datos_logeo center sombras--contenedor">
             <form action="ControlUsuario" method="POST" class="center">
             <!-- ingresar numero de documento y contraseña  -->
 

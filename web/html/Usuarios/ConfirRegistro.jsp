@@ -19,7 +19,7 @@
 
 <body>
   <!-- este es el encabezado de la pagina -->
-  <header class=" fondo_header">
+  <header class=" fondo_header sombras--contenedor">
     <div class="container encabezado">
 
       <div class="encabezado">
@@ -37,8 +37,8 @@
   </header>
   <!-- en este estan cada uno de los campos del registro como, nombre, apellidos, fecha de nacimiento, tipo de documento entre otros -->
   <main class="espaciador">
-    <section class="center registro__fondo registro__comfir">
-      <div class="container center registro registro__comfir--container">
+    <section class="center registro__fondo registro__comfir ">
+      <div class="container center registro registro__comfir--container sombras--contenedor">
         <div>
           <h1 class="registro__titulo">Registrado</h1>
           <hr class="registro__linea">

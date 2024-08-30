@@ -65,7 +65,7 @@
         </section>
         
         <section>
-                <div class="Tipo__vista container">
+                <div class="Tipo__vista container border--bottom">
                     <div class="Tipo__vista--punto"></div>
                     <p class="Tipo__vista--texto">Usuarios</p>
                 </div>
@@ -110,6 +110,15 @@
                                 <a class=" boton boton--editar" href="ControlUsuario?accion=editar&id=<%= Tipo.getIdUsuario() %>"><i class="bi bi-pencil"></i></a>
                                 <a class=" boton boton--eliminar" href="ControlUsuario?accion=eliminar&id=<%= Tipo.getIdUsuario() %>"><i class="bi bi-trash3"></i></a>
                             </td>
+                          </tr>
+                          <tr >
+                            <td class="persona__linea"></td>
+                            <td class="persona__linea"></td>
+                            <td class="persona__linea"></td>
+                            <td class="persona__linea"></td>
+                            <td class="persona__linea"></td>
+                            <td class="persona__linea"></td>
+                            <td class="persona__linea"></td>
                           </tr>
                           <% }} %>
                         </tbody>

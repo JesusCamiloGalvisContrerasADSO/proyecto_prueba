@@ -24,6 +24,10 @@
         <servlet-name>ControlUsuario</servlet-name>
         <servlet-class>controlador.ControlUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlRaza</servlet-name>
+        <servlet-class>controlador.ControlRaza</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ControlUsuario</servlet-name>
         <url-pattern>/ControlUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlRaza</servlet-name>
+        <url-pattern>/ControlRaza</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

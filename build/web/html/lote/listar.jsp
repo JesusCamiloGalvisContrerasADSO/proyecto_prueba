@@ -99,14 +99,13 @@
                                 </div>
                             </div>
                             <div>
-                                <p><a href="controlLote?accion=editar&id=<%= Tipo.getId() %>">Editar</a></p>
+                                <p><a class=" boton boton--editar" href="controlLote?accion=editar&id=<%= Tipo.getId() %>"><i class="bi bi-pencil"></i></a></p>
                                 <!--<p class="Datos__lote--texto Datos__lote--texto2">Última fecha de revisión: 12/05/2024</p>-->
                             </div>
                         </div>
                     </div>
                     <% } %>
-                    <hr class="linea__datos">
-                    </form> <!-- Cierra el formulario después del último checkbox -->
+                    <hr class="linea__datos"> 
                 </div>
             </section>
         </main>

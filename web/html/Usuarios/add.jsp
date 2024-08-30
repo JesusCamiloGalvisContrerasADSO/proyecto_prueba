@@ -1,4 +1,7 @@
 
+<%
+    request.setAttribute("pageTitle", "Agregar usuario");
+%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="modelo.TipoSangre" %>
@@ -13,22 +16,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    
-</head>
+
+<%@ include file="../../componentes/head.jsp" %>
 <body>
     <!-- este es el encabezado de la pagina -->
-    <header class=" fondo_header">
+    <header class=" fondo_header sombras--contenedor">
         <div class="container encabezado">
             
           <div class="encabezado">
               <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
-              <img class="logo" src="../../Recursos/logo-BoviControl.png" alt="">
+              <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
             </div>
             <div class="encabezado">
@@ -42,7 +39,7 @@
     <!-- en este estan cada uno de los campos del registro como, nombre, apellidos, fecha de nacimiento, tipo de documento entre otros -->
     <main>
       <section class="center registro__fondo">
-          <div  class="container center registro ii">
+          <div  class="container center registro sombras--contenedor">
               <div>
                   <h1 class="registro__titulo">Registrate para continuar</h1>
                   <hr class="registro__linea">

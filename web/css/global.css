@@ -13,8 +13,9 @@
     --boton-ingresar: rgba(70, 175, 81, 1);
     /* --fondo--contenedor: #10dfb223; */
     /* --fondo--contenedor:#0ba48328; */
-    --fondo--contenedor:#ffcf0f57;
+    --fondo--contenedor:#ffffff57;
     --color--gris: rgba(232, 232, 232, 1);
+    --color--gris__medio: rgb(181 181 181);
     --color--gris__oscuro: rgb(54, 54, 54);
     --color--gris--hover: rgb(187, 187, 187);
     --tamaño--titulos__grandes: 40px;
@@ -43,6 +44,15 @@ body {
 
 a{
     text-decoration: none;
+}
+
+.sombras--contenedor{
+    box-shadow: 0px 0px 20px 1px rgba(0.2, 0.2, 0.2, 0.2);
+}
+
+.border--bottom{
+    border-bottom: solid 1px var(--color--gris__medio);
+    padding: 20px 0px;
 }
 
 @media (max-width: 768px) {
