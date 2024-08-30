@@ -108,7 +108,7 @@
 
                             <td class="persona__acciones">
                                 <a class=" boton boton--editar" href="ControlUsuario?accion=editar&id=<%= Tipo.getIdUsuario() %>"><i class="bi bi-pencil"></i></a>
-                                <a class=" boton boton--eliminar" href="ControlUsuario?accion=eliminar&id=<%= Tipo.getIdUsuario() %>"><i class="bi bi-trash3"></i></a>
+                                <a class=" boton boton--eliminar" href="ControlUsuario?accion=eliminar&id=<%= Tipo.getIdPerfil()%>"><i class="bi bi-trash3"></i></a>
                             </td>
                           </tr>
                           <tr >

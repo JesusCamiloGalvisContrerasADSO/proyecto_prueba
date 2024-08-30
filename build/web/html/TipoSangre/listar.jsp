@@ -11,6 +11,11 @@
         <title>Lotes</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="css/style.css">
+        <script src="js/acciones/Eliminar.js"></script>        
+        <!-- Incluir SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+        <!-- Incluir SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body>
         <header class=" fondo_header">
@@ -84,8 +89,9 @@
                                 <td class="listar--datos"><%= Tipo.getNom() %></td>
                                 <td class="listar--datos ">
                                     <div class="btn--acciones">  
-                                    <a class="boton boton--listar boton--editar" href="ControlTipSan?accion=editar&id=<%= Tipo.getId() %>"><i class="bi bi-pencil"></i></a>
-                                    <a class="boton boton--listar boton--eliminar" href="ControlTipSan?accion=eliminar&id=<%= Tipo.getId() %>"><i class="bi bi-trash3"></i></a>
+                                    <a class="boton boton--editar" href="ControlTipSan?accion=editar&id=<%= Tipo.getId() %>"><i class="bi bi-pencil"></i></a>
+                                    <a class="boton boton--eliminar " href="ControlTipSan?accion=eliminar&id=<%= Tipo.getId() %>"><i class="bi bi-trash3"></i></a>
+                                    <!--<button  class="boton boton--eliminar show-example-btn" href=""><i class="bi bi-trash3"></i></button>-->
                                     </div>
                                 </td>
                             </tr>

@@ -2,32 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlUsuario.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/Usuarios_Btns.css</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/TipoDocum/listar.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/UsuarioDAO.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/Papelera/lote/listar.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/editar.css</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/edit.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/index.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlTipSan.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/TipoSangreDAO.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/WEB-INF/web.xml</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/TipoDocum/add.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/componentes/head.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/listar.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/TipoDocum/edit.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/ConfirRegistro.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/controlLote.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/add.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/paginasAcciones.html</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/LoteDAO.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/css/style.css</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/estiloSangre.css</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/TipoDocDAO.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/login.css</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/TipoSangre/listar.jsp</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

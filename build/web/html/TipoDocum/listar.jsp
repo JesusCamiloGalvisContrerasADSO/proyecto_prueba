@@ -83,8 +83,8 @@
                                 <td class="listar--datos"><%= Tipo.getNom() %></td>
                                 <td class="listar--datos">
                                     <div class="btn--acciones">
-                                    <a class="boton boton--listar boton--editar" href="ControlTipoDoc?accion=editar&id=<%= Tipo.getId() %>"><i class="bi bi-pencil"></i></a>
-                                    <a class="boton boton--listar boton--eliminar" href="ControlTipoDoc?accion=eliminar&id=<%= Tipo.getId() %>"><i class="bi bi-trash3"></i></a>
+                                    <a class="boton boton--editar" href="ControlTipoDoc?accion=editar&id=<%= Tipo.getId() %>"><i class="bi bi-pencil"></i></a>
+                                    <a class="boton boton--eliminar" href="ControlTipoDoc?accion=eliminar&id=<%= Tipo.getId() %>"><i class="bi bi-trash3"></i></a>
                                     </div>
                                 </td>
                             </tr>

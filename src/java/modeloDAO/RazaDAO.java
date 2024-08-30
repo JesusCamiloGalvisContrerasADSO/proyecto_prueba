@@ -18,6 +18,8 @@ public class RazaDAO implements raza{
     PreparedStatement ps;
     ResultSet rs;
     
+    Raza raz = new Raza();
+    
     @Override
     public List<Raza> listar() {
         List<Raza> list = new ArrayList<>();
@@ -42,22 +44,65 @@ public class RazaDAO implements raza{
 
     @Override
     public Raza list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM tipo_raza WHERE id=" + id;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                raz.setId(rs.getInt("id")); // Asegúrate de que el nombre de columna es correcto
+                raz.setNombre(rs.getString("nombre")); // Asegúrate de que el nombre de columna es correcto
+            }
+        } catch (Exception e) {
+            System.err.println("Error al listar tipos de documento: " + e);
+        }
+        return raz;
     }
 
     @Override
     public boolean add(Raza raz) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       String sql = "INSERT INTO tipo_raza (nombre) VALUES (?)";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, raz.getNombre());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al agregar tipo de documento: " + e);
+        }
+        return false; 
     }
 
     @Override
     public boolean edit(Raza raz) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE tipo_raza SET nombre = ? WHERE id=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, raz.getNombre());
+            ps.setInt(2, raz.getId());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al editar tipo de raza: " + e);
+        }
+        return false;
     }
 
     @Override
     public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "DELETE FROM tipo_raza WHERE id=?" ;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al eliminar tipo de documento: " + e);
+        }
+        return false;
     }
     
 }

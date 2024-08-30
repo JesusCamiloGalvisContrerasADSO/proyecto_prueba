@@ -70,12 +70,12 @@ public class ControlUsuario extends HttpServlet {
             request.setAttribute("idTipo", request.getParameter("id"));
             acceso = edit;
         } 
-//          else if (action.equalsIgnoreCase("eliminar")) {
-//            int id = Integer.parseInt(request.getParameter("id"));
-//            Tip.setId(id);
-//            dao.eliminar(id);
-//            acceso = listar;
-//        } 
+          else if (action.equalsIgnoreCase("eliminar")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            user.setIdPerfil(id);
+            dao.eliminar(id);
+            acceso = listar;
+        } 
         
 
 

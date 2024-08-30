@@ -30,6 +30,7 @@ public List<Usuario> listar() {
                          "p.telefono, " +
                          "p.email, " +
                          "p.fechaContrato, " +
+                         "u.id , " +
                          "u.documento, " +
                          "u.contrasena, " +
                          "u.rol_id,"+
@@ -60,6 +61,7 @@ public List<Usuario> listar() {
             usuario.setFechaContra(rs.getDate("fechaContrato"));
             usuario.setRol(rs.getInt("rol_id"));
             usuario.setNomRol(rs.getString("nombre_rol"));
+            usuario.setIdPerfil(rs.getInt("id"));
 
             // Mapeo del TipoDocumento
             TipoDocum tipoDocum = new TipoDocum();
