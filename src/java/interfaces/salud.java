@@ -1,10 +1,10 @@
 package interfaces;
 
 import java.util.List;
-import modelo.Tipo_sexo;
+import modelo.Salud;
 
-public interface tipo_sexo {
+public interface salud {
     // Método para listar todos los lotes
-    public List<Tipo_sexo> listar();
+    public List<Salud> listar();
     
 }

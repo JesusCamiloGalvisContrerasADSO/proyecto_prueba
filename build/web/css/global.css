@@ -4,8 +4,16 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Inter'; /* Nombre de la fuente */
+    src: url('../componentes/letra/Inter-VariableFont_slnt,wght.ttf') format('truetype'); /* Ruta al archivo de fuente */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 :root {
-    --tipo--fuente: "Raleway", sans-serif;
+    --tipo--fuente: "Inter";
     --tamaño--texto: 18px;
     --color--fondo: rgba(244, 244, 244, 1);
     --color--encabezado: rgba(7, 96, 16, 1);
@@ -54,6 +62,7 @@ a{
     border-bottom: solid 1px var(--color--gris__medio);
     padding: 20px 0px;
 }
+
 
 @media (max-width: 768px) {
     header{

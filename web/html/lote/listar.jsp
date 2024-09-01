@@ -59,6 +59,7 @@
                                     <button class="opciones__botones--boton" type="submit" name="accion" value="cambiarFalse">
                                         <i class="bi bi-trash"></i>
                                     </button>
+                                
                             </li>
                             
                         </ul>
@@ -91,7 +92,7 @@
                             <div class="Datos__lote--numero">
                                 <div class="num__lote">
                                     <input class="checkbox" type="checkbox" name="selectedLotes" value="<%= Tipo.getId() %>">
-                                    <button class="boton boton__lote">Lote <%= Tipo.getNum() %></button>
+                                    <a class="boton boton__lote" href="ControlAnimal?accion=listar&id=<%= Tipo.getId()%>">Lote <%= Tipo.getNum() %></a>
                                 </div>
                                 <div class="Datos__lote--texto">
                                     <p class="Datos__lote--cantidad">Cantidad: 35</p>
@@ -107,6 +108,7 @@
                     <% } %>
                     <hr class="linea__datos"> 
                 </div>
+                    
             </section>
         </main>
     </body>
