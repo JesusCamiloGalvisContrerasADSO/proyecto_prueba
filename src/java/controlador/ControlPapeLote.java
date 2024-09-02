@@ -64,6 +64,20 @@ public class ControlPapeLote extends HttpServlet {
             request.setAttribute("error", "ID de lote inválido.");
         }
         acceso = listar;
+        }if (action.equalsIgnoreCase("eliminar")) {
+            String[] selectedLotes = request.getParameterValues("selectedLotes");
+            if (selectedLotes != null && selectedLotes.length > 0) {
+            for (String id : selectedLotes) {
+                try {
+                    int loteId = Integer.parseInt(id);
+                    lot.setId(loteId);
+                    boolean eliminado = dao.eliminar(loteId);
+                } catch (Exception e) {
+                    request.setAttribute("error", "ID de lote inválido: " + e);
+                }
+            }
+            } 
+        acceso = listar;
         }
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
 //        rutas de manera correcta, se llama al request y response

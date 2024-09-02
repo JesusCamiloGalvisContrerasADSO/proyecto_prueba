@@ -6,15 +6,17 @@ public class LoteM {
     private int id;
     private int num;
     private int est;
+    private int cantidad;
 
     // Constructor vacío
     public LoteM() {
     }
 
-    public LoteM(int id, int num, int est) {
+    public LoteM(int id, int num, int est, int cantidad) {
         this.id = id;
         this.num = num;
         this.est = est;
+        this.cantidad = cantidad;
     }
 
     public int getId() {
@@ -41,5 +43,14 @@ public class LoteM {
         this.est = est;
     }
 
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    
     
 }

@@ -9,7 +9,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Animales</title>
+        <title>Papelera animales</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="css/style.css">
 
@@ -27,7 +27,7 @@
 
               <div class="encabezado">
                   
-                  <%@ include file="../../componentes/btn_salir.jsp" %>
+                  <%@ include file="../../../componentes/btn_salir.jsp" %>
                 
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
@@ -61,7 +61,7 @@
                             <img class="cinta__logo" src="Recursos/vaquita.png" alt="">
                         </div>
                         <div>
-                            <p class="cinta__Titulo">Lote <%= numLote %></p>
+                            <p class="cinta__Titulo">Lote <%= numLote %> / Eliminados</p>
                         </div>
                     </div>
                   <div>
@@ -72,14 +72,6 @@
                   </div>
                     <div class="menu">
                         <ul class="opciones__botones">
-                            <li>
-                                <a href="ControlAnimal?accion=add"><button class="opciones__botones--boton" ><i class="bi bi-plus"></i></button></a>
-                            </li>
-                            <li>
-                                <a href="ControlAnimal?accion=listarPapelera&id=<%= idLote %>&num=<%= numLote %>">
-                                <button class="opciones__botones--boton"><i class="bi bi-card-checklist"></i></button>
-                                </a>
-                            </li>
                             <li>
                                 
                                 <form action="ControlAnimal" method="POST">
@@ -107,20 +99,19 @@
                         <th class="animal--tablet">Nuevo peso</th>
                         <th class="animal--tablet">Fecha revisión</th>
                         <th class="animal--tablet">estado salud</th>
-                        <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody >
                      <% 
                             AnimalDAO dao = new AnimalDAO();
-                            List<Animal> lista = dao.listar(idLote);
+                            List<Animal> lista = dao.listarPapelera(idLote);
                             Iterator<Animal> iter = lista.iterator();
                             Animal animal = null;
                             while (iter.hasNext()) {
                             animal = iter.next();
                         %>
                       <tr>
-                        <td class="center border--bottom"><button class="boton boton__lote"><%= animal.getNum() %></button></td>
+                        <td class="center border--bottom "><button class="boton boton__lote lote--ventas"><%= animal.getNum() %></button></td>
                         <td class="animal--movil border--bottom"><%= animal.getRaza().getNombre() %></td>
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
                         <td class="animal--tablet border--bottom"><%= animal.getPesos().getPeso() %> KG</td>
@@ -130,7 +121,6 @@
                           <p><%= animal.getPesos().getFechaPeso() %></p>
                         </td>
                         <td class="animal--movil border--bottom col-salud"><%= animal.getSalud().getNombre()%></td>
-                        <td class="border--bottom"><button class="boton boton--editar" ><i class="bi bi-pencil"></i></button></td>
                       </tr>
                         <% } %>
                     

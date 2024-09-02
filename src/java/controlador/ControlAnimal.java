@@ -55,11 +55,11 @@ public class ControlAnimal extends HttpServlet {
 //        hacer el envio o solicitud de datos, se manda ya sea al controlador o al 
 //        modelo dao
             if (action.equalsIgnoreCase("listar")) {
-                int idLote = Integer.parseInt(request.getParameter("id"));
-                request.setAttribute("idLote", idLote);
-
                 acceso = listar;
-            } 
+                
+            } if (action.equalsIgnoreCase("listarPapelera")) {
+                acceso = papelera;
+            }
 //        else if (action.equalsIgnoreCase("add")) {
 //            acceso = add;
 //        } else if (action.equalsIgnoreCase("editar")) {

@@ -24,7 +24,7 @@
         <div class="container encabezado">
             
           <div class="encabezado">
-              <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
+              <%@ include file="../../componentes/btn_salir.jsp" %>
               <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
             </div>

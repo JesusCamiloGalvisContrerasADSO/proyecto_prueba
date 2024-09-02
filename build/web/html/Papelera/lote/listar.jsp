@@ -1,3 +1,6 @@
+<%
+    request.setAttribute("pageTitle", "Papelera lotes");
+%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="modelo.LoteM" %>
@@ -6,21 +9,13 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lotes</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+    <%@ include file="../../../componentes/head.jsp" %>
     <body>
         <header class=" fondo_header">
             <div class="container encabezado">
 
               <div class="encabezado">
-                <a href="controlLote?accion=listar">
-                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
-                </a>
+                <%@ include file="../../../componentes/btn_salir.jsp" %>
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>
@@ -53,7 +48,7 @@
                             <li>
                                 <!-- Mueve el formulario aquí y coloca el botón eliminar dentro del mismo -->
                                 <form action="ControlPapeLote" method="POST">
-                                    <button class="opciones__botones--boton" type="submit" name="accion" value="eliminar">
+                                    <button class="  opciones__botones--boton" type="submit" name="accion" value="eliminar">
                                         <i class="bi bi-trash"></i>
                                     </button>
                             </li>
@@ -88,11 +83,10 @@
                             <div class="Datos__lote--numero">
                                 <div class="num__lote">
                                     <input class="checkbox" type="checkbox" name="selectedLotes" value="<%= Tipo.getId() %>">
-                                    <button class="boton boton__lote  lote--ventas">Lote <%= Tipo.getNum() %></button>
+                                    <a class="boton boton__lote lote--ventas" href="ControlAnimal?accion=listar&id=<%= Tipo.getId() %>&num=<%= Tipo.getNum() %>">Lote <%= Tipo.getNum() %></a>
                                 </div>
                                 <div class="Datos__lote--texto">
-                                    <p class="Datos__lote--cantidad">Cantidad: 35</p>
-                                    <p class="Datos__lote--tipo">Tipo: Mixto</p>
+                                    <p class="Datos__lote--cantidad">Cantidad: <%= Tipo.getCantidad()%></p>
                                 </div>
                             </div>
                             <div>

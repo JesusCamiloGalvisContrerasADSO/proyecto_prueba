@@ -28,7 +28,11 @@ public class LoteDAO implements Lote {
     public List<LoteM> listar() {
         List<LoteM> list = new ArrayList<>();
 //        asignamos a una variable la consulta
-        String sql = "SELECT * FROM lote WHERE estado = 1";
+        String sql = "SELECT lote.estado, lote.id, lote.num, COUNT(animal.id) AS total_animales "+
+                     "FROM lote "+
+                     "LEFT JOIN animal ON lote.id = animal.lote_id "+
+                     "WHERE lote.estado = 1 "+
+                     "GROUP BY lote.id, lote.num; ";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -38,6 +42,7 @@ public class LoteDAO implements Lote {
                 lote.setId(rs.getInt("id"));
                 lote.setNum(rs.getInt("num"));
                 lote.setEst(rs.getInt("estado"));
+                lote.setCantidad(rs.getInt("total_animales"));
 //                agregamos los datos de los seter y geter a list(instancia de modelo)
                 list.add(lote);
             }
@@ -52,7 +57,11 @@ public class LoteDAO implements Lote {
     @Override
     public List<LoteM> listarPapelera() {
         List<LoteM> list = new ArrayList<>();
-        String sql = "SELECT * FROM lote WHERE estado = 0";
+        String sql = "SELECT lote.estado, lote.id, lote.num, COUNT(animal.id) AS total_animales "+
+                     "FROM lote "+
+                     "LEFT JOIN animal ON lote.id = animal.lote_id "+
+                     "WHERE lote.estado = 0 "+
+                     "GROUP BY lote.id, lote.num; ";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -62,6 +71,7 @@ public class LoteDAO implements Lote {
                 lote.setId(rs.getInt("id"));
                 lote.setNum(rs.getInt("num"));
                 lote.setEst(rs.getInt("estado"));
+                lote.setCantidad(rs.getInt("total_animales"));
                 list.add(lote);
             }
         } catch (Exception e) {

@@ -18,6 +18,7 @@
             <div class="container encabezado">
 
               <div class="encabezado">
+                  <%@ include file="../../componentes/btn_salir.jsp" %>
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>
@@ -56,7 +57,7 @@
                             <li>
                                 <!-- Mueve el formulario aquí y coloca el botón eliminar dentro del mismo -->
                                 <form action="controlLote" method="POST">
-                                    <button class="opciones__botones--boton" type="submit" name="accion" value="cambiarFalse">
+                                    <button class=" opciones__botones--boton" type="submit" name="accion" value="cambiarFalse">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 
@@ -92,11 +93,10 @@
                             <div class="Datos__lote--numero">
                                 <div class="num__lote">
                                     <input class="checkbox" type="checkbox" name="selectedLotes" value="<%= Tipo.getId() %>">
-                                    <a class="boton boton__lote" href="ControlAnimal?accion=listar&id=<%= Tipo.getId()%>">Lote <%= Tipo.getNum() %></a>
+                                    <a class="boton boton__lote" href="ControlAnimal?accion=listar&id=<%= Tipo.getId() %>&num=<%= Tipo.getNum() %>">Lote <%= Tipo.getNum() %></a>
                                 </div>
                                 <div class="Datos__lote--texto">
-                                    <p class="Datos__lote--cantidad">Cantidad: 35</p>
-                                    <p class="Datos__lote--tipo">Tipo: Mixto</p>
+                                    <p class="Datos__lote--cantidad">Cantidad: <%= Tipo.getCantidad()%></p>
                                 </div>
                             </div>
                             <div>
