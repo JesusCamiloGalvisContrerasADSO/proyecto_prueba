@@ -1,6 +1,10 @@
 <%
     request.setAttribute("pageTitle", "agrtegar docuemnto");
 %>
+
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">

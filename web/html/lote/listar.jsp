@@ -4,6 +4,9 @@
 <%@ page import="modeloDAO.LoteDAO" %>
 <%@ page import="controlador.controlLote" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ include file="../../componentes/validacionRol.jsp" %>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -14,9 +17,9 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
+        
         <header class=" fondo_header">
             <div class="container encabezado">
-
               <div class="encabezado">
                   <%@ include file="../../componentes/btn_salir.jsp" %>
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
@@ -44,6 +47,9 @@
                             <p class="cinta__Titulo">Lotes de ganado</p>
                         </div>
                     </div>
+                    <%
+                        if (rol == 1) {
+                    %>
                     <div class="menu">
                         <ul class="opciones__botones">
                             <li>
@@ -65,6 +71,9 @@
                             
                         </ul>
                     </div>
+                    <%
+                        }
+                    %>
                 </div>
                 <hr class="linea__cinta">
             </section>
@@ -99,10 +108,14 @@
                                     <p class="Datos__lote--cantidad">Cantidad: <%= Tipo.getCantidad()%></p>
                                 </div>
                             </div>
+                                <%
+                                    if (rol == 1) {
+                                %>
                             <div>
                                 <p><a class=" boton boton--editar" href="controlLote?accion=editar&id=<%= Tipo.getId() %>"><i class="bi bi-pencil"></i></a></p>
                                 <!--<p class="Datos__lote--texto Datos__lote--texto2">Última fecha de revisión: 12/05/2024</p>-->
                             </div>
+                                <%}%>
                         </div>
                     </div>
                     <% } %>

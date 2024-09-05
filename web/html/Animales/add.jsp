@@ -1,63 +1,104 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="modeloDAO.SaludDAO"%>
+<%@page import="modelo.Salud"%>
+<%@page import="modelo.Salud"%>
+<%@page import="modelo.Tipo_sexo"%>
+<%@page import="modeloDAO.Tipo_sexoDAO"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="modelo.Raza"%>
+<%@page import="java.util.List"%>
+<%@page import="modeloDAO.RazaDAO"%>
+
+<%@ include file="../../componentes/validacionRol.jsp" %>
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lotes</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-    <body>
-        <header class=" fondo_header">
-            <div class="container encabezado">
-
-              <div class="encabezado">
-                <a href="controlLote?accion=listar">
-                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
-                </a>
-                <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
-                <p>BoviControl</p>
-              </div>
-              <div class="encabezado">
-                <ul class="encabezado__lista">
-                  
-                  <li><a class="encabezado__lista--texto" href="">Usuario</a></li>
-
-                  <li class="encabezado__lista--icono"><i class="bi bi-person-circle"></i></li>
-                </ul>
-              </div>
-            </div>
-        </header>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Animal</title>
+    <link rel="stylesheet" href="css/style.css"> <!-- Incluye tu archivo de estilos CSS -->
+</head>
+<body>
+    <h2>Agregar Nuevo Animal</h2>
+    
+    <form action="ControlAnimal" method="POST">
+    <%
+        int idLote = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("idLote", idLote);
         
-        <main>
-            <section class="fondo__cinta">
+        int numLote = Integer.parseInt(request.getParameter("num"));
+        request.setAttribute("numLote", numLote);
+    %>
+        <!-- El atributo "name" debe coincidir con los parámetros esperados por el servlet -->
+        <input type="hidden" name="action" value="add"> <!-- Acción específica que manejará el servlet -->
 
-                <div class="cinta__opciones container">
-                    <div class="cinta__opciones--titulo">
-                        <div>
-                            <img class="cinta__logo" src="Recursos/vaquita.png" alt="">
-                        </div>
-                        <div>
-                            <p class="cinta__Titulo">Agregar nuevo lote</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <section>
-                <div class="container tabla__listar">
-                    <form action="controlLote" method="POST">
-                        <div class="alinear__Row">
-                            <div class="alinear__colum">
-                                <label>Ingresa el numero del lote:</label>
-                                <input class="input_ingresar input--editar" type="text" name="txtNum"><br>
-                            </div>
-                            <input class="boton boton--listar input--editar" type="submit" name="accion" value="Agregar"><br>
-                        </div>
-                    </form>
-                </div>
-            </section>
-        </main>
-    </body>
+        <label for="lote_id">Id lote</label>
+        <input type="number" name="txtid" value="<%= idLote %>"><br><br>
+        
+        <label for="lote_id">numro lote</label>
+        <input type="number" name="txtnumLote" value="<%= numLote %>"><br><br>
+        
+        <label for="num">Número del Animal:</label>
+        <input type="text" id="num" name="txtnum" required><br><br>
+        
+        <div class="registro__input">
+                    <p>Tipo de Raza</p>
+                    <select class="input_registro" name="txtRaza" id="">
+                        <option value="" disabled="" selected=""></option>
+                        <% 
+                        RazaDAO razaDAO = new RazaDAO();
+                        List<Raza> razaLista = razaDAO.listar();
+                        Iterator<Raza> razaIter = razaLista.iterator();
+                        while (razaIter.hasNext()) {
+                            Raza razaTipo = razaIter.next();
+                        %>
+                        <option value="<%= razaTipo.getId() %>"><%= razaTipo.getNombre()%></option>
+                        <% } %>
+                    </select>
+                  </div><br><br>
+                  
+        <div class="registro__input">
+                    <p>Tipo de sexo</p>
+                    <select class="input_registro" name="txtSexo" id="">
+                        <option value="" disabled="" selected=""></option>
+                        <% 
+                        Tipo_sexoDAO sexoDao = new Tipo_sexoDAO();
+                        List<Tipo_sexo> sexoLista = sexoDao.listar();
+                        Iterator<Tipo_sexo> sexoIter = sexoLista.iterator();
+                        while (sexoIter.hasNext()) {
+                            Tipo_sexo sexoTipo =  sexoIter.next();
+                        %>
+                        <option value="<%= sexoTipo.getId() %>"><%= sexoTipo.getNombre()%></option>
+                        <% } %>
+                    </select>
+                  </div><br><br>
+        
+        <div class="registro__input">
+                    <p>Estado de salud</p>
+                    <select class="input_registro" name="txtsalud" id="">
+                        <option value=""></option>
+                        <% 
+                        SaludDAO saludDao = new SaludDAO();
+                        List<Salud> saludLista = saludDao.listar();
+                        Iterator<Salud> saludIter = saludLista.iterator();
+                        while (saludIter.hasNext()) {
+                            Salud salud = saludIter.next();
+                        %>
+                        <option value="<%= salud.getId() %>"><%= salud.getNombre()%></option>
+                        <% } %>
+                    </select>
+                  </div>
+
+        <!-- Peso inicial del animal -->
+        <label for="peso">Peso Inicial (kg):</label>
+        <input type="number" id="peso" name="txtpeso" step="0.01" required><br><br>
+        
+        <!-- Botón para enviar el formulario -->
+        <button type="submit" type="submit" name="accion" value="Agregar">Agregar Animal</button>
+    </form>
+
+    <!-- Enlace para regresar a la lista de animales -->
+    <br><a href="AnimalServlet?action=list&">Regresar a la Lista de Animales</a> <!-- Ajusta la URL según sea necesario -->
+</body>
 </html>

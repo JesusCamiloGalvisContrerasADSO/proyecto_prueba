@@ -3,6 +3,10 @@
 <%@ page import="java.util.Iterator" %>
 <%@page import="modelo.Animal"%>
 <%@page import="modeloDAO.AnimalDAO"%>
+
+<%@ include file="../../componentes/validacionRol.jsp" %>
+
+
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -27,7 +31,9 @@
 
               <div class="encabezado">
                   
-                  <%@ include file="../../componentes/btn_salir.jsp" %>
+                  <a href="controlLote?accion=listar">
+                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
+                   </a>
                 
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
@@ -73,7 +79,7 @@
                     <div class="menu">
                         <ul class="opciones__botones">
                             <li>
-                                <a href="ControlAnimal?accion=add"><button class="opciones__botones--boton" ><i class="bi bi-plus"></i></button></a>
+                                <a href="ControlAnimal?accion=add&id=<%= idLote %>&num=<%= numLote %>"><button class="opciones__botones--boton" ><i class="bi bi-plus"></i></button></a>
                             </li>
                             <li>
                                 <a href="ControlAnimal?accion=listarPapelera&id=<%= idLote %>&num=<%= numLote %>">

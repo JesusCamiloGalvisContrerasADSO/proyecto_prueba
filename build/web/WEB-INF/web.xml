@@ -32,6 +32,10 @@
         <servlet-name>ControlAnimal</servlet-name>
         <servlet-class>controlador.ControlAnimal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlLogin</servlet-name>
+        <servlet-class>controlador.ControlLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ControlAnimal</servlet-name>
         <url-pattern>/ControlAnimal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlLogin</servlet-name>
+        <url-pattern>/ControlLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

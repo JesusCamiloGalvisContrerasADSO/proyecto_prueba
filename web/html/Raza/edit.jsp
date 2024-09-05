@@ -7,6 +7,10 @@
 <%
     request.setAttribute("pageTitle", "Editar Raza");
 %>
+
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="es">
    

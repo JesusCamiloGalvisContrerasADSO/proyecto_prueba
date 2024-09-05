@@ -8,6 +8,8 @@
 <%@ page import="modeloDAO.UsuarioDAO" %>
 <%@ page import="controlador.ControlUsuario" %>
 
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
+
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

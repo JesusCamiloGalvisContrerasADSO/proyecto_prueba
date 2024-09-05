@@ -7,6 +7,10 @@
 <%
     request.setAttribute("pageTitle", "Tipos de documentos");
 %>
+
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="es">
    

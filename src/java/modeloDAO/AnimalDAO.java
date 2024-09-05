@@ -4,6 +4,7 @@ package modeloDAO;
 import config.conexion;
 import interfaces.animal;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -45,7 +46,9 @@ public class AnimalDAO implements animal{
                        "    WHERE row_num = 1 " +
                        ") last_p ON p.animal_id = last_p.animal_id AND p.fecha = last_p.fecha " +
                        "WHERE a.lote_id = ? AND a.estado = 1; ";
+//                       "LIMIT 0, 25;";
         
+
         try {
         con = cn.getConnection();
         ps = con.prepareStatement(sql);
@@ -169,13 +172,172 @@ public class AnimalDAO implements animal{
 
     @Override
     public Animal list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Animal> lista = new ArrayList<>();
+        String sql = "SELECT a.id AS idAnimal, a.num, r.id AS idRaza, r.nombre AS raza, s.id AS idSexo, " +
+                       "s.nombre AS sexo, lot.id AS idLote, lot.num AS numLote, p.peso, "+
+                       "p.fecha AS fechaPeso, p.id AS idPeso, es.id AS idSalud, es.nombre AS nombreSalud " +
+                       "FROM animal a " +
+                       "INNER JOIN lote lot ON a.lote_id = lot.id " +
+                       "INNER JOIN tipo_raza r ON a.raza_id = r.id " +
+                       "INNER JOIN tipo_sexo s ON a.tipo_sexo_id = s.id " +
+                       "INNER JOIN pesos p ON a.id = p.animal_id " +
+                       "INNER JOIN estado_salud es ON a.saludId = es.id " +
+                       "INNER JOIN ( " +
+                       "    SELECT animal_id, fecha, peso " +
+                       "    FROM ( " +
+                       "        SELECT animal_id, fecha, peso, " +
+                       "               ROW_NUMBER() OVER (PARTITION BY animal_id ORDER BY fecha DESC) AS row_num " +
+                       "        FROM pesos " +
+                       "    ) sub " +
+                       "    WHERE row_num = 1 " +
+                       ") last_p ON p.animal_id = last_p.animal_id AND p.fecha = last_p.fecha " +
+                       "WHERE a.estado = 1 AND a.id = ?; ";
+        Animal animal = new Animal();
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                
+                animal.setId(rs.getInt("idAnimal"));
+                animal.setNum(rs.getString("num"));
+                animal.setTipo_sexo(rs.getInt("idSexo"));
+                animal.setNomTipoSex(rs.getString("sexo"));
+
+                // Mapeo del tipo de raza
+                animal.setRaza_id(rs.getInt("idRaza"));
+                Raza raza = new Raza();
+                raza.setNombre(rs.getString("raza"));
+                animal.setRaza(raza); // Asignar la raza al animal
+
+                // Mapeo del lote
+                animal.setLote_id(rs.getInt("idLote"));
+                LoteM lote = new LoteM();
+                lote.setNum(rs.getInt("numLote"));
+                animal.setLote(lote); // Asignar el lote al animal
+
+                // Mapeo de los pesos
+                animal.setPesos_id(rs.getInt("idPeso"));
+                Pesos peso = new Pesos();
+                peso.setPeso(rs.getFloat("peso"));
+                peso.setFechaPeso(rs.getDate("fechaPeso"));
+                animal.setPesos(peso); // Asignar el objeto Pesos al animal
+
+                //Mapeo de el estado de salud
+                animal.setSalud_id(rs.getInt("idSalud"));
+                Salud salud = new Salud();
+                salud.setNombre(rs.getString("nombreSalud"));
+                animal.setSalud(salud);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al listar el lote: " + e);
+        }
+        return animal;
     }
 
     @Override
-    public boolean add(Animal Ani) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public boolean add(Animal Anim) {
+        // Inserción en la tabla 'animal'
+        String sqlAnimal = "INSERT INTO animal (lote_id, num, raza_id, tipo_sexo_id, fecha, estado, saludId) VALUES (?, ?, ?, ?, CURDATE(), ?, ?)";
+
+        // Inserción en la tabla 'pesos'
+        String sqlPesos = "INSERT INTO pesos (peso, fecha, animal_id) VALUES (?, ?, ?)";
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            // Conexión y preparación de la inserción en 'animal'
+            con = cn.getConnection();
+            
+            ps = con.prepareStatement(sqlAnimal, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, Anim.getLote_id());
+            ps.setString(2, Anim.getNum());
+            ps.setInt(3, Anim.getRaza_id());
+            ps.setInt(4, Anim.getTipo_sexo());
+            ps.setInt(5, 1);
+            ps.setInt(6, Anim.getSalud_id());
+
+            // Ejecutar la inserción en 'animal'
+            ps.executeUpdate();
+
+            // Obtener el ID generado automáticamente del nuevo animal
+            rs = ps.getGeneratedKeys();
+            int idAnimal = 0;
+            if (rs.next()) {
+                idAnimal = rs.getInt(1);
+            } else {
+                throw new Exception("No se pudo obtener el ID del nuevo animal.");
+            }
+
+            // Preparar y ejecutar la inserción en 'pesos' con el ID obtenido
+            ps = con.prepareStatement(sqlPesos);
+            ps.setFloat(1, Anim.getPesos().getPeso());
+            ps.setDate(2, new java.sql.Date(Anim.getPesos().getFechaPeso().getTime()));
+            ps.setInt(3, idAnimal);
+
+            // Ejecutar la inserción en 'pesos'
+            ps.executeUpdate();
+
+
+            return true;
+
+        } catch (Exception e) {
+        } 
+    return false;
+}
+
+
+//    @Override
+//    public int addAnimal(Animal ani) {
+//        String sqlAnimal = "INSERT INTO animal (lote_id, num, raza_id, tipo_sexo_id, fecha, estado, saludId) VALUES (?, ?, ?, ?, CURDATE(), ?, ?)";
+//        int animalId = -1;
+//
+//        try {
+//            con = cn.getConnection();
+//            ps = con.prepareStatement(sqlAnimal, PreparedStatement.RETURN_GENERATED_KEYS);
+//            ps.setInt(1, ani.getLote_id());
+//            ps.setString(2, ani.getNum());
+//            ps.setInt(3, ani.getRaza_id());
+//            ps.setInt(4, ani.getTipo_sexo());
+//            ps.setInt(5, ani.getEstado());
+//            ps.setInt(6, ani.getSalud_id());
+//            ps.executeUpdate();
+//
+//            // Obtener el ID generado automáticamente
+//            ResultSet rs = ps.getGeneratedKeys();
+//            if (rs.next()) {
+//                animalId = rs.getInt(1);
+//            }
+//            ps.close();
+//        } catch (Exception e) {
+//            System.err.println("Error al agregar el animal: " + e);
+//        }
+//
+//        return animalId;
+//    }
+//
+//    @Override
+//    public boolean addPeso(Animal animal) {
+//        String sqlPesos = "INSERT INTO pesos (peso, fecha, animal_id) VALUES (?, CURDATE(), ?)";
+//
+//        try {
+//            con = cn.getConnection();
+//            ps = con.prepareStatement(sqlPesos);
+//            ps.setFloat(1, animal.getPesos().getPeso());
+//            ps.setInt(2, animal.getIdAnimal()); // Usa el ID del animal obtenido
+//            ps.executeUpdate();
+//            ps.close();
+//            return true;
+//        } catch (Exception e) {
+//            System.err.println("Error al agregar el peso: " + e);
+//        }
+//
+//        return false;
+//    }
+
 
     @Override
     public boolean edit(Animal Ani) {

@@ -22,7 +22,7 @@ public class Tipo_sexoDAO implements tipo_sexo{
     public List<Tipo_sexo> listar() {
         List<Tipo_sexo> list = new ArrayList<>();
 //        asignamos a una variable la consulta
-        String sql = "SELECT * FROM tipo_raza";
+        String sql = "SELECT * FROM tipo_sexo";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);

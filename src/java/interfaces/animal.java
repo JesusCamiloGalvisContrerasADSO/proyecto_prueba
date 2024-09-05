@@ -14,7 +14,11 @@ public interface animal {
     public Animal list(int id);
     
     // Método para agregar un nuevo lote
-    public boolean add(Animal Ani);
+    public boolean add(Animal animal);
+    
+//    public boolean addAnimal(Animal animal);
+//    
+//    public boolean addPeso(Animal animal);
     
     // Método para editar un lote existente
     public boolean edit(Animal Ani);

@@ -4,6 +4,8 @@
 <%@ page import="modeloDAO.TipoSangreDAO" %>
 <%@ page import="controlador.ControlTipSan" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
 <html lang="es">
     <head>
         <meta charset="UTF-8">

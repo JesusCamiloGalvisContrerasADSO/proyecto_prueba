@@ -6,6 +6,7 @@ import java.util.Date;
 public class Animal {
     private int id;
     private String num;
+    private int estado;
     private Date fechaCompra;
     private Raza Raza;
     private int raza_id;
@@ -19,22 +20,6 @@ public class Animal {
     private int salud_id;
 
     public Animal() {
-    }
-
-    public Animal(int id, String num, Date fechaCompra, Raza Raza, int raza_id, int tipo_sexo, String nomTipoSex, LoteM Lote, int lote_id, Pesos pesos, int pesos_id, Salud salud, int salud_id) {
-        this.id = id;
-        this.num = num;
-        this.fechaCompra = fechaCompra;
-        this.Raza = Raza;
-        this.raza_id = raza_id;
-        this.tipo_sexo = tipo_sexo;
-        this.nomTipoSex = nomTipoSex;
-        this.Lote = Lote;
-        this.lote_id = lote_id;
-        this.pesos = pesos;
-        this.pesos_id = pesos_id;
-        this.salud = salud;
-        this.salud_id = salud_id;
     }
 
     public int getId() {
@@ -51,6 +36,14 @@ public class Animal {
 
     public void setNum(String num) {
         this.num = num;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     public Date getFechaCompra() {
@@ -138,6 +131,23 @@ public class Animal {
     }
 
     public void setSalud_id(int salud_id) {
+        this.salud_id = salud_id;
+    }
+
+    public Animal(int id, String num, int estado, Date fechaCompra, Raza Raza, int raza_id, int tipo_sexo, String nomTipoSex, LoteM Lote, int lote_id, Pesos pesos, int pesos_id, Salud salud, int salud_id) {
+        this.id = id;
+        this.num = num;
+        this.estado = estado;
+        this.fechaCompra = fechaCompra;
+        this.Raza = Raza;
+        this.raza_id = raza_id;
+        this.tipo_sexo = tipo_sexo;
+        this.nomTipoSex = nomTipoSex;
+        this.Lote = Lote;
+        this.lote_id = lote_id;
+        this.pesos = pesos;
+        this.pesos_id = pesos_id;
+        this.salud = salud;
         this.salud_id = salud_id;
     }
 

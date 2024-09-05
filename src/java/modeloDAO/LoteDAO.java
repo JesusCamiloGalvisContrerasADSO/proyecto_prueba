@@ -28,8 +28,9 @@ public class LoteDAO implements Lote {
     public List<LoteM> listar() {
         List<LoteM> list = new ArrayList<>();
 //        asignamos a una variable la consulta
-        String sql = "SELECT lote.estado, lote.id, lote.num, COUNT(animal.id) AS total_animales "+
-                     "FROM lote "+
+        String sql = "SELECT lote.estado, lote.id, lote.num,"+
+                     "COUNT(CASE WHEN animal.estado = 1 THEN 1 END) AS total_animales "+
+                     "FROM lote  "+
                      "LEFT JOIN animal ON lote.id = animal.lote_id "+
                      "WHERE lote.estado = 1 "+
                      "GROUP BY lote.id, lote.num; ";
@@ -57,8 +58,9 @@ public class LoteDAO implements Lote {
     @Override
     public List<LoteM> listarPapelera() {
         List<LoteM> list = new ArrayList<>();
-        String sql = "SELECT lote.estado, lote.id, lote.num, COUNT(animal.id) AS total_animales "+
-                     "FROM lote "+
+        String sql ="SELECT lote.estado, lote.id, lote.num,"+
+                     "COUNT(CASE WHEN animal.estado = 1 THEN 1 END) AS total_animales "+
+                     "FROM lote  "+
                      "LEFT JOIN animal ON lote.id = animal.lote_id "+
                      "WHERE lote.estado = 0 "+
                      "GROUP BY lote.id, lote.num; ";
@@ -102,6 +104,7 @@ public class LoteDAO implements Lote {
         }
         return lote;
     }
+    
 
 //    este metodo publico es el de agregar, donde se le pasan los valores y el id 
 //    es colocado automaticamente por la base de datos ya que esta en autoincremet,

@@ -5,6 +5,10 @@
 <%
     request.setAttribute("pageTitle", "editar documento");
 %>
+
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="es">
    

@@ -3,12 +3,15 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Animal;
+import modelo.LoteM;
+import modelo.Pesos;
 import modeloDAO.AnimalDAO;
 
 
@@ -18,6 +21,7 @@ public class ControlAnimal extends HttpServlet {
 //    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String listar = "html/Animales/listar.jsp";
     String add = "html/Animales/add.jsp";
+    String ex = "html/lote/listar.jsp";
     String edit = "html/Animales/edit.jsp";
     String papelera = "html/Papelera/animal/listar.jsp";
     Animal Anim = new Animal();
@@ -59,10 +63,10 @@ public class ControlAnimal extends HttpServlet {
                 
             } if (action.equalsIgnoreCase("listarPapelera")) {
                 acceso = papelera;
-            }
-//        else if (action.equalsIgnoreCase("add")) {
-//            acceso = add;
-//        } else if (action.equalsIgnoreCase("editar")) {
+            }else if (action.equalsIgnoreCase("add")) {
+                acceso = add;
+            } 
+//            else if (action.equalsIgnoreCase("editar")) {
 //            request.setAttribute("idLote", request.getParameter("id"));
 //            acceso = edit;
 //        } 
@@ -77,7 +81,52 @@ public class ControlAnimal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //        se crean las variables de acceso y a action se le asigna la accion 
+        //       que le manda el boton o enlace al que estamos dando click  
+        String acceso = "";
+        String action = request.getParameter("accion");
+        
+        if (action.equalsIgnoreCase("Agregar")) {
+            
+            int idlote = Integer.parseInt(request.getParameter("txtid"));
+            int numLote = Integer.parseInt(request.getParameter("txtnumLote"));
+            String numero = request.getParameter("txtnum");
+            int raza = Integer.parseInt(request.getParameter("txtRaza"));
+            int sexo = Integer.parseInt(request.getParameter("txtSexo"));
+            int salud = Integer.parseInt(request.getParameter("txtsalud"));
+            float peso = Float.parseFloat(request.getParameter("txtpeso"));
+
+            Anim.setLote_id(idlote);
+            Anim.setNum(numero);
+            Anim.setRaza_id(raza);
+            Anim.setTipo_sexo(sexo);
+            Anim.setSalud_id(salud);
+            
+            Date date = new Date(); 
+            Anim.setFechaCompra(date);
+            
+            LoteM lote = new LoteM();
+            lote.setNum(numLote);
+            
+            Anim.setLote(lote);
+            
+            Pesos pesos = new Pesos();
+            pesos.setPeso(peso);
+            pesos.setFechaPeso(date);
+            
+            Anim.setPesos(pesos);
+            
+            dao.add(Anim);
+            
+            // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+            response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
+            return; // Asegúrate de no ejecutar más código después de la redirección
+        }
+        
+//        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
+//        rutas de manera correcta, se llama al request y response
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
+        vista.forward(request, response);
     }
 
 

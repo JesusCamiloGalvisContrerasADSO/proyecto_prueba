@@ -29,11 +29,10 @@
           <p class="Texto_login">Control de pesos en ganado bovino</p>
 
         </div>
-        <h1 class="titulo_mobile_login">Iniciar sesión</h1>
         <div class="datos_logeo center sombras--contenedor">
-            <form action="ControlUsuario" method="POST" class="center">
+        <h1 class="">Iniciar sesión</h1>
+            <form action="ControlLogin" method="POST" class="center">
             <!-- ingresar numero de documento y contraseña  -->
-
             <input class="input_ingresar" name="txtDocum" id="num_doc" placeholder="Ingresa el numero de documento" type="number" >
             
             <input class="input_ingresar" name="txtContra" placeholder="Ingresa tu contraseña" type="password" >  
@@ -46,8 +45,6 @@
             <div class="boton__usuario">
                 <a class="boton boton--modificador" href="ControlUsuario?accion=add">Registrarse</a>
               <a class="boton boton__olvidar " href="">¿Olvidaste tu contraseña?</a>
-              <br>
-              <a class="boton boton__olvidar " href="paginasAcciones.html">Todas las paginas</a>
             </div>
             
             

@@ -1,6 +1,9 @@
 <%@ page import="java.util.*" %>
 <%@ page import="modelo.TipoSangre" %>
 <%@ page import="modeloDAO.TipoSangreDAO" %>
+
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="es">
     <head>
