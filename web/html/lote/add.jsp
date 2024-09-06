@@ -20,12 +20,7 @@
                 <p>BoviControl</p>
               </div>
               <div class="encabezado">
-                <ul class="encabezado__lista">
-                  
-                  <li><a class="encabezado__lista--texto" href="">Usuario</a></li>
-
-                  <li class="encabezado__lista--icono"><i class="bi bi-person-circle"></i></li>
-                </ul>
+                <%@ include file="../../componentes/botones_header.jsp" %>
               </div>
             </div>
         </header>

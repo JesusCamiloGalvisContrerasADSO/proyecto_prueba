@@ -19,6 +19,7 @@ public class ControlLogin extends HttpServlet {
 //    aqui se declaran las varibles que van a guardar las rutas, tambien estaran las instancias 
 //    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String listar = "html/Usuarios/listar.jsp";
+    String acciones = "AccionesAdmin.jsp";
     String index = "index.jsp";
     Usuario user = new Usuario();
     LoginDAO dao = new LoginDAO();
@@ -45,7 +46,28 @@ public class ControlLogin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        //        se crean las variables de acceso y a action se le asigna la accion 
+//       que le manda el boton o enlace al que estamos dando click  
+        String acceso = "";
+        String action = request.getParameter("accion");
+        
+        if (action.equalsIgnoreCase("cerrarSecion")){
+        // Obtener o crear la sesión
+        HttpSession session = request.getSession(false);
+        
+        // Guardar el rol en la sesión
+            session.setAttribute("rol", 0);
+            session.setAttribute("user", user);
+            
+        acceso = index;
+        }else if (action.equalsIgnoreCase("acciones")){
+                acceso = acciones;
+        }
+        
+        RequestDispatcher vista = request.getRequestDispatcher(acceso);
+        vista.forward(request, response);
+        
     }
 
     @Override
@@ -58,43 +80,41 @@ public class ControlLogin extends HttpServlet {
         String action = request.getParameter("accion");
         
         // Código para manejar el inicio de sesión
-if (action.equalsIgnoreCase("Ingresar")) {
-    String documentoStr = request.getParameter("txtDocum");
-    Long numDoc = Long.parseLong(documentoStr);
-    String contrasena = request.getParameter("txtContra");
+        if (action.equalsIgnoreCase("Ingresar")) {
+            String documentoStr = request.getParameter("txtDocum");
+            Long numDoc = Long.parseLong(documentoStr);
+            String contrasena = request.getParameter("txtContra");
 
-    user.setDocumento(numDoc);
-    user.setContrasena(contrasena);
+            user.setDocumento(numDoc);
+            user.setContrasena(contrasena);
 
-    boolean isValid = dao.VerificarLogin(user);
+            boolean isValid = dao.VerificarLogin(user);
 
-    if (isValid) {
-        int rol = user.getRol(); // Asegúrate de obtener el rol del usuario autenticado
-        
-        // Obtener o crear la sesión
-        HttpSession session = request.getSession(true);
-        
-        // Guardar el rol en la sesión
-        session.setAttribute("rol", rol);
-        session.setAttribute("user", user);
+            if (isValid) {
+                    int rol = user.getRol(); // obtener el rol del usuario autenticado
 
-        // Redirigir según el rol
-        if (rol == 1) {
-            acceso = "paginasAcciones.html"; // Redirigir al dashboard del administrador
-        } else if (rol == 2) {
-            acceso = "html/lote/listar.jsp"; // Redirigir al dashboard de un usuario estándar
-        } else {
-            acceso = "index.jsp"; // Redirigir a la página de inicio de sesión si el rol no es reconocido
-        }
-    } else {
-        // Redirigir a la página de login con un mensaje de error
-        request.setAttribute("error", "Credenciales inválidas");
-        acceso = "index.jsp";
-    }
+                    // Obtener o crear la sesión
+                    HttpSession session = request.getSession(true);
 
-    // Redirigir a la página de destino
-    request.getRequestDispatcher(acceso).forward(request, response);
-}
+                    // Guardar el rol en la sesión
+                    session.setAttribute("rol", rol);
+                    session.setAttribute("user", user);
+
+                    // Redirigir según el rol
+                    if (rol == 1) {
+                        acceso = acciones; // Redirigir al dashboard del administrador
+                    } else if (rol == 2) {
+                        acceso = "html/lote/listar.jsp"; // Redirigir al dashboard de un usuario estándar
+                    } else {
+                        acceso = "index.jsp"; // Redirigir a la página de inicio de sesión si el rol no es reconocido
+                    }
+                } else {
+                    // Redirigir a la página de login con un mensaje de error
+                    request.setAttribute("error", "Credenciales inválidas");
+                    acceso = "index.jsp";
+                }
+
+            }
 
         
         RequestDispatcher vista = request.getRequestDispatcher(acceso);

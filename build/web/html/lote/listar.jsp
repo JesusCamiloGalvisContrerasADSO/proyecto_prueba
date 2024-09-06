@@ -15,23 +15,24 @@
         <title>Lotes</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="css/style.css">
+  <script src="js/acciones/menu_desplegable.js"> </script>
     </head>
     <body>
         
         <header class=" fondo_header">
             <div class="container encabezado">
               <div class="encabezado">
-                  <%@ include file="../../componentes/btn_salir.jsp" %>
+                  <%
+                        if (rol == 1) {
+                    %>
+                  <a href="ControlLogin?accion=acciones">
+                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
+                   </a>
+                  <% } %>
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>
-              <div class="encabezado">
-                <ul class="encabezado__lista">
-                  <li><a class="encabezado__lista--texto" href="">Usuario</a></li>
-
-                  <li class="encabezado__lista--icono"><i class="bi bi-person-circle"></i></li>
-                </ul>
-              </div>
+                  <%@ include file="../../componentes/botones_header.jsp" %>
             </div>
         </header>
        <main>
@@ -101,7 +102,9 @@
                         <div class="container Datos__lote" >
                             <div class="Datos__lote--numero">
                                 <div class="num__lote">
+                                    <% if (rol == 1) {%>
                                     <input class="checkbox" type="checkbox" name="selectedLotes" value="<%= Tipo.getId() %>">
+                                    <% } %>
                                     <a class="boton boton__lote" href="ControlAnimal?accion=listar&id=<%= Tipo.getId() %>&num=<%= Tipo.getNum() %>">Lote <%= Tipo.getNum() %></a>
                                 </div>
                                 <div class="Datos__lote--texto">

@@ -7,6 +7,8 @@
 <%@ page import="modeloDAO.LoteDAO" %>
 <%@ page import="controlador.ControlPapeLote" %>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ include file="../../../componentes/validacionRol.jsp" %>
 <!DOCTYPE html>
 <html lang="es">
     <%@ include file="../../../componentes/head.jsp" %>
@@ -19,14 +21,7 @@
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>
-              <div class="encabezado">
-                <ul class="encabezado__lista">
-                  <li><a class="encabezado__lista--texto" href="controlLote?accion=listar">Lotes</a></li>
-                  <li><a class="encabezado__lista--texto" href="">Usuario</a></li>
-
-                  <li class="encabezado__lista--icono"><i class="bi bi-person-circle"></i></li>
-                </ul>
-              </div>
+              <%@ include file="../../../componentes/botones_header.jsp" %>
             </div>
         </header>
         

@@ -28,12 +28,6 @@
               <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
             </div>
-            <div class="encabezado">
-                <ul class="encabezado__lista">
-                    <li><a class="encabezado__lista--texto" href="../../Index.html">Ingresar</a></li>
-                    <li class="encabezado__lista--icono"><i class="bi bi-person-circle"></i></li>
-                </ul>
-            </div>
         </div>
     </header>
     <!-- en este estan cada uno de los campos del registro como, nombre, apellidos, fecha de nacimiento, tipo de documento entre otros -->

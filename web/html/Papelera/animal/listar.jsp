@@ -4,6 +4,8 @@
 <%@page import="modelo.Animal"%>
 <%@page import="modeloDAO.AnimalDAO"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ include file="../../../componentes/validacionRol.jsp" %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,24 +23,20 @@
 
       </head>
     <body>
-        
         <header class=" fondo_header">
             <div class="container encabezado">
+        <%@ include file="../../../componentes/capturarLote_num.jsp" %>
 
               <div class="encabezado">
                   
-                  <%@ include file="../../../componentes/btn_salir.jsp" %>
-                
+                 <a href="ControlAnimal?accion=listar&id=<%= idLote %>&num=<%= numLote %>">
+                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
+                   </a>
+                  
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>
-              <div class="encabezado">
-                <ul class="encabezado__lista">
-                  <li><a class="encabezado__lista--texto" href="">Usuario</a></li>
-
-                  <li class="encabezado__lista--icono"><i class="bi bi-person-circle"></i></li>
-                </ul>
-              </div>
+              <%@ include file="../../../componentes/botones_header.jsp" %>
             </div>
         </header>
         
@@ -46,14 +44,6 @@
             <!-- aquí determina qué es lo que se está viendo -->
             
             <section class="fondo__cinta">
-                <% 
-                            int idLote = Integer.parseInt(request.getParameter("id"));
-                            request.setAttribute("idLote", idLote);
-                            
-                            int numLote = Integer.parseInt(request.getParameter("num"));
-                            request.setAttribute("numLote", numLote);
-                            
-                            %>
 
                 <div class="cinta__opciones container">
                     <div class="cinta__opciones--titulo">

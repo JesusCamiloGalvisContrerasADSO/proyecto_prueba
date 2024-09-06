@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/style.css">
   
   <script src="js/acciones/Eliminar.js"></script>        
+  <script src="js/acciones/menu_desplegable.js"></script>        
   <!-- Incluir SweetAlert2 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <!-- Incluir SweetAlert2 JS -->

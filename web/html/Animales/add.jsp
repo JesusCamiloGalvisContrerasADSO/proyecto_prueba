@@ -23,13 +23,7 @@
     <h2>Agregar Nuevo Animal</h2>
     
     <form action="ControlAnimal" method="POST">
-    <%
-        int idLote = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("idLote", idLote);
-        
-        int numLote = Integer.parseInt(request.getParameter("num"));
-        request.setAttribute("numLote", numLote);
-    %>
+    <%@ include file="../../componentes/capturarLote_num.jsp" %>
         <!-- El atributo "name" debe coincidir con los parámetros esperados por el servlet -->
         <input type="hidden" name="action" value="add"> <!-- Acción específica que manejará el servlet -->
 

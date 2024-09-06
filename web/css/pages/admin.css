@@ -1,0 +1,150 @@
+ /* Estilos del menú */
+ .menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    
+}
+
+
+.menu-item {
+    position: relative; /* Necesario para el posicionamiento del submenú */
+}
+
+.menu-link {
+    display: block;
+    color: var(--color--gris__oscuro);
+    font-weight: 700;
+    padding: 15px;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.menu-linkNormal {
+    display: block;
+    color: var(--color--gris__oscuro);
+    font-weight: 700;
+    padding: 15px;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.submenu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute; /* Hace que el submenú se superponga al menú principal */
+    background-color:var(--color--gris);
+    display: none; /* Oculto por defecto */
+    min-width: 180px;
+    top: 100%; /* Debajo del menú principal */
+    left: 0;
+    z-index: 1000;
+}
+
+.submenu-item {
+    width: 100%;
+}
+
+.icon-person{
+    font-size: 30px;
+    padding: 8px;
+}
+
+.submenu-link {
+    display: block;
+    color: var(--color--gris__oscuro);
+    padding: 10px;
+    text-decoration: none;
+}
+
+.menu-link:hover {
+    transition: 0.5px;
+    border-bottom: solid 2px var(--verde--lote);
+}
+
+.menu-linkNormal:hover{
+    transition: 0.5px;
+    border-bottom: solid 2px var(--verde--lote);
+}
+
+.submenu-link:hover {
+    
+    border-bottom: solid 1px var(--verde--lote);
+}
+
+.submenu-link:hover {
+    background-color: var(--color--gris__medio);
+}
+
+
+
+.padding-40{
+    padding: 40px;
+}
+
+.cards__Acciones{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.cards--admin{
+    width: 363px;
+    height: 505px;
+    border: solid 3px rgba(0, 0, 0, 0.103);
+    margin-bottom: 50px;
+    background-color: var(--fondo--cards);
+    border-radius: 30px;
+    padding: 15px;
+    transition: 1s;
+}
+
+.cards--admin:hover{
+    background-color: var(--fondo--cardsHover);
+}
+
+.imgCards--Admin {
+    width: 332px;
+    height: 265px;
+    border-radius: 30px;
+    background-size: cover; /* Mantener la imagen en el contenedor y evitar que se deforme */
+    background-position: center; /* Centra la imagen */
+}
+
+.admind--contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 45px 10px;
+}
+
+.admind--titulo{
+    color: var(--verde--lote);
+    margin-bottom: 25px;
+}
+
+.letra--16{
+    font-size: 16px;
+}
+
+
+.texto--blanco{
+    color: aliceblue;
+}
+
+
+.submenu--header{
+    background-color:var(--color--encabezado);
+}
+
+.submenu-link--header{
+    color: var(--color--blanco);
+}
+.submenu-link--header:hover{
+    background-color:var(--color--gris__medio);
+}

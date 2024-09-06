@@ -23,15 +23,8 @@
     <div class="container encabezado">
 
       <div class="encabezado">
-        <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
         <img class="logo" src="../../Recursos/logo/logo-BoviControl.svg" alt="">
         <p>BoviControl</p>
-      </div>
-      <div class="encabezado">
-        <ul class="encabezado__lista">
-          <li><a class="encabezado__lista--texto" href="../../Ingresar.html">Ingresar</a></li>
-          <li class="encabezado__lista--icono"><i class="bi bi-person-circle"></i></li>
-        </ul>
       </div>
     </div>
   </header>

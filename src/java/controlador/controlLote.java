@@ -18,6 +18,7 @@ public class controlLote extends HttpServlet {
     String add = "html/lote/add.jsp";
     String edit = "html/lote/edit.jsp";
     String papelera = "html/Papelera/Lotes/listar.jsp";
+    String acciones = "AccionesAdmin.jsp";
     LoteM lot = new LoteM();
     LoteDAO dao = new LoteDAO();
 
@@ -59,6 +60,8 @@ public class controlLote extends HttpServlet {
         } else if (action.equalsIgnoreCase("editar")) {
             request.setAttribute("idLote", request.getParameter("id"));
             acceso = edit;
+        } else if (action.equalsIgnoreCase("acciones")) {
+            acceso = acciones;
         } 
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las

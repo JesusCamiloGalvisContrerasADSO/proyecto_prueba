@@ -32,6 +32,8 @@
     --verde--lote: rgba(7, 96, 16, 0.74);
     --botones--interaccion: rgba(218, 218, 218, 1);
     --color--rojo_alertaBoton: rgba(145, 0, 0, 0.808);
+    --fondo--cards : rgba(228, 226, 201, 1);
+    --fondo--cardsHover : rgb(204, 202, 180);
     --tamaño--26: 24px;
     --padding: 10px;
     --margen: 10px;
