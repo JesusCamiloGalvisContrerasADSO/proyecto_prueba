@@ -17,7 +17,9 @@
             <div class="container encabezado">
 
               <div class="encabezado">
-                <%@ include file="../../../componentes/btn_salir.jsp" %>
+                <a href="controlLote?accion=listar">
+                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
+                </a>
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>

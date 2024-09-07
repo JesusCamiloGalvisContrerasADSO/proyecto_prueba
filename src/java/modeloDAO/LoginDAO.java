@@ -21,7 +21,10 @@ public class LoginDAO implements login{
     
      @Override
     public boolean VerificarLogin(Usuario user) {
-        String sql = "SELECT documento, contrasena, rol_id FROM usuarios WHERE documento = ? AND contrasena = ?;";
+        String sql = "SELECT u.documento, u.contrasena, u.rol_id, p.id AS id_perfil "+
+                     "FROM usuarios u "+
+                     "INNER JOIN perfil p ON p.usuario_id = u.id "+
+                     "WHERE u.documento = ? AND u.contrasena = ?;";
 
         try {
             con = cn.getConnection();
@@ -32,6 +35,7 @@ public class LoginDAO implements login{
 
             if (rs.next()) {
                 user.setRol(rs.getInt("rol_id")); // Cambia 'id' a 'rol_id'
+                user.setIdUsuario(rs.getInt("id_perfil")); 
                 return true; // Credenciales válidas
             } else {
                 return false; // Credenciales inválidas

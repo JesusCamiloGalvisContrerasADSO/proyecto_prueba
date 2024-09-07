@@ -36,6 +36,14 @@
         <servlet-name>ControlLogin</servlet-name>
         <servlet-class>controlador.ControlLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlDatosAdmin</servlet-name>
+        <servlet-class>controlador.ControlDatosAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ControlPerfil</servlet-name>
+        <servlet-class>controlador.ControlPerfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
@@ -71,6 +79,14 @@
     <servlet-mapping>
         <servlet-name>ControlLogin</servlet-name>
         <url-pattern>/ControlLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlDatosAdmin</servlet-name>
+        <url-pattern>/ControlDatosAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlPerfil</servlet-name>
+        <url-pattern>/ControlPerfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

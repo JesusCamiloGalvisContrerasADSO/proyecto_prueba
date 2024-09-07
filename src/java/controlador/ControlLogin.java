@@ -92,12 +92,14 @@ public class ControlLogin extends HttpServlet {
 
             if (isValid) {
                     int rol = user.getRol(); // obtener el rol del usuario autenticado
+                    int idPerfil = user.getIdUsuario(); 
 
                     // Obtener o crear la sesión
                     HttpSession session = request.getSession(true);
 
                     // Guardar el rol en la sesión
                     session.setAttribute("rol", rol);
+                    session.setAttribute("idPerfil", idPerfil);
                     session.setAttribute("user", user);
 
                     // Redirigir según el rol

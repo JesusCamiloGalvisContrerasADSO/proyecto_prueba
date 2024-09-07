@@ -1,4 +1,6 @@
 
+<%@page import="modelo.DatosAdmin"%>
+<%@page import="modeloDAO.DatosAdminDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ include file="componentes/validacionAdmin.jsp" %>
@@ -68,6 +70,10 @@
         </div>
     </section>
     <section>
+        <% 
+            DatosAdminDAO dao = new DatosAdminDAO();
+            DatosAdmin datos = dao.listar();
+        %>
         <div class="container cards__Acciones">
             <div class="cards--admin">
                 <div>
@@ -75,7 +81,7 @@
                 </div>
                 <div class="admind--contenido">
                     <h2 class="admind--titulo">Usuarios</h2>
-                    <p class="letra--16">Tenemos un total de 7 usuarios registrados, los cuales nos brindan sus servicios</p>
+                    <p class="letra--16">Tenemos un total de <%= datos.getCantUsu() %> usuarios registrados, los cuales nos brindan sus servicios</p>
                 </div>
             </div>
             <div class="cards--admin">
@@ -84,7 +90,7 @@
                 </div>
                 <div class="admind--contenido">
                     <h2 class="admind--titulo">Ultimos movimientos</h2>
-                    <p class="letra--16">Se han realizado un total de 7 ventas de lotes de ganado</p>
+                    <p class="letra--16">Se han realizado un total de <%= datos.getCantLotVent() %> ventas de lotes de ganado</p>
                 </div>
             </div>
             <div class="cards--admin">
@@ -93,7 +99,7 @@
                 </div>
                 <div class="admind--contenido">
                     <h2 class="admind--titulo">Animales actuales</h2>
-                    <p class="letra--16">Se cuenta con un total de 400 animales distribuidos en 7 lotes</p>
+                    <p class="letra--16">Se cuenta con un total de <%= datos.getCantAnim() %> animales distribuidos en <%= datos.getCantLot() %> lotes</p>
                 </div>
             </div>
         </div>
