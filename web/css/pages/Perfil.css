@@ -39,6 +39,10 @@
  .perfil--titulo{
      font-weight: 900;
  }
+ 
+.borde{
+    border: solid 1px var(--color--gris__oscuro);
+}  
 
 @media (max-width: 650px){
     .Datos__usuario{

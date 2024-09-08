@@ -27,26 +27,44 @@ public class AnimalDAO implements animal{
     @Override
     public List<Animal> listar(int idLote) {
         List<Animal> lista = new ArrayList<>();
-        String sql = "SELECT a.id AS idAnimal, a.num, r.id AS idRaza, r.nombre AS raza, s.id AS idSexo, " +
-                       "s.nombre AS sexo, lot.id AS idLote, lot.num AS numLote, p.peso, "+
-                       "p.fecha AS fechaPeso, p.id AS idPeso, es.id AS idSalud, es.nombre AS nombreSalud " +
-                       "FROM animal a " +
-                       "INNER JOIN lote lot ON a.lote_id = lot.id " +
-                       "INNER JOIN tipo_raza r ON a.raza_id = r.id " +
-                       "INNER JOIN tipo_sexo s ON a.tipo_sexo_id = s.id " +
-                       "INNER JOIN pesos p ON a.id = p.animal_id " +
-                       "INNER JOIN estado_salud es ON a.saludId = es.id " +
-                       "INNER JOIN ( " +
-                       "    SELECT animal_id, fecha, peso " +
-                       "    FROM ( " +
-                       "        SELECT animal_id, fecha, peso, " +
-                       "               ROW_NUMBER() OVER (PARTITION BY animal_id ORDER BY fecha DESC) AS row_num " +
-                       "        FROM pesos " +
-                       "    ) sub " +
-                       "    WHERE row_num = 1 " +
-                       ") last_p ON p.animal_id = last_p.animal_id AND p.fecha = last_p.fecha " +
-                       "WHERE a.lote_id = ? AND a.estado = 1; ";
-//                       "LIMIT 0, 25;";
+        String sql = "SELECT " +
+             "a.id AS idAnimal, " +
+             "a.num, " +
+             "r.id AS idRaza, " +
+             "r.nombre AS raza, " +
+             "s.id AS idSexo, " +
+             "s.nombre AS sexo, " +
+             "lot.id AS idLote, " +
+             "lot.num AS numLote, " +
+             "p.peso, " +
+             "p.fecha AS fechaPeso, " +
+             "p.id AS idPeso, " +
+             "es.id AS idSalud, " +
+             "es.nombre AS nombreSalud " +
+             "FROM animal a " +
+             "INNER JOIN lote lot ON a.lote_id = lot.id " +
+             "INNER JOIN tipo_raza r ON a.raza_id = r.id " +
+             "INNER JOIN tipo_sexo s ON a.tipo_sexo_id = s.id " +
+             "INNER JOIN estado_salud es ON a.saludId = es.id " +
+             "INNER JOIN ( " +
+             "    SELECT " +
+             "        animal_id, " +
+             "        peso, " +
+             "        fecha, " +
+             "        id AS idPeso " +
+             "    FROM ( " +
+             "        SELECT " +
+             "            animal_id, " +
+             "            peso, " +
+             "            fecha, " +
+             "            id, " +
+             "            ROW_NUMBER() OVER (PARTITION BY animal_id ORDER BY fecha DESC, id DESC) AS row_num " +  // Ordena por fecha y luego por id
+             "        FROM pesos " +
+             "    ) sub " +
+             "    WHERE row_num = 1 " +  // Selecciona solo el último registro por fecha y id más alto
+             ") last_p ON a.id = last_p.animal_id " +  // Relación con animal para traer solo el último registro
+             "INNER JOIN pesos p ON p.id = last_p.idPeso " +  // Relación con pesos para traer los detalles del peso
+             "WHERE a.lote_id = ? AND a.estado = 1;";
         
 
         try {
@@ -101,25 +119,44 @@ public class AnimalDAO implements animal{
     @Override
     public List<Animal> listarPapelera(int idLote) {
         List<Animal> lista = new ArrayList<>();
-        String sql = "SELECT a.id AS idAnimal, a.num, r.id AS idRaza, r.nombre AS raza, s.id AS idSexo, " +
-                       "s.nombre AS sexo, lot.id AS idLote, lot.num AS numLote, p.peso, "+
-                       "p.fecha AS fechaPeso, p.id AS idPeso, es.id AS idSalud, es.nombre AS nombreSalud " +
-                       "FROM animal a " +
-                       "INNER JOIN lote lot ON a.lote_id = lot.id " +
-                       "INNER JOIN tipo_raza r ON a.raza_id = r.id " +
-                       "INNER JOIN tipo_sexo s ON a.tipo_sexo_id = s.id " +
-                       "INNER JOIN pesos p ON a.id = p.animal_id " +
-                       "INNER JOIN estado_salud es ON a.saludId = es.id " +
-                       "INNER JOIN ( " +
-                       "    SELECT animal_id, fecha, peso " +
-                       "    FROM ( " +
-                       "        SELECT animal_id, fecha, peso, " +
-                       "               ROW_NUMBER() OVER (PARTITION BY animal_id ORDER BY fecha DESC) AS row_num " +
-                       "        FROM pesos " +
-                       "    ) sub " +
-                       "    WHERE row_num = 1 " +
-                       ") last_p ON p.animal_id = last_p.animal_id AND p.fecha = last_p.fecha " +
-                       "WHERE a.lote_id = ? AND a.estado = 0; ";
+        String sql = "SELECT " +
+             "a.id AS idAnimal, " +
+             "a.num, " +
+             "r.id AS idRaza, " +
+             "r.nombre AS raza, " +
+             "s.id AS idSexo, " +
+             "s.nombre AS sexo, " +
+             "lot.id AS idLote, " +
+             "lot.num AS numLote, " +
+             "p.peso, " +
+             "p.fecha AS fechaPeso, " +
+             "p.id AS idPeso, " +
+             "es.id AS idSalud, " +
+             "es.nombre AS nombreSalud " +
+             "FROM animal a " +
+             "INNER JOIN lote lot ON a.lote_id = lot.id " +
+             "INNER JOIN tipo_raza r ON a.raza_id = r.id " +
+             "INNER JOIN tipo_sexo s ON a.tipo_sexo_id = s.id " +
+             "INNER JOIN estado_salud es ON a.saludId = es.id " +
+             "INNER JOIN ( " +
+             "    SELECT " +
+             "        animal_id, " +
+             "        peso, " +
+             "        fecha, " +
+             "        id AS idPeso " +
+             "    FROM ( " +
+             "        SELECT " +
+             "            animal_id, " +
+             "            peso, " +
+             "            fecha, " +
+             "            id, " +
+             "            ROW_NUMBER() OVER (PARTITION BY animal_id ORDER BY fecha DESC, id DESC) AS row_num " +  // Ordena por fecha y luego por id
+             "        FROM pesos " +
+             "    ) sub " +
+             "    WHERE row_num = 1 " +  // Selecciona solo el último registro por fecha y id más alto
+             ") last_p ON a.id = last_p.animal_id " +  // Relación con animal para traer solo el último registro
+             "INNER JOIN pesos p ON p.id = last_p.idPeso " +  // Relación con pesos para traer los detalles del peso
+             "WHERE a.lote_id = ? AND a.estado = 0;";
         
         try {
         con = cn.getConnection();
@@ -289,64 +326,37 @@ public class AnimalDAO implements animal{
     return false;
 }
 
-
-//    @Override
-//    public int addAnimal(Animal ani) {
-//        String sqlAnimal = "INSERT INTO animal (lote_id, num, raza_id, tipo_sexo_id, fecha, estado, saludId) VALUES (?, ?, ?, ?, CURDATE(), ?, ?)";
-//        int animalId = -1;
-//
-//        try {
-//            con = cn.getConnection();
-//            ps = con.prepareStatement(sqlAnimal, PreparedStatement.RETURN_GENERATED_KEYS);
-//            ps.setInt(1, ani.getLote_id());
-//            ps.setString(2, ani.getNum());
-//            ps.setInt(3, ani.getRaza_id());
-//            ps.setInt(4, ani.getTipo_sexo());
-//            ps.setInt(5, ani.getEstado());
-//            ps.setInt(6, ani.getSalud_id());
-//            ps.executeUpdate();
-//
-//            // Obtener el ID generado automáticamente
-//            ResultSet rs = ps.getGeneratedKeys();
-//            if (rs.next()) {
-//                animalId = rs.getInt(1);
-//            }
-//            ps.close();
-//        } catch (Exception e) {
-//            System.err.println("Error al agregar el animal: " + e);
-//        }
-//
-//        return animalId;
-//    }
-//
-//    @Override
-//    public boolean addPeso(Animal animal) {
-//        String sqlPesos = "INSERT INTO pesos (peso, fecha, animal_id) VALUES (?, CURDATE(), ?)";
-//
-//        try {
-//            con = cn.getConnection();
-//            ps = con.prepareStatement(sqlPesos);
-//            ps.setFloat(1, animal.getPesos().getPeso());
-//            ps.setInt(2, animal.getIdAnimal()); // Usa el ID del animal obtenido
-//            ps.executeUpdate();
-//            ps.close();
-//            return true;
-//        } catch (Exception e) {
-//            System.err.println("Error al agregar el peso: " + e);
-//        }
-//
-//        return false;
-//    }
-
-
     @Override
     public boolean edit(Animal Ani) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql="UPDATE animal SET saludId = ?, lote_id = ? WHERE id = ?;";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, Ani.getSalud_id());
+            ps.setInt(2, Ani.getLote_id());
+            ps.setInt(3, Ani.getId());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al editar el lote: " + e);
+        } 
+            return false;
     }
 
     @Override
     public boolean cambiarFalse(Animal Anim) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE animal SET estado=? WHERE id=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, Anim.getEstado());
+            ps.setInt(2, Anim.getId());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al editar el lote: " + e);
+        } 
+            return false;
     }
 
     @Override

@@ -242,6 +242,39 @@ public boolean addPerfil(Usuario user) {
 
         return false;
     }
+    
+    @Override
+    public boolean editPerfil(Usuario user) {
+        // La consulta SQL completa con los campos necesarios
+        String sql = "UPDATE perfil " +
+                 "JOIN usuarios ON perfil.usuario_id = usuarios.id " +
+                 "SET perfil.telefono = ?, " +
+                 "perfil.email = ?, " +
+                 "usuarios.contrasena = ?, " +
+                 "perfil.tipo_doc_id = ? " +
+                 "WHERE perfil.id = ?";  
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+
+            ps.setLong(1, user.getTelefono());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getContrasena());
+            ps.setInt(4, user.getTipoDocum().getId());
+            ps.setInt(5, user.getIdUsuario()); // Este es el ID del perfil
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("El usuario fue actualizado exitosamente.");
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al actualizar el usuario: " + e);
+        }
+
+        return false;
+    }
 
 
     @Override

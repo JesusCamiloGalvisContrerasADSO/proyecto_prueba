@@ -1,4 +1,6 @@
-
+<%
+    request.setAttribute("pageTitle", "Animales");
+%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
 <%@page import="modelo.Animal"%>
@@ -10,20 +12,8 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Animales</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="css/style.css">
-
-        <script src="js/acciones/Eliminar.js"></script>        
-        <!-- Incluir SweetAlert2 CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <!-- Incluir SweetAlert2 JS -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-      </head>
+    
+    <%@ include file="../../componentes/head.jsp" %>
     <body>
         
         <header class=" fondo_header">
@@ -88,11 +78,14 @@
             </section>
             
             <section class="container">
+                <input hidden="" type="number" name="txtidLote" value="<%= idLote %>">
+                <input hidden="" type="number" name="txtnumLote" value="<%= numLote %>">
                  <div>
                         
                     <table class="datos__persona datos__animal centrar--texto">
                       <thead>
                       <tr >
+                        <th></th>
                         <th>Número animal</th>
                         <th class="animal--movil ">Raza</th>
                         <th class="animal--movil">Sexo/tipo</th>
@@ -113,6 +106,7 @@
                             animal = iter.next();
                         %>
                       <tr>
+                        <td class="animal--movil border--bottom"><input class="checkbox" type="checkbox" name="selectedAnimales" value="<%= animal.getId() %>"></td>
                         <td class="center border--bottom"><button class="boton boton__lote"><%= animal.getNum() %></button></td>
                         <td class="animal--movil border--bottom"><%= animal.getRaza().getNombre() %></td>
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
@@ -123,7 +117,7 @@
                           <p><%= animal.getPesos().getFechaPeso() %></p>
                         </td>
                         <td class="animal--movil border--bottom col-salud"><%= animal.getSalud().getNombre()%></td>
-                        <td class="border--bottom"><button class="boton boton--editar" ><i class="bi bi-pencil"></i></button></td>
+                        <td class="border--bottom"><a href="ControlAnimal?accion=editar&id=<%= animal.getId() %>" class="boton boton--editar" ><i class="bi bi-pencil"></i></a></td>
                       </tr>
                         <% } %>
                     

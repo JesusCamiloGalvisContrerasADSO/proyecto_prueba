@@ -10,6 +10,7 @@ public interface usuario {
     public List<Usuario> listar();
     public Usuario list(int id);
     public boolean edit(Usuario usuario);
+    public boolean editPerfil(Usuario user);
     public boolean eliminar(int id);
     
     public boolean VerificarLogin(Usuario user);

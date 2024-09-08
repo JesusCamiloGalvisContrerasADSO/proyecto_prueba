@@ -1,26 +1,120 @@
+<%
+    request.setAttribute("pageTitle", "Editar perfil");
+%>
+<%@page import="modelo.TipoDocum"%>
+<%@page import="modeloDAO.TipoDocDAO"%>
+<%@page import="modelo.TipoSangre"%>
+<%@page import="modeloDAO.TipoSangreDAO"%>
+<%@page import="modelo.Roles"%>
+<%@page import="modeloDAO.RolesDAO"%>
 <%@ page import="java.util.*" %>
-<%@ page import="modelo.TipoDocum" %>
-<%@ page import="modeloDAO.TipoDocDAO" %>
+<%@page import="modelo.Usuario"%>
+<%@page import="modeloDAO.UsuarioDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="../../componentes/validacionRol.jsp" %>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Editar Tipo de Sangre</title>
-    </head>
+    
+    <%@ include file="../../componentes/head.jsp" %>
+    
     <body>
+        <header class=" fondo_header">
+            <div class="container encabezado">
+
+              <div class="encabezado">
+                <a href="controlLote?accion=listar">
+                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
+                </a>
+                <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
+                <p>BoviControl</p>
+              </div>
+              <%@ include file="../../componentes/botones_header.jsp" %>
+            </div>
+        </header>
+            
+        <section class="center registro__fondo">
+            <div class="container center registro sombras--contenedor">
+                
         <% 
-            TipoDocDAO dao = new TipoDocDAO();
-            int id = Integer.parseInt((String) request.getAttribute("idTipo"));
-            TipoDocum Tip = dao.list(id);
+                UsuarioDAO dao = new UsuarioDAO();
+                int id = Integer.parseInt((String) request.getAttribute("idUser"));
+                Usuario user = dao.list(id);
+                //Usuario user = (Usuario) request.getAttribute("usuarioDetalle");
+                
+                if(idPerfil != user.getIdUsuario()){
+                    response.sendRedirect("accesoDenegado.jsp");
+                    return;
+                    }
         %>
-        <h1>Editar Tipo de documento</h1>
+        <h1 class="titulo--caja">Editar perfil</h1>
         
-        <form action="ControlTipoDoc" method="GET">
-            Nombres:<br>
-            <input type="text" name="txtNom" value="<%= Tip.getNom() %>"><br>
-            <input type="hidden" name="txtid" value="<%= Tip.getId() %>">
-            <input type="submit" name="accion" value="Actualizar"><br>
-        </form>
+        <form action="ControlPerfil" method="POST">
+                  
+                  <div class="registro__input">
+                      <label for="nombre">Nombre:</label>
+                      <input disabled="" class="input_registro" type="text" id="nombre" name="txtNom" value="<%=user.getNombre()%>">
+                  </div>
+                  <div class="registro__input">
+                      <label for="apellido">Apellido:</label>
+                      <input disabled="" class="input_registro" type="text" id="apellido" name="txtApell" value="<%=user.getApellido()%>">
+                  </div>
+                  <div class="registro__input">
+                      <label for="documento">Documento:</label>
+                      <input disabled="" class="input_registro" type="number" id="documento" name="txtNumDoc" value="<%=user.getDocumento()%>" >
+                  </div>
+                  <div class="registro__input">
+                    <label for="tipoDocumento">Tipo de Documento:</label>
+                    <select class="input_registro borde" name="txtTipDoc" id="">
+                        <% 
+                        TipoDocDAO docDao = new TipoDocDAO();
+                        List<TipoDocum> docLista = docDao.listar();
+                        Iterator<TipoDocum> docIter = docLista.iterator();
+                        while (docIter.hasNext()) {
+                            TipoDocum docTipo = docIter.next();
+                            if((docTipo.getId()) == (user.getDocid())){
+                        %>
+                        <option id="tipoDocumento" name="txtTipDoc" value="<%= user.getDocid() %>" selected=""><%=user.getTipoDocum().getNom()%></option>
+                        <% }else{ %>
+                            <option value="<%= docTipo.getId() %>"><%= docTipo.getNom() %></option>
+                        <% }} %>
+                    </select>
+                  </div>
+                  <div class="registro__input">
+                    <label for="tipoSangre">Tipo de Sangre:</label>
+                        
+                        <% 
+                        TipoSangreDAO sangreDao = new TipoSangreDAO();
+                        List<TipoSangre> sangreLista = sangreDao.listar();
+                        Iterator<TipoSangre> sangreIter = sangreLista.iterator();
+                        %>
+                        <input class="input_registro" disabled="" name="txtTipSang" value="<%=user.getTipoSangre().getNom()%>" >
+                        
+                  </div>
+                  
+                  <div class="registro__input">
+                      <label for="telefono">Teléfono:</label>
+                      <input class="input_registro borde" type="text" id="telefono" name="txtTel" value="<%=user.getTelefono()%>">
+                  </div>
+                  <div class="registro__input">
+                      <label for="contrasena">Contraseña:</label>
+                      <input class="input_registro borde" type="password" id="contrasena" name="txtContra" value="<%=user.getContrasena()%>">
+                  </div>
+                  <div class="registro__input">
+                      <label for="email">Email:</label>
+                      <input class="input_registro borde" type="email" id="email" name="txtCorreo" value="<%=user.getEmail()%>">
+                  </div>
+                  <div class="registro__input">
+                      <label for="fechaContrato">Fecha inicio de Contrato:</label>
+                      <input disabled="" class="input_registro" type="date" id="fechaContrato" name="fechaContrato" value="<%=user.getFechaContra()%>" readonly>
+                  </div>
+                    
+                <div>
+                    
+                    <button class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
+                    
+                </div>
+              </form>
+            </div>
+        </section>
     </body>
 </html>

@@ -9,6 +9,7 @@
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
     <%@ include file="../../componentes/validacionRol.jsp" %>
+    
 <!DOCTYPE html>
 
 <html lang="es">
@@ -44,7 +45,9 @@
                 <div class="menu">
                     <ul class="opciones__botones botones--usuario">                        
                         <li>
-                            <a class="opciones__botones--boton " href="ControlPerfil?accion=editar&id=<%= idPerfil %> ><i class="bi bi-pencil"></i></a>
+                            <a href="ControlPerfil?accion=editar&id=<%= idPerfil %>" >
+                            <button class="opciones__botones--boton " ><i class="bi bi-pencil"></i></button>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -61,6 +64,13 @@
                 int id = Integer.parseInt((String) request.getAttribute("idUser"));
                 Usuario user = dao.list(id);
                 //Usuario user = (Usuario) request.getAttribute("usuarioDetalle");
+                
+                //con esto tenemos la seguridad para que si no corresponde a su id no muestre
+                //la informacion de otra persona
+                 if(idPerfil != id){
+                    response.sendRedirect("accesoDenegado.jsp");
+                    return;
+                }
               %>
             <div class="container Datos__usuario">
                 <div>

@@ -1,27 +1,28 @@
+<%@page import="modelo.Salud"%>
+<%@page import="modeloDAO.SaludDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="modelo.Animal"%>
+<%@page import="modeloDAO.AnimalDAO"%>
+<%
+    request.setAttribute("pageTitle", "Editar animal");
+%>
 <%@ page import="modelo.LoteM" %>
 <%@ page import="modeloDAO.LoteDAO" %>
 
-<%@ include file="../../componentes/validacionAdmin.jsp" %>
+<%@ include file="../../componentes/validacionRol.jsp" %>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lotes</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+    <%@ include file="../../componentes/head.jsp" %>
     <body>
         <header class=" fondo_header">
             <div class="container encabezado">
 
               <div class="encabezado">
-                <a href="controlLote?accion=listar">
-                    <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
-                </a>
+                 <%@ include file="../../componentes/btn_salir.jsp" %>
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>
@@ -29,6 +30,11 @@
             </div>
         </header>
         
+                <% 
+                    AnimalDAO dao = new AnimalDAO();
+                    int id = Integer.parseInt((String) request.getAttribute("idAnimal"));
+                    Animal anim = dao.list(id);
+                %>
         <main>
             <section class="fondo__cinta">
 
@@ -38,29 +44,57 @@
                             <img class="cinta__logo" src="Recursos/vaquita.png" alt="">
                         </div>
                         <div>
-                            <p class="cinta__Titulo">Editar Lote</p>
+                            <p class="cinta__Titulo">Animal <%= anim.getNum() %>  </p>
                         </div>
                     </div>
                 </div>
+                <hr class="linea__cinta">
             </section>
             
-            <section>
-                <% 
-                    LoteDAO dao = new LoteDAO();
-                    int id = Integer.parseInt((String) request.getAttribute("idLote"));
-                    LoteM lote = dao.list(id);
-                %>
-                <div class="container tabla__listar">
-                    <form action="controlLote" method="POST">
-                        <div class="alinear__Row">
-                            <div class="alinear__colum">
-                            <label>Numero del lote:</label>
-                            <input class="input_ingresar input--editar" type="number" name="txtNum" value="<%=lote.getNum()%>"><br>
+            <section class="center registro__fondo">
+                <div class="container center registro sombras--contenedor">
+                    <form action="ControlAnimal" method="POST">
+                        <input type="hidden" name="txtid" value="<%= anim.getId()%>">
+                        <input type="hidden" name="txtidLote" value="<%= anim.getLote_id() %>">
+                        <input type="hidden" name="txtnumLote" value="<%= anim.getLote().getNum()%>">
+                            
+                            <div class="registro__input">
+                                <label for="tipoDocumento">Lote:</label>
+                                <select class="input_registro " name="txtLote" id="">
+                                    <% 
+                                    LoteDAO lot = new LoteDAO();
+                                    List<LoteM> lotLista = lot.listar();
+                                    Iterator<LoteM> lotIter = lotLista.iterator();
+                                    while (lotIter.hasNext()) {
+                                        LoteM lote = lotIter.next();
+                                        if((lote.getId()) == (anim.getLote_id())){
+                                    %>
+                                    <option value="<%= lote.getId()%>" selected=""><%= lote.getNum() %></option>
+                                    <% }else{ %>
+                                        <option value="<%= lote.getId()%>"><%= lote.getNum() %></option>
+                                    <% }} %>
+                                </select>
                             </div>
-                            <input type="hidden" name="txtid" value="<%=lote.getId()%>">
-                            <input type="hidden" name="txtEst" value="<%=lote.getEst()%>">
-                            <input class="boton boton--listar input--editar" type="submit" name="accion" value="Actualizar"><br>
-                        </div>
+                                
+                            <div class="registro__input">
+                                <p>Estado de salud</p>
+                                <select class="input_registro" name="txtsalud" id="">
+                                    <% 
+                                    SaludDAO saludDao = new SaludDAO();
+                                    List<Salud> saludLista = saludDao.listar();
+                                    Iterator<Salud> saludIter = saludLista.iterator();
+                                    while (saludIter.hasNext()) {
+                                        Salud salud = saludIter.next();
+                                        if((salud.getId()) == (anim.getSalud_id())){
+                                    %>
+                                    <option value="<%= salud.getId()%>" selected=""><%= salud.getNombre()%></option>
+                                    <% }else{ %>
+                                        <option value="<%= salud.getId()%>"><%= salud.getNombre() %></option>
+                                    <% }} %>
+                                </select>
+                            </div>
+                                
+                                <button class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
                     </form>
                 </div>
             </section>

@@ -139,27 +139,6 @@ public class ControlUsuario extends HttpServlet {
             acceso = confir;
         } else if (action.equalsIgnoreCase("index")){
             acceso = index;
-        } else if (action.equalsIgnoreCase("Ingresar")) {
-            String documentoStr = request.getParameter("txtDocum");
-            Long numDoc = Long.parseLong(documentoStr);
-            String contrasena = request.getParameter("txtContra");
-
-            user.setDocumento(numDoc);
-            user.setContrasena(contrasena);
-
-            boolean isValid = dao.VerificarLogin(user);
-
-            if (isValid) {
-                // Redirigir a la página de inicio o dashboard
-                request.getSession().setAttribute("user", user);
-                acceso = "html/lote/listar.jsp";
-//                acceso = listar;
-//                response.sendRedirect("home.jsp");
-            } else {
-                // Redirigir a la página de login con un mensaje de error
-                request.setAttribute("error", "Credenciales inválidas");
-                acceso = "index.jsp";
-            }
         }else if (action.equalsIgnoreCase("Actualizar")) {
             int idUser = Integer.parseInt(request.getParameter("txtid"));
             String nom = request.getParameter("txtNom");

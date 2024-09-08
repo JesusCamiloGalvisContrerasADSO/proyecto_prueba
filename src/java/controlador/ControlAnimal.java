@@ -65,11 +65,10 @@ public class ControlAnimal extends HttpServlet {
                 acceso = papelera;
             }else if (action.equalsIgnoreCase("add")) {
                 acceso = add;
+            }else if (action.equalsIgnoreCase("editar")) {
+            request.setAttribute("idAnimal", request.getParameter("id"));
+            acceso = edit;
             } 
-//            else if (action.equalsIgnoreCase("editar")) {
-//            request.setAttribute("idLote", request.getParameter("id"));
-//            acceso = edit;
-//        } 
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
 //        rutas de manera correcta, se llama al request y response
@@ -120,7 +119,49 @@ public class ControlAnimal extends HttpServlet {
             
             // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
             response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
-            return; // Asegúrate de no ejecutar más código después de la redirección
+            return; 
+        } else if (action.equalsIgnoreCase("Actualizar")) {
+            
+            //aqui se captura el lote en el cual se encuentra el animal, es para poder 
+            //enviarlo al lote donde esta el animal
+            int numLote = Integer.parseInt(request.getParameter("txtnumLote"));
+            int idlote = Integer.parseInt(request.getParameter("txtidLote"));
+            
+            //estos son los datos que se van a enviar para poder actualizar el animal
+            int id = Integer.parseInt(request.getParameter("txtid"));
+            int lote = Integer.parseInt(request.getParameter("txtLote"));
+            int idsalud = Integer.parseInt(request.getParameter("txtsalud"));
+            
+            //aqui se almacenan en los set y posteriormente se envian al dao con el metodo
+            //de edit
+            Anim.setId(id);
+            Anim.setLote_id(lote);
+            Anim.setSalud_id(idsalud);
+            dao.edit(Anim);
+            
+            // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+            response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
+            return;
+        }else if (action.equalsIgnoreCase("cambiarFalse")) {
+            //aqui se captura el lote en el cual se encuentra el animal, es para poder 
+            //enviarlo al lote donde esta el animal
+            int numLote = Integer.parseInt(request.getParameter("txtnumLote"));
+            int idlote = Integer.parseInt(request.getParameter("txtidLote"));
+            
+            String[] selectedLotes = request.getParameterValues("selectedAnimales");
+
+            if (selectedLotes != null) {
+                for (String id : selectedLotes) {
+                    int AnimalId = Integer.parseInt(id);
+                    Anim.setId(AnimalId);
+                    Anim.setEstado(0); // Cambiar el estado a false (0)
+                    dao.cambiarFalse(Anim);
+                }
+            }
+
+            // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+            response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
+            return; 
         }
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las

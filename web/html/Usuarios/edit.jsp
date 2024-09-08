@@ -11,6 +11,7 @@
 <%@ page import="modelo.Usuario" %>
 <%@ page import="modeloDAO.UsuarioDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../../componentes/validacionAdmin.jsp" %>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -121,12 +122,12 @@
                         List<Roles> Lista = Dao.listar();
                         Iterator<Roles> rolIter = Lista.iterator();
                         while (rolIter.hasNext()) {
-                            Roles rol = rolIter.next();
-                            if((rol.getId()) == (user.getRol())){
+                            Roles rolP = rolIter.next();
+                            if((rolP.getId()) == (user.getRol())){
                         %>
                         <option id="rol" name="txtRol" value="<%= user.getRol()%>" selected=""><%= user.getNomRol()%></option>
                         <% }else{ %>
-                            <option value="<%= rol.getId() %>"><%= rol.getNom() %></option>
+                            <option value="<%= rolP.getId() %>"><%= rolP.getNom() %></option>
                         <% }} %>
                     </select>
                   </div>
