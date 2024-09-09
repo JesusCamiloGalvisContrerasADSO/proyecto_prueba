@@ -5,7 +5,7 @@ import modelo.Pesos;
 
 public interface pesos {
     // Método para listar todos los lotes
-    public List<Pesos> listar();
+    public List<Pesos> listar(int animal_id);
     
     // Método para listar un lote por su ID
     public Pesos list(int id);

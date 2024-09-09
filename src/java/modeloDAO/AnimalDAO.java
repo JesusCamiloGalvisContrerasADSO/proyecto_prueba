@@ -361,12 +361,32 @@ public class AnimalDAO implements animal{
 
     @Override
     public boolean cambiarVerdad(Animal Anim) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE animal SET estado=? WHERE id=?";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, Anim.getEstado());
+            ps.setInt(2, Anim.getId());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al editar el lote: " + e);
+        } 
+            return false;
     }
 
     @Override
-    public boolean eliminar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean eliminar(int AnimalId) {
+        String sql = "DELETE FROM animal WHERE id="+AnimalId;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al eliminar tipo de documento: " + e);
+        }
+        return false;
     }
     
 }

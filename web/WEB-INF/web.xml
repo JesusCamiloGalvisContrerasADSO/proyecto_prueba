@@ -44,6 +44,10 @@
         <servlet-name>ControlPerfil</servlet-name>
         <servlet-class>controlador.ControlPerfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlInterAnimal</servlet-name>
+        <servlet-class>controlador.ControlInterAnimal</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>ControlPerfil</servlet-name>
         <url-pattern>/ControlPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlInterAnimal</servlet-name>
+        <url-pattern>/ControlInterAnimal</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

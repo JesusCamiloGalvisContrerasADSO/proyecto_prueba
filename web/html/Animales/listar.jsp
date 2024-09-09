@@ -107,7 +107,7 @@
                         %>
                       <tr>
                         <td class="animal--movil border--bottom"><input class="checkbox" type="checkbox" name="selectedAnimales" value="<%= animal.getId() %>"></td>
-                        <td class="center border--bottom"><button class="boton boton__lote"><%= animal.getNum() %></button></td>
+                        <td class="center border--bottom"><a href="ControlInterAnimal?accion=listar&animal_id=<%= animal.getId() %>&numAnimal=<%= animal.getNum()%>" class="boton boton__lote"><%= animal.getNum() %></a></td>
                         <td class="animal--movil border--bottom"><%= animal.getRaza().getNombre() %></td>
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
                         <td class="animal--tablet border--bottom"><%= animal.getPesos().getPeso() %> KG</td>

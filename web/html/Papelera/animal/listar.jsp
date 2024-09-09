@@ -55,7 +55,7 @@
                             <li>
                                 
                                 <form action="ControlAnimal" method="POST">
-                                    <button class="opciones__botones--boton" type="submit" name="accion" value="cambiarFalse">
+                                    <button class="opciones__botones--boton" type="submit" name="accion" value="eliminar">
                                         <i class="bi bi-trash"></i>
                                     </button>
                             </li>
@@ -68,7 +68,9 @@
             
             <section class="container">
                  <div>
-                        
+                    <input type="hidden" name="txtidLote" value="<%= idLote %>">
+                    <input type="hidden" name="txtnumLote" value="<%= numLote%>">
+                    
                     <table class="datos__persona datos__animal centrar--texto">
                       <thead>
                       <tr >
@@ -80,6 +82,7 @@
                         <th class="animal--tablet">Nuevo peso</th>
                         <th class="animal--tablet">Fecha revisión</th>
                         <th class="animal--tablet">estado salud</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody >
@@ -92,7 +95,7 @@
                             animal = iter.next();
                         %>
                       <tr>
-                        <td class="animal--movil border--bottom"><input class="checkbox" type="checkbox" name="selectedLotes" value="<%= animal.getId() %>"></td>
+                        <td class="animal--movil border--bottom"><input class="checkbox" type="checkbox" name="selectedAnimales" value="<%= animal.getId() %>"></td>
                         <td class="center border--bottom "><button class="boton boton__lote lote--ventas"><%= animal.getNum() %></button></td>
                         <td class="animal--movil border--bottom"><%= animal.getRaza().getNombre() %></td>
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
@@ -103,6 +106,7 @@
                           <p><%= animal.getPesos().getFechaPeso() %></p>
                         </td>
                         <td class="animal--movil border--bottom col-salud"><%= animal.getSalud().getNombre()%></td>
+                        <td class="animal--movil border--bottom col-salud"><a href="ControlAnimal?accion=cambiarVerdad&id=<%= animal.getId() %>&idLote= <%=idLote%>&numLoteidLote=<%=numLote%>">Restaurar</a></td>
                       </tr>
                         <% } %>
                     

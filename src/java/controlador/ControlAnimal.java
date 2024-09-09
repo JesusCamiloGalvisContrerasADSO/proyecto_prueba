@@ -68,7 +68,26 @@ public class ControlAnimal extends HttpServlet {
             }else if (action.equalsIgnoreCase("editar")) {
             request.setAttribute("idAnimal", request.getParameter("id"));
             acceso = edit;
-            } 
+            } else if (action.equalsIgnoreCase("cambiarVerdad")) {
+            //aqui se captura el lote en el cual se encuentra el animal, es para poder 
+            //enviarlo al lote donde esta el animal
+            int numLote = Integer.parseInt(request.getParameter("numLoteidLote").trim());
+            int idlote = Integer.parseInt(request.getParameter("idLote").trim());
+            
+            try {
+                int AnimalId = Integer.parseInt(request.getParameter("id"));
+                Anim.setId(AnimalId);
+                Anim.setEstado(1); 
+                dao.cambiarFalse(Anim);
+
+            } catch (NumberFormatException e) {
+                request.setAttribute("error", "ID de lote inválido.");
+            }
+        // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+            response.sendRedirect("ControlAnimal?accion=listarPapelera&id="+idlote+"&num="+numLote);
+            return; 
+            
+        }
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
 //        rutas de manera correcta, se llama al request y response
@@ -148,19 +167,43 @@ public class ControlAnimal extends HttpServlet {
             int numLote = Integer.parseInt(request.getParameter("txtnumLote"));
             int idlote = Integer.parseInt(request.getParameter("txtidLote"));
             
-            String[] selectedLotes = request.getParameterValues("selectedAnimales");
+            String[] selectedAnimales = request.getParameterValues("selectedAnimales");
 
-            if (selectedLotes != null) {
-                for (String id : selectedLotes) {
+            if (selectedAnimales != null) {
+                for (String id : selectedAnimales) {
                     int AnimalId = Integer.parseInt(id);
                     Anim.setId(AnimalId);
-                    Anim.setEstado(0); // Cambiar el estado a false (0)
+                    Anim.setEstado(0);
                     dao.cambiarFalse(Anim);
                 }
             }
 
             // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
             response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
+            return; 
+            
+        }else if (action.equalsIgnoreCase("eliminar")) {
+            //aqui se captura el lote en el cual se encuentra el animal, es para poder 
+            //enviarlo al lote donde esta el animal
+            int numLote = Integer.parseInt(request.getParameter("txtnumLote"));
+            int idlote = Integer.parseInt(request.getParameter("txtidLote"));
+            
+            String[] selectedAnimales = request.getParameterValues("selectedAnimales");
+
+            if (selectedAnimales != null) {
+                for (String id : selectedAnimales) {
+                try {
+                    int AnimalId = Integer.parseInt(id);
+                    Anim.setId(AnimalId);
+                    dao.eliminar(AnimalId);
+                } catch (Exception e) {
+                    request.setAttribute("error", "ID de lote inválido: " + e);
+                }
+            }
+            }
+
+            // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+            response.sendRedirect("ControlAnimal?accion=listarPapelera&id="+idlote+"&num="+numLote);
             return; 
         }
         

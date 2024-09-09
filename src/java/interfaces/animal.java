@@ -30,5 +30,5 @@ public interface animal {
     public boolean cambiarVerdad(Animal Anim);
     
     //Metodo para eliminar un lote por su ID
-    public boolean eliminar(int id);
+    public boolean eliminar(int AnimalId);
 }

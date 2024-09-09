@@ -1,3 +1,6 @@
+<%
+    request.setAttribute("pageTitle", "Tipos Sangre");
+%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="modelo.TipoSangre" %>
@@ -7,18 +10,8 @@
 
 <%@ include file="../../componentes/validacionAdmin.jsp" %>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lotes</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="css/style.css">
-        <script src="js/acciones/Eliminar.js"></script>        
-        <!-- Incluir SweetAlert2 CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-        <!-- Incluir SweetAlert2 JS -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </head>
+    <%@ include file="../../componentes/head.jsp" %>
+    
     <body>
         <header class=" fondo_header">
             <div class="container encabezado">

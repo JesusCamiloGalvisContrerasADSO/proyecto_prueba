@@ -4,6 +4,7 @@
   <title>${pageTitle}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pages/InterAnimal.css">
   
   <script src="js/acciones/Eliminar.js"></script>        
   <script src="js/acciones/menu_desplegable.js"></script>        
