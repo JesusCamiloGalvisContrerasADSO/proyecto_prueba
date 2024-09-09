@@ -18,6 +18,7 @@ public class PesosDAO implements pesos{
     PreparedStatement ps;
     ResultSet rs;
     Pesos pesos = new Pesos();
+    PesosDAO dao = new PesosDAO();
     
     @Override
     public List<Pesos> listar(int animal_id) {
@@ -54,7 +55,7 @@ public class PesosDAO implements pesos{
 
     @Override
     public boolean add(Pesos pes) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return false;
     }
 
     @Override

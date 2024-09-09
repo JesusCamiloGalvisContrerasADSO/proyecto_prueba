@@ -55,17 +55,18 @@
                 <hr class="linea__cinta">
             </section>
             
-            <section >
-                <div class="container center historia historia--peso">
+            <section class="container" >
+                <div class="container datos--historia">
+                    <div class=" historia historia--peso">
                     <div class="historia__titulo">
                       <span>Control de peso</span>
-                      <button class="historia__titulo-btn">+</button>
+                      <a href="ControlInterAnimal?accion=add" class="historia__titulo-btn"><i class="bi bi-plus-lg"></i></a>
                     </div>
                     <table class="tabla">
                       <thead>
                         <tr>
                           <th class="tabla__encabezado">#</th>
-                          <th class="tabla__encabezado">Peso en Kg</th>
+                          <th class="tabla__encabezado">Peso</th>
                           <th class="tabla__encabezado">Fecha del control</th>
                         </tr>
                       </thead>
@@ -91,6 +92,8 @@
                       </tbody>
                     </table>
                   </div>
+                </div>
+                
             </section>
         </main>
     </body>
