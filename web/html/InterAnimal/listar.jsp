@@ -16,6 +16,7 @@
 <html lang="es">
     
     <%@ include file="../../componentes/head.jsp" %>
+    <%@ include file="../../componentes/capturarLote_num.jsp" %>
     
     <body>
         
@@ -24,9 +25,9 @@
 
               <div class="encabezado">
                   
-                  <a href="controlLote?accion=listar">
+                  <a href="ControlAnimal?accion=listar&id=<%= idLote %>&num=<%= numLote %>">
                     <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
-                   </a>
+                </a>
                 
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
@@ -60,7 +61,7 @@
                     <div class=" historia historia--peso">
                     <div class="historia__titulo">
                       <span>Control de peso</span>
-                      <a href="ControlInterAnimal?accion=add&animal_id=<%= animal_id %>&numAnimal=<%= numAnimal%>" class="historia__titulo-btn"><i class="bi bi-plus-lg"></i></a>
+                      <a href="ControlInterAnimal?accion=add&animal_id=<%= animal_id %>&numAnimal=<%= numAnimal%>&id=<%= idLote %>&num=<%= numLote %>" class="historia__titulo-btn"><i class="bi bi-plus-lg"></i></a>
                     </div>
                     <table class="tabla">
                       <thead>

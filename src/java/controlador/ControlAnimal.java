@@ -21,7 +21,6 @@ public class ControlAnimal extends HttpServlet {
 //    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String listar = "html/Animales/listar.jsp";
     String add = "html/Animales/add.jsp";
-    String ex = "html/lote/listar.jsp";
     String edit = "html/Animales/edit.jsp";
     String papelera = "html/Papelera/animal/listar.jsp";
     Animal Anim = new Animal();

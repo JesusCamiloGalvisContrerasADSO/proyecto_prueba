@@ -5,13 +5,14 @@
         <data xmlns="http://www.netbeans.org/ns/web-project/3">
             <name>JSP__proyecto7</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
+            <explicit-platform explicit-source-supported="true"/>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${libs.mysql.classpath}</file>
+                    <file>${libs.MySQL.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.MyLibrary9.0.0.1.classpath}</file>
+                    <file>${libs.Mysql_driver.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

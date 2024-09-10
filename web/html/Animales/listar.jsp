@@ -107,11 +107,17 @@
                         %>
                       <tr>
                         <td class="animal--movil border--bottom"><input class="checkbox" type="checkbox" name="selectedAnimales" value="<%= animal.getId() %>"></td>
-                        <td class="center border--bottom"><a href="ControlInterAnimal?accion=listar&animal_id=<%= animal.getId() %>&numAnimal=<%= animal.getNum()%>" class="boton boton__lote"><%= animal.getNum() %></a></td>
+                        <td class="center border--bottom"><a href="ControlInterAnimal?accion=listar&animal_id=<%= animal.getId() %>&numAnimal=<%= animal.getNum()%>&id=<%= idLote %>&num=<%= numLote %>" class="boton boton__lote"><%= animal.getNum() %></a></td>
                         <td class="animal--movil border--bottom"><%= animal.getRaza().getNombre() %></td>
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
                         <td class="animal--tablet border--bottom"><%= animal.getPesos().getPeso() %> KG</td>
-                        <td class="animal--tablet border--bottom"><input class="input_ingresar input--peso " type="number" placeholder="Ingresa..."></td>
+                        <td class="animal--tablet border--bottom">
+                            <input class="input_ingresar input--peso" 
+       type="number" 
+       placeholder="Ingresa..." 
+       onblur="enviarDatos(this, <%= animal.getId() %>, <%= animal.getNum() %>, <%= numLote %>, <%= idLote %>)">
+
+                        </td>
                         <td class="animal--tablet border--bottom">
                           <p>Última actualización</p> 
                           <p><%= animal.getPesos().getFechaPeso() %></p>
@@ -127,6 +133,30 @@
             </section>
 
                         <script src="js/modulos/buscador.js" ></script>
+                        <script>
+    function enviarDatos(inputElement, animalId, numAnimal, numLote, idLote) {
+        let peso = inputElement.value;
+
+        // Verifica que el valor del peso no esté vacío
+        if (peso.trim() === '') {
+            alert('Por favor, ingresa un peso.');
+            return;
+        }
+
+        // Construye la URL para la solicitud
+        let url = 'ControlInterAnimal?accion=AgregarPeso' +
+          '&animal_id=' + encodeURIComponent(1) + 
+          '&numAnimal=' + encodeURIComponent("001") + 
+          '&peso=' + encodeURIComponent(peso) +
+          '&numLote=' + encodeURIComponent(1) +  // Agrega este parámetro
+          '&idLote=' + encodeURIComponent(1);    // Agrega este parámetro
+
+
+        // Redirige a la URL para agregar el peso
+        window.location.href = url;
+    }
+</script>
+
      
         </main>
     </body>

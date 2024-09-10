@@ -10,6 +10,7 @@
 
 <%@ include file="../../componentes/validacionRol.jsp" %>
 <%@ include file="../../componentes/capturarAnimal.jsp" %>
+<%@ include file="../../componentes/capturarLote_num.jsp" %>
 
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
@@ -59,6 +60,8 @@
                         <div class="registro__input">
                            <input class="input_registro" type="text" id="nombre" name="txtNumAnimal" value="<%= numAnimal %>">
                            <input class="input_registro" type="text" id="nombre" name="txtIdAnimal" value="<%= animal_id %>">
+                           <input class="input_registro" type="text" id="nombre" name="txtIdLote" value="<%= idLote %>">
+                           <input class="input_registro" type="text" id="nombre" name="txtNumLote" value="<%= numLote %>">
                            
                            <label for="nombre">Agregar peso en KG:</label>
                            <input class="input_registro" type="text" id="nombre" name="txtPeso" value="">

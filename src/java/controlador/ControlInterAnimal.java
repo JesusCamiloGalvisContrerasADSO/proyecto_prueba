@@ -54,6 +54,30 @@ public class ControlInterAnimal extends HttpServlet {
             acceso = listar;
         } else if (action.equalsIgnoreCase("add")) {
             acceso = add;
+        }else if (action.equalsIgnoreCase("AgregarPeso")) {
+            
+            String numAnimal = request.getParameter("numAnimal");
+            
+            //aqui se captura el lote en el cual se encuentra el animal, es para poder 
+            //enviarlo al lote donde esta el animal
+            int numLote = Integer.parseInt(request.getParameter("num"));
+            int idLote = Integer.parseInt(request.getParameter("id"));
+            
+            int idAnimal = Integer.parseInt(request.getParameter("animal_id"));
+            float peso = Float.parseFloat(request.getParameter("peso"));
+
+            pesos.setAnimal_id(idAnimal);
+            pesos.setPeso(peso);
+            
+            Date date = new Date(); 
+            pesos.setFechaPeso(date);
+            
+            dao.add(pesos);
+            
+// Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+            response.sendRedirect("ControlAnimal?accion=listar&id=" + 1 + "&num=" + 1);
+
+            return; 
         }
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
