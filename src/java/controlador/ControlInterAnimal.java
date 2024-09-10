@@ -3,6 +3,7 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -51,6 +52,8 @@ public class ControlInterAnimal extends HttpServlet {
         
         if (action.equalsIgnoreCase("listar")) {
             acceso = listar;
+        } else if (action.equalsIgnoreCase("add")) {
+            acceso = add;
         }
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
@@ -64,9 +67,34 @@ public class ControlInterAnimal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+//        se crean las variables de acceso y a action se le asigna la accion 
+//       que le manda el boton o enlace al que estamos dando click  
+        String acceso = "";
+        String action = request.getParameter("accion");
+        
+        if (action.equalsIgnoreCase("Agregar")) {
+            
+            String numAnimal = request.getParameter("txtNumAnimal");
+            
+            int idAnimal = Integer.parseInt(request.getParameter("txtIdAnimal"));
+            float peso = Float.parseFloat(request.getParameter("txtPeso"));
 
+            pesos.setAnimal_id(idAnimal);
+            pesos.setPeso(peso);
+            
+            Date date = new Date(); 
+            pesos.setFechaPeso(date);
+            
+            dao.add(pesos);
+            
+            
+// Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+            response.sendRedirect("ControlInterAnimal?accion=listar&animal_id="+ idAnimal +"&numAnimal="+ numAnimal);
+            return; 
+        }
+
+    }
+    
 
     @Override
     public String getServletInfo() {

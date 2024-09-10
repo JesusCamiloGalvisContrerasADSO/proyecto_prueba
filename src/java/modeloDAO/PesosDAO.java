@@ -4,6 +4,7 @@ package modeloDAO;
 import config.conexion;
 import interfaces.pesos;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -18,7 +19,6 @@ public class PesosDAO implements pesos{
     PreparedStatement ps;
     ResultSet rs;
     Pesos pesos = new Pesos();
-    PesosDAO dao = new PesosDAO();
     
     @Override
     public List<Pesos> listar(int animal_id) {
@@ -55,7 +55,23 @@ public class PesosDAO implements pesos{
 
     @Override
     public boolean add(Pesos pes) {
-       return false;
+       String sql = "INSERT INTO pesos(peso, fecha, animal_id) VALUES(?, ?, ?);";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setFloat(1, pes.getPeso());
+            
+            // Convierte java.util.Date a java.sql.Date
+            java.sql.Date sqlDate = new java.sql.Date(pes.getFechaPeso().getTime());
+            ps.setDate(2, sqlDate);
+            
+            ps.setInt(3, pes.getAnimal_id());
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al agregar el lote: " + e);
+        }
+            return false;
     }
 
     @Override

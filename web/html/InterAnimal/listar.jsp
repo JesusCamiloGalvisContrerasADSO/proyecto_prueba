@@ -60,7 +60,7 @@
                     <div class=" historia historia--peso">
                     <div class="historia__titulo">
                       <span>Control de peso</span>
-                      <a href="ControlInterAnimal?accion=add" class="historia__titulo-btn"><i class="bi bi-plus-lg"></i></a>
+                      <a href="ControlInterAnimal?accion=add&animal_id=<%= animal_id %>&numAnimal=<%= numAnimal%>" class="historia__titulo-btn"><i class="bi bi-plus-lg"></i></a>
                     </div>
                     <table class="tabla">
                       <thead>
