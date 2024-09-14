@@ -13,6 +13,7 @@
 <!DOCTYPE html>
 <html lang="es">
     
+    <%@ include file="../../componentes/capturarLote_num.jsp" %>
     <%@ include file="../../componentes/head.jsp" %>
     <body>
         
@@ -21,7 +22,7 @@
 
               <div class="encabezado">
                   
-                  <a href="controlLote?accion=listar">
+                  <a href="ControlAnimal?accion=listar&id=<%=idLote%>&num=<%=numLote%>">
                     <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
                    </a>
                 
@@ -37,7 +38,6 @@
             
             <section class="fondo__cinta">
 
-                <%@ include file="../../componentes/capturarLote_num.jsp" %>
                 <div class="cinta__opciones container">
                     <div class="cinta__opciones--titulo">
                         <div>
@@ -112,10 +112,10 @@
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
                         <td class="animal--tablet border--bottom"><%= animal.getPesos().getPeso() %> KG</td>
                         <td class="animal--tablet border--bottom">
-                            <input class="input_ingresar input--peso" 
-       type="number" 
-       placeholder="Ingresa..." 
-       onblur="enviarDatos(this, <%= animal.getId() %>, <%= animal.getNum() %>, <%= numLote %>, <%= idLote %>)">
+                        <input  class="input_ingresar input--peso" type="number" 
+                                placeholder="Ingresa..." 
+                                onblur="enviarDatos(this, <%= animal.getId() %>, '<%= animal.getNum() %>', <%= numLote %>, <%= idLote %>)">
+
 
                         </td>
                         <td class="animal--tablet border--bottom">
@@ -134,28 +134,28 @@
 
                         <script src="js/modulos/buscador.js" ></script>
                         <script>
-    function enviarDatos(inputElement, animalId, numAnimal, numLote, idLote) {
-        let peso = inputElement.value;
+                            function enviarDatos(inputElement, animalId, numAnimal, numLote, idLote) {
+                            let peso = inputElement.value;
 
-        // Verifica que el valor del peso no esté vacío
-        if (peso.trim() === '') {
-            alert('Por favor, ingresa un peso.');
-            return;
-        }
+                            // Verifica que el valor del peso no esté vacío
+                            if (peso.trim() === '') {
+                                alert('Por favor, ingresa un peso.');
+                                return;
+                            }
 
-        // Construye la URL para la solicitud
-        let url = 'ControlInterAnimal?accion=AgregarPeso' +
-          '&animal_id=' + encodeURIComponent(1) + 
-          '&numAnimal=' + encodeURIComponent("001") + 
-          '&peso=' + encodeURIComponent(peso) +
-          '&numLote=' + encodeURIComponent(1) +  // Agrega este parámetro
-          '&idLote=' + encodeURIComponent(1);    // Agrega este parámetro
+                            // Construye la URL para la solicitud con los parámetros dinámicos
+                            let url = 'ControlInterAnimal?accion=AgregarPeso' +
+                              '&animal_id=' + encodeURIComponent(animalId) + 
+                              '&numAnimal=' + encodeURIComponent(numAnimal) + 
+                              '&peso=' + encodeURIComponent(peso) +
+                              '&numLote=' + encodeURIComponent(numLote) +  
+                              '&idLote=' + encodeURIComponent(idLote);    
 
+                            // Redirige a la URL para agregar el peso
+                            window.location.href = url;
+                        }
 
-        // Redirige a la URL para agregar el peso
-        window.location.href = url;
-    }
-</script>
+                        </script>
 
      
         </main>

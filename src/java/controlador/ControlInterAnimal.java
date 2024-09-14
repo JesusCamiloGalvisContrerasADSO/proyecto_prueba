@@ -55,30 +55,34 @@ public class ControlInterAnimal extends HttpServlet {
         } else if (action.equalsIgnoreCase("add")) {
             acceso = add;
         }else if (action.equalsIgnoreCase("AgregarPeso")) {
-            
-            String numAnimal = request.getParameter("numAnimal");
-            
-            //aqui se captura el lote en el cual se encuentra el animal, es para poder 
-            //enviarlo al lote donde esta el animal
-            int numLote = Integer.parseInt(request.getParameter("num"));
-            int idLote = Integer.parseInt(request.getParameter("id"));
-            
-            int idAnimal = Integer.parseInt(request.getParameter("animal_id"));
-            float peso = Float.parseFloat(request.getParameter("peso"));
+    try {
+        int animalId = Integer.parseInt(request.getParameter("animal_id"));
+        String numAnimal = request.getParameter("numAnimal");
+        int numLote = Integer.parseInt(request.getParameter("numLote"));
+        int idLote = Integer.parseInt(request.getParameter("idLote"));
+        float peso = Float.parseFloat(request.getParameter("peso"));
 
-            pesos.setAnimal_id(idAnimal);
-            pesos.setPeso(peso);
-            
-            Date date = new Date(); 
-            pesos.setFechaPeso(date);
-            
-            dao.add(pesos);
-            
-// Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
-            response.sendRedirect("ControlAnimal?accion=listar&id=" + 1 + "&num=" + 1);
+        // Set the dynamic values to the pesos object
+        pesos.setAnimal_id(animalId);
+        pesos.setPeso(peso);
 
-            return; 
-        }
+        // Obtener la fecha actual
+        Date date = new Date(); 
+        pesos.setFechaPeso(date);
+
+        // Agregar el peso a la base de datos
+        dao.add(pesos);
+
+        // Redirigir a la acción 'listar' con los valores dinámicos
+        response.sendRedirect("ControlAnimal?accion=listar&id=" + idLote + "&num=" + numLote);
+        
+    } catch (NumberFormatException e) {
+        System.err.println("Error al parsear los parámetros: " + e.getMessage());
+        // Manejo de error, redirigir a una página de error o mostrar un mensaje de error
+    }
+    return;
+}
+
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
 //        rutas de manera correcta, se llama al request y response
@@ -98,6 +102,9 @@ public class ControlInterAnimal extends HttpServlet {
         
         if (action.equalsIgnoreCase("Agregar")) {
             
+            int numLote = Integer.parseInt(request.getParameter("txtNumLote"));
+            int idLote = Integer.parseInt(request.getParameter("txtIdLote"));
+            
             String numAnimal = request.getParameter("txtNumAnimal");
             
             int idAnimal = Integer.parseInt(request.getParameter("txtIdAnimal"));
@@ -113,7 +120,7 @@ public class ControlInterAnimal extends HttpServlet {
             
             
 // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
-            response.sendRedirect("ControlInterAnimal?accion=listar&animal_id="+ idAnimal +"&numAnimal="+ numAnimal);
+            response.sendRedirect("ControlInterAnimal?accion=listar&id="+ numLote +"&num="+ idLote+"&animal_id="+idAnimal+"&numAnimal="+numAnimal);
             return; 
         }
 
