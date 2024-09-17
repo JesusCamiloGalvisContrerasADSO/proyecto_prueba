@@ -9,6 +9,7 @@ import modelo.Usuario;
 import config.conexion;
 import interfaces.login;
 import modelo.Usuario;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class LoginDAO implements login{
@@ -19,32 +20,39 @@ public class LoginDAO implements login{
     ResultSet rs;
     Usuario user = new Usuario();
     
-     @Override
+    @Override
     public boolean VerificarLogin(Usuario user) {
-        String sql = "SELECT u.documento, u.contrasena, u.rol_id, p.id AS id_perfil "+
-                     "FROM usuarios u "+
-                     "INNER JOIN perfil p ON p.usuario_id = u.id "+
-                     "WHERE u.documento = ? AND u.contrasena = ?;";
+        String sql = "SELECT u.contrasena, u.rol_id, p.id AS id_perfil " +
+                     "FROM usuarios u " +
+                     "INNER JOIN perfil p ON p.usuario_id = u.id " +
+                     "WHERE u.documento = ?;";
 
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql); 
             ps.setLong(1, user.getDocumento());
-            ps.setString(2, user.getContrasena());
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                user.setRol(rs.getInt("rol_id")); // Cambia 'id' a 'rol_id'
-                user.setIdUsuario(rs.getInt("id_perfil")); 
-                return true; // Credenciales válidas
+                // Verificar la contraseña encriptada
+                String contrasenaEncriptada = rs.getString("contrasena");
+
+                boolean contrasena = BCrypt.checkpw(user.getContrasena(), contrasenaEncriptada);
+
+                if (contrasena) {
+                    // Establecer el rol y el id del usuario autenticado
+                    user.setRol(rs.getInt("rol_id")); // Usa 'rol_id' en lugar de 'rol'
+                    user.setIdUsuario(rs.getInt("id_perfil")); // Usa 'id_perfil' en lugar de 'id'
+                    return true;
+                }
             } else {
-                return false; // Credenciales inválidas
+                System.out.println("No se encontró ningún usuario con el documento proporcionado.");
             }
-            
         } catch (Exception e) {
-            System.err.println("Error al verificar login: " + e);
-        }
-        
-        return false; // Si ocurre un error, se retorna false
+            System.err.println("Error al verificar login: ");
+        } 
+        return false; // Si ocurre un error o las credenciales no coinciden, se retorna false
     }
+
+
 }

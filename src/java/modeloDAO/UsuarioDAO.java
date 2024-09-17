@@ -87,7 +87,7 @@ public List<Usuario> listar() {
     public Usuario list(int id) {
         
         String sql = "SELECT p.id AS persona_id, p.nombre, p.apellido, p.telefono, " +
-             "p.email, p.fechaContrato, p.tipo_doc_id, p.sangre_id, u.documento, u.contrasena, u.rol_id, " +
+             "p.email, p.fechaContrato, p.tipo_doc_id, p.sangre_id, u.documento, u.rol_id, " +
              "r.nombre AS nombre_rol, " +
              "td.nombre AS tipo_documento, ts.nombre AS tipo_sangre " +
              "FROM perfil p " +
@@ -109,7 +109,6 @@ public List<Usuario> listar() {
                 user.setEmail(rs.getString("email")); 
                 user.setFechaContra(rs.getDate("fechaContrato"));
                 user.setDocumento(rs.getLong("documento"));
-                user.setContrasena(rs.getString("contrasena"));
                 user.setRol(rs.getInt("rol_id"));
                 user.setNomRol(rs.getString("nombre_rol"));
                 
@@ -210,7 +209,6 @@ public boolean addPerfil(Usuario user) {
             + "perfil.telefono = ?, "
             + "perfil.email = ?, "
             + "usuarios.documento = ?, "
-            + "usuarios.contrasena = ?, "
             + "usuarios.rol_id = ?, "
             + "perfil.tipo_doc_id = ?, "
             + "perfil.sangre_id = ? "
@@ -225,11 +223,10 @@ public boolean addPerfil(Usuario user) {
             ps.setLong(3, user.getTelefono());
             ps.setString(4, user.getEmail());
             ps.setLong(5, user.getDocumento());
-            ps.setString(6, user.getContrasena());
-            ps.setInt(7, user.getRol());
-            ps.setInt(8, user.getTipoDocum().getId());
-            ps.setInt(9, user.getTipoSangre().getId());
-            ps.setInt(10, user.getIdUsuario()); // Este es el ID del perfil
+            ps.setInt(6, user.getRol());
+            ps.setInt(7, user.getTipoDocum().getId());
+            ps.setInt(8, user.getTipoSangre().getId());
+            ps.setInt(9, user.getIdUsuario()); // Este es el ID del perfil
 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {

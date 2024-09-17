@@ -13,6 +13,7 @@ import modelo.TipoDocum;
 import modelo.TipoSangre;
 import modelo.Usuario;
 import modeloDAO.UsuarioDAO;
+import servicios.Utils;
 
 
 public class ControlUsuario extends HttpServlet {
@@ -101,49 +102,56 @@ public class ControlUsuario extends HttpServlet {
 //        hacer el envio o solicitud de datos, se manda ya sea al controlador o al 
 //        modelo dao
         if (action.equalsIgnoreCase("Agregar")) {
-            String nom = request.getParameter("txtNom");
-            String apell = request.getParameter("txtApell");
+    String nom = request.getParameter("txtNom");
+    String apell = request.getParameter("txtApell");
 
-            // Obtener el valor correcto de 'txtNumDoc' pasando el string a long
-            String numDocStr = request.getParameter("txtNumDoc");
-            Long numDoc = Long.parseLong(numDocStr);  // Aquí convertimos el string a Long
+    // Obtener el valor correcto de 'txtNumDoc' pasando el string a long
+    String numDocStr = request.getParameter("txtNumDoc");
+    Long numDoc = Long.parseLong(numDocStr);
 
-            int tipoDoc = Integer.parseInt(request.getParameter("txtTipDoc"));
-            int tipoSan = Integer.parseInt(request.getParameter("txtTipSang"));
+    int tipoDoc = Integer.parseInt(request.getParameter("txtTipDoc"));
+    int tipoSan = Integer.parseInt(request.getParameter("txtTipSang"));
 
-            // Obtener el valor correcto de 'txtTel'
-            String telStr = request.getParameter("txtTel");
-            Long tel = Long.parseLong(telStr);  // Aquí convertimos el string a Long
+    // Obtener el valor correcto de 'txtTel'
+    String telStr = request.getParameter("txtTel");
+    Long tel = Long.parseLong(telStr);
 
-            String contra = request.getParameter("txtContra");
-            String correo = request.getParameter("txtCorreo");
+    // Encriptar la contraseña antes de guardarla
+    String contra = request.getParameter("txtContra");
+    String contraEncriptada = Utils.encriptarBCrypt(contra);
 
-            user.setDocumento(numDoc);
-            user.setContrasena(contra);
-            user.setNombre(nom);
-            user.setApellido(apell);
-            user.setTelefono(tel);
-            user.setEmail(correo);
-//            user.setRol(0);
+    String correo = request.getParameter("txtCorreo");
 
-            Date date = new Date(); 
-            user.setFechaContra(date);
+    user.setDocumento(numDoc);
+    user.setContrasena(contraEncriptada); // Guarda la contraseña encriptada
+    user.setNombre(nom);
+    user.setApellido(apell);
+    user.setTelefono(tel);
+    user.setEmail(correo);
 
-            // Mapeo del TipoDocumento
-            user.setDocid(tipoDoc);
+    Date date = new Date(); 
+    user.setFechaContra(date);
 
-            // Mapeo del TipoSangre
-            user.setSanid(tipoSan);
+    // Mapeo del TipoDocumento
+    user.setDocid(tipoDoc);
 
-            dao.add(user);
-            acceso = confir;
-        } else if (action.equalsIgnoreCase("index")){
+    // Mapeo del TipoSangre
+    user.setSanid(tipoSan);
+
+    dao.add(user);
+    acceso = confir;
+}
+ else if (action.equalsIgnoreCase("index")){
             acceso = index;
         }else if (action.equalsIgnoreCase("Actualizar")) {
             int idUser = Integer.parseInt(request.getParameter("txtid"));
             String nom = request.getParameter("txtNom");
             String apell = request.getParameter("txtApell");
-            String contra = request.getParameter("txtContra");
+            
+                // Encriptar la contraseña antes de guardarla
+                String contra = request.getParameter("txtContra");
+                String contraEncriptada = Utils.encriptarBCrypt(contra);
+                
             int rol = Integer.parseInt(request.getParameter("txtRol"));
 
             String numDocStr = request.getParameter("txtNumDoc");
@@ -168,7 +176,7 @@ public class ControlUsuario extends HttpServlet {
 
             user.setIdUsuario(idUser);
             user.setDocumento(numDoc);
-            user.setContrasena(contra);
+            user.setContrasena(contraEncriptada);
             user.setNombre(nom);
             user.setApellido(apell);
             user.setTelefono(tel);

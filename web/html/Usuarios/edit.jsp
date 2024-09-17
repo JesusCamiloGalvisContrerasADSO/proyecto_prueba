@@ -102,10 +102,6 @@
                       <input class="input_registro" type="text" id="telefono" name="txtTel" value="<%=user.getTelefono()%>">
                   </div>
                   <div class="registro__input">
-                      <label for="contrasena">Contraseña:</label>
-                      <input class="input_registro" type="password" id="contrasena" name="txtContra" value="<%=user.getContrasena()%>">
-                  </div>
-                  <div class="registro__input">
                       <label for="email">Email:</label>
                       <input class="input_registro" type="email" id="email" name="txtCorreo" value="<%=user.getEmail()%>">
                   </div>
