@@ -83,9 +83,6 @@ public class ControlPerfil extends HttpServlet {
             Usuario user = (Usuario) session.getAttribute("user");
             
             int idUser = user.getIdUsuario();
-            
-            
-            String contra = request.getParameter("txtContra");
 
             int tipoDoc = Integer.parseInt(request.getParameter("txtTipDoc"));
 
@@ -103,7 +100,6 @@ public class ControlPerfil extends HttpServlet {
             user.setTipoSangre(tipoSangre);
 
             user.setIdUsuario(idUser);
-            user.setContrasena(contra);
             user.setTelefono(tel);
             user.setEmail(correo);
 

@@ -1,4 +1,3 @@
-
 <%
     request.setAttribute("pageTitle", "Agregar usuario");
 %>
@@ -17,7 +16,13 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%@ include file="../../componentes/head.jsp" %>
+    <%@ include file="../../componentes/head.jsp" %>
+
+<head>
+    
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="validacion.css">
+</head>
 <body>
     <!-- este es el encabezado de la pagina -->
     <header class=" fondo_header sombras--contenedor">
@@ -38,22 +43,25 @@
                   <h1 class="registro__titulo">Registrate para continuar</h1>
                   <hr class="registro__linea">
               </div>
-              <form action="ControlUsuario" method="POST">
+              <form id="registro" action="ControlUsuario" method="POST" novalidate>
                   <div class="registro__input">
-                      <p>Nombre:</p>
-                      <input class="input_registro" name="txtNom" type="text">
+                    <label for="nombre">Nombre:</label>
+                      <input id="nombre" class="input_registro" name="txtNom" type="text" required>
+                      
                   </div>
                   <div class="registro__input">
-                      <p>Apellido:</p>
-                      <input class="input_registro" name="txtApell" type="text">
+                    <label for="apellido">Apellido:</label>
+                      <input id="apellido" class="input_registro" name="txtApell" type="text" required>
+                      
                   </div>
                   <div class="registro__input">
-                      <p>Ingresa tu documento:</p>
-                      <input class="input_registro" name="txtNumDoc" type="number">
+                    <label for="numDoc">Ingresa tu documento:</label>
+                      <input id="numDoc" class="input_registro" name="txtNumDoc" type="number" required>
+                      
                   </div>
                   <div class="registro__input">
-                    <p>Tipo de documento:</p>
-                    <select class="input_registro" name="txtTipDoc" id="">
+                    <label for="tipDoc">Tipo de documento:</label>
+                    <select class="input_registro" name="txtTipDoc" id="tipDoc" required>
                         <option value=""></option>
                         <% 
                         TipoDocDAO docDao = new TipoDocDAO();
@@ -67,8 +75,8 @@
                     </select>
                   </div>
                   <div class="registro__input">
-                    <p>Tipo de sangre:</p>
-                    <select class="input_registro" name="txtTipSang" id="">
+                    <label for="tipSan">Tipo de sangre:</label>
+                    <select class="input_registro" name="txtTipSang" id="tipSan" required>
                         <option value="" disabled="" selected=""></option>
                         <% 
                         TipoSangreDAO sangreDao = new TipoSangreDAO();
@@ -83,20 +91,32 @@
                   </div>
                   
                   <div class="registro__input">
-                      <p>Teléfono:</p>
-                      <input class="input_registro" name="txtTel" type="number">
+                    <label for="telefono">Teléfono:</label>
+                      <input id="telefono" class="input_registro" name="txtTel" type="number" required>
+                      
                   </div>
                   <div class="registro__input">
-                      <p>Escribe tu contraseña:</p>
-                      <input class="input_registro" name="txtContra" type="password">
+                    <label for="contra">Escribe tu contraseña:</label>
+                      <input id="contra" class="input_registro" name="txtContra" type="password" required>
+                      
                   </div>
                   <div class="registro__input">
-                      <p>Ingresa tu correo:</p>
-                      <input class="input_registro" name="txtCorreo" type="email">
+                    <label for="contraConfir">Confirma tu contraseña:</label>
+                      <input id="contraConfir" class="input_registro" name="txtContra" type="password" required>
+                      
                   </div>
+                  <div class="registro__input">
+                      <label for="correo">Ingresa tu correo:</label>
+                      <input id="correo" class="input_registro" name="txtCorreo" type="email" required>
+                      
+                  </div>
+                  <div class="registro__input condiciones">
+                    <input  type="checkbox" id="politicas">
+                    <label for="politicas" >politicas de uso </label>
+                </div>
                 <div>
                     
-                    <button class="boton boton__registro" type="submit" name="accion" value="Agregar">Registrarse</button>
+                    <button id="enviar" class="boton boton__registro" type="submit" name="accion" value="Agregar">Registrarse</button>
                     
                 </div>
               </form>

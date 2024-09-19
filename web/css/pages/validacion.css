@@ -1,0 +1,11 @@
+.error{
+    border: solid 1px #ff0202;
+}
+.correcto{
+    border: solid 1px #00a50e;
+}
+.condiciones{
+  flex-direction: row;
+  width: 200px;
+  margin-bottom: 20px;
+}

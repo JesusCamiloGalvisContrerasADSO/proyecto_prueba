@@ -19,7 +19,7 @@
         <header class=" fondo_header">
             <div class="container encabezado">
               <div class="encabezado">
-                  <a href="ControlLogin?accion=acciones">
+                  <a href="controlLote?accion=listar">
                     <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
                    </a>
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">

@@ -22,7 +22,7 @@
 
               <div class="encabezado">
                   
-                  <a href="ControlAnimal?accion=listar&id=<%=idLote%>&num=<%=numLote%>">
+                  <a href="controlLote?accion=listar&id=<%=idLote%>&num=<%=numLote%>">
                     <button class="boton_salir"><i class="bi bi-chevron-left"></i></button>
                    </a>
                 

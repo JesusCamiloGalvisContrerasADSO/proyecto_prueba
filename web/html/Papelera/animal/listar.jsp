@@ -53,11 +53,12 @@
                     <div class="menu">
                         <ul class="opciones__botones">
                             <li>
-                                
+                                <% if(rol == 1 ){%>
                                 <form action="ControlAnimal" method="POST">
                                     <button class="opciones__botones--boton" type="submit" name="accion" value="eliminar">
                                         <i class="bi bi-trash"></i>
                                     </button>
+                                <% } %>
                             </li>
                             
                         </ul>
@@ -79,7 +80,6 @@
                         <th class="animal--movil ">Raza</th>
                         <th class="animal--movil">Sexo/tipo</th>
                         <th class="animal--tablet">Ultimo peso</th>
-                        <th class="animal--tablet">Nuevo peso</th>
                         <th class="animal--tablet">Fecha revisión</th>
                         <th class="animal--tablet">estado salud</th>
                         <th></th>
@@ -100,7 +100,6 @@
                         <td class="animal--movil border--bottom"><%= animal.getRaza().getNombre() %></td>
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
                         <td class="animal--tablet border--bottom"><%= animal.getPesos().getPeso() %> KG</td>
-                        <td class="animal--tablet border--bottom"><input class="input_ingresar input--peso " type="number" placeholder="Ingresa..."></td>
                         <td class="animal--tablet border--bottom">
                           <p>Última actualización</p> 
                           <p><%= animal.getPesos().getFechaPeso() %></p>

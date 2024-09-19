@@ -247,7 +247,6 @@ public boolean addPerfil(Usuario user) {
                  "JOIN usuarios ON perfil.usuario_id = usuarios.id " +
                  "SET perfil.telefono = ?, " +
                  "perfil.email = ?, " +
-                 "usuarios.contrasena = ?, " +
                  "perfil.tipo_doc_id = ? " +
                  "WHERE perfil.id = ?";  
 
@@ -257,9 +256,8 @@ public boolean addPerfil(Usuario user) {
 
             ps.setLong(1, user.getTelefono());
             ps.setString(2, user.getEmail());
-            ps.setString(3, user.getContrasena());
-            ps.setInt(4, user.getTipoDocum().getId());
-            ps.setInt(5, user.getIdUsuario()); // Este es el ID del perfil
+            ps.setInt(3, user.getTipoDocum().getId());
+            ps.setInt(4, user.getIdUsuario()); // Este es el ID del perfil
 
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
