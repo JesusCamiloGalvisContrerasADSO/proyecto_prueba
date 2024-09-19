@@ -37,8 +37,7 @@ const validar = (event) =>{
     }
 };
 
-$formulario.addEventListener("submit",validar) ;
-
+if(politicas){
 enviar.setAttribute('disabled', '');
 
 addEventListener("DOMContentLoaded", (event) => {
@@ -51,45 +50,62 @@ addEventListener("DOMContentLoaded", (event) => {
     }
 });
 });
+}
 
 
-
+if(nombre){
 nombre.addEventListener("keyup", () => {
     remover(nombre);
 });
 
+
+
 apellido.addEventListener("keyup", () => {
     remover(apellido);
 });
+}
 
-
+if(telefono){
 telefono.addEventListener("keyup", () => {
     remover(telefono);
 });
+}
 
+if(documento){
 documento.addEventListener("keyup", () => {
     remover(documento);
 });
 
-
 documento.addEventListener("keypress",(event) => numero(event, documento));
+}
+
+if(telefono){
 telefono.addEventListener("keypress", (event) => numero(event, telefono));
+}
 
-
+if(nombre){
 nombre.addEventListener("keypress", (event)=>{
     letras(event, nombre);
 });
 apellido.addEventListener("keypress", (event)=>{
     letras(event, apellido);
 });
+}
+
+if(email){
 email.addEventListener('input', (event) => {
     correo(event, email);
 });
+}
+
+if(contra){
 // Agregar los event listeners para las validaciones en el input
 contra.addEventListener('keypress', (event) => {
     validarContrasena(event, contra);
 });
+}
 
+if(confirContra){
 confirContra.addEventListener('keypress', (event) => {
     validarContrasena(event, confirContra);
 });
@@ -98,21 +114,30 @@ confirContra.addEventListener('keypress', (event) => {
 $formulario.addEventListener('submit', (event) => {
     validarFormulario(event, contra, confirContra);
 });
+}
 
+if(documento){
 // Agregar el event listener para la validación al enviar el formulario
 $formulario.addEventListener('submit', (event) => {
     validarFormularioNumero(event, documento);
 });
+}
 
+if(telefono){
 // Agregar el event listener para la validación al enviar el formulario
 $formulario.addEventListener('submit', (event) => {
     validarFormularioTelefono(event, telefono);
 });
+}
 
+if(tipo_Doc){
 tipo_Doc.addEventListener("change", (event) => {
     validarSelec(event, tipo_Doc);
 });
+}
 
+if(tipo_San){
 tipo_San.addEventListener("change", (event) => {
     validarSelec(event, tipo_San);
 });
+}

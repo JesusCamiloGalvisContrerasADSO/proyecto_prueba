@@ -45,24 +45,24 @@
                   <h1 class="registro__titulo">Editar usuario</h1>
                   <hr class="registro__linea">
               </div>
-              <form action="ControlUsuario" method="POST">
+              <form id="registro" action="ControlUsuario" method="POST">
                   
                 <input type="hidden" name="txtid" value="<%= user.getIdUsuario()%>">
                   <div class="registro__input">
                       <label for="nombre">Nombre:</label>
-                      <input class="input_registro" type="text" id="nombre" name="txtNom" value="<%=user.getNombre()%>">
+                      <input class="input_registro" type="text" id="nombre" name="txtNom" value="<%=user.getNombre()%>" required="">
                   </div>
                   <div class="registro__input">
                       <label for="apellido">Apellido:</label>
-                      <input class="input_registro" type="text" id="apellido" name="txtApell" value="<%=user.getApellido()%>">
+                      <input class="input_registro" type="text" id="apellido" name="txtApell" value="<%=user.getApellido()%>" required="">
                   </div>
                   <div class="registro__input">
                       <label for="documento">Documento:</label>
-                      <input class="input_registro" type="number" id="documento" name="txtNumDoc" value="<%=user.getDocumento()%>" >
+                      <input class="input_registro" type="number" id="numDoc" name="txtNumDoc" value="<%=user.getDocumento()%>" required="" >
                   </div>
                   <div class="registro__input">
                     <label for="tipoDocumento">Tipo de Documento:</label>
-                    <select class="input_registro" name="txtTipDoc" id="">
+                    <select class="input_registro" name="txtTipDoc" id="tipDoc" required="">
                         <% 
                         TipoDocDAO docDao = new TipoDocDAO();
                         List<TipoDocum> docLista = docDao.listar();
@@ -79,7 +79,7 @@
                   </div>
                   <div class="registro__input">
                     <label for="tipoSangre">Tipo de Sangre:</label>
-                    <select class="input_registro" name="txtTipSang" id="">
+                    <select class="input_registro" name="txtTipSang" id="tipSan" required="">
                         
                         <% 
                         TipoSangreDAO sangreDao = new TipoSangreDAO();
@@ -99,11 +99,11 @@
                   
                   <div class="registro__input">
                       <label for="telefono">Teléfono:</label>
-                      <input class="input_registro" type="text" id="telefono" name="txtTel" value="<%=user.getTelefono()%>">
+                      <input class="input_registro" type="text" id="telefono" name="txtTel" value="<%=user.getTelefono()%>" required="">
                   </div>
                   <div class="registro__input">
-                      <label for="email">Email:</label>
-                      <input class="input_registro" type="email" id="email" name="txtCorreo" value="<%=user.getEmail()%>">
+                      <label for="email">Correo:</label>
+                      <input class="input_registro" type="email" id="correo" name="txtCorreo" value="<%=user.getEmail()%>" required="">
                   </div>
                   <div class="registro__input">
                       <label for="fechaContrato">Fecha inicio de Contrato:</label>
@@ -111,7 +111,7 @@
                   </div>
                   <div class="registro__input">
                       <label for="rol">Rol:</label>
-                    <select class="input_registro" name="txtRol" id="">
+                      <select class="input_registro" name="txtRol" id="" required="">
                         
                         <% 
                         RolesDAO Dao = new RolesDAO();
@@ -129,7 +129,7 @@
                   </div>
                 <div>
                     
-                    <button class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
+                    <button id="enviar" class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
                     
                 </div>
               </form>

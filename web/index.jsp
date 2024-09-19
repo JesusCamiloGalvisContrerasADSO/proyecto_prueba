@@ -34,11 +34,11 @@
         <h1 class="">Iniciar sesión</h1>
             <form action="ControlLogin" method="POST" class="center">
             <!-- ingresar numero de documento y contraseña  -->
-            <input class="input_ingresar" name="txtDocum" id="num_doc" placeholder="Ingresa el numero de documento" type="number" >
+            <input id="numDoc" class="input_ingresar" name="txtDocum" id="num_doc" placeholder="Ingresa el numero de documento" type="" required="">
             
-            <input class="input_ingresar" name="txtContra" placeholder="Ingresa tu contraseña" type="password" >  
+            <input id="contra" class="input_ingresar" name="txtContra" placeholder="Ingresa tu contraseña" type="password" required="">  
             <br>
-            <button class="boton boton--ingresar" type="submit" name="accion" value="Ingresar">Ingresar</button>
+            <button id="enviar" class="boton boton--ingresar" type="submit" name="accion" value="Ingresar">Ingresar</button>
           </form>
           <!-- botones de ingreso, olvido contraseña o registrarse  -->
           <div class="center">
