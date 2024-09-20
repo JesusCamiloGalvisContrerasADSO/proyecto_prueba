@@ -45,7 +45,7 @@
                         <div class="alinear__Row">
                             <div class="alinear__colum">
                                 <label>Ingresa el documento:</label>
-                                <input class="input_ingresar input--editar" type="text" name="txtNom"><br>
+                                <input class="input_ingresar input--editar" type="text" name="txtNom" required=""><br>
                             </div>
                             <input class="boton boton--listar input--editar" type="submit" name="accion" value="Agregar"><br>
                         </div>

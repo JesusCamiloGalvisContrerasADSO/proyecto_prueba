@@ -53,7 +53,7 @@
                 <div class="container tabla__listar">
                     <form action="ControlRaza" method="POST">
                         <div class="alinear__Row">
-                            <input class="input_ingresar input--editar" type="text" name="txtNom" value="<%= Raz.getNombre()%>"><br>
+                            <input class="input_ingresar input--editar" type="text" name="txtNom" value="<%= Raz.getNombre()%>" required=""><br>
                             <input type="hidden" name="txtid" value="<%= Raz.getId() %>">
                             <input class="boton boton--listar input--editar" type="submit" name="accion" value="Actualizar"><br>
                         </div>

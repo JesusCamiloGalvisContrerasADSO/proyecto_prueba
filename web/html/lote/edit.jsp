@@ -55,7 +55,7 @@
                         <div class="alinear__Row">
                             <div class="alinear__colum">
                             <label>Numero del lote:</label>
-                            <input class="input_ingresar input--editar" type="number" name="txtNum" value="<%=lote.getNum()%>"><br>
+                            <input class="input_ingresar input--editar" type="number" name="txtNum" value="<%=lote.getNum()%>" required=""><br>
                             </div>
                             <input type="hidden" name="txtid" value="<%=lote.getId()%>">
                             <input type="hidden" name="txtEst" value="<%=lote.getEst()%>">

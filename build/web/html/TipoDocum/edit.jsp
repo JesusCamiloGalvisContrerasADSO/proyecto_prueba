@@ -51,7 +51,7 @@
                 <div class="container tabla__listar">
                     <form action="ControlTipoDoc" method="GET">
                         <div class="alinear__Row">
-                            <input class="input_ingresar input--editar" type="text" name="txtNom" value="<%= Tip.getNom() %>"><br>
+                            <input class="input_ingresar input--editar" type="text" name="txtNom" value="<%= Tip.getNom() %>" required=""><br>
                             <input type="hidden" name="txtid" value="<%= Tip.getId() %>">
                             <input class="boton boton--listar input--editar" type="submit" name="accion" value="Actualizar"><br>
                         </div>
