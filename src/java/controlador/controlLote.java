@@ -92,15 +92,30 @@ public class controlLote extends HttpServlet {
             lot.setId(id);
             lot.setEst(est);
             lot.setNum(num);
-            dao.edit(lot);
-            acceso = listar;
+            boolean respuesta = dao.edit(lot);
+            
+            if(respuesta){
+                acceso = listar;
+            }else{
+                // Redirigir a la página de agregar lote con un mensaje de error
+                request.setAttribute("error", "No se pudo modificar el lote. Verifique los datos.");
+                acceso = listar;
+            }
+            
         }else if (action.equalsIgnoreCase("Agregar")) {
             int num = Integer.parseInt(request.getParameter("txtNum"));
             int estado = 1;
             lot.setNum(num);
             lot.setEst(estado);
-            dao.add(lot);
-            acceso = listar;
+            boolean respuesta = dao.add(lot);
+            
+            if(respuesta){
+                acceso = listar;
+            }else{
+                // Redirigir a la página de agregar lote con un mensaje de error
+                request.setAttribute("error", "No se pudo agregar el lote. Verifique los datos.");
+                acceso = add;  // Vuelve a la página de agregar lote
+            }
         }else if (action.equalsIgnoreCase("cambiarFalse")) {
             String[] selectedLotes = request.getParameterValues("selectedLotes");
 

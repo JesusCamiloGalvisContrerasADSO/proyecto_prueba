@@ -41,6 +41,7 @@
                 int id = Integer.parseInt((String) request.getAttribute("idTipo"));
                 Usuario user = dao.list(id);
               %>
+              
               <div>
                   <h1 class="registro__titulo">Editar usuario</h1>
                   <hr class="registro__linea">
@@ -48,7 +49,8 @@
               <form id="registro" action="ControlUsuario" method="POST">
                   
                 <input type="hidden" name="txtid" value="<%= user.getIdUsuario()%>">
-                  <div class="registro__input">
+                  
+                <div class="registro__input">
                       <label for="nombre">Nombre:</label>
                       <input class="input_registro" type="text" id="nombre" name="txtNom" value="<%=user.getNombre()%>" required="">
                   </div>
@@ -60,6 +62,7 @@
                       <label for="documento">Documento:</label>
                       <input class="input_registro" type="number" id="numDoc" name="txtNumDoc" value="<%=user.getDocumento()%>" required="" >
                   </div>
+                  
                   <div class="registro__input">
                     <label for="tipoDocumento">Tipo de Documento:</label>
                     <select class="input_registro" name="txtTipDoc" id="tipDoc" required="">
@@ -111,7 +114,7 @@
                   </div>
                   <div class="registro__input">
                       <label for="rol">Rol:</label>
-                      <select class="input_registro" name="txtRol" id="" required="">
+                      <select class="input_registro" name="txtRol" id="" >
                         
                         <% 
                         RolesDAO Dao = new RolesDAO();
@@ -121,11 +124,14 @@
                             Roles rolP = rolIter.next();
                             if((rolP.getId()) == (user.getRol())){
                         %>
-                        <option id="rol" name="txtRol" value="<%= user.getRol()%>" selected=""><%= user.getNomRol()%></option>
+                        <option id="" name="txtRol" value="<%= user.getRol()%>" selected=""><%= user.getNomRol()%></option>
                         <% }else{ %>
                             <option value="<%= rolP.getId() %>"><%= rolP.getNom() %></option>
                         <% }} %>
                     </select>
+                  </div>
+                    <div class="registro__input input--olvidaste">
+                      <a class="boton boton--olvidaste" href="ControlContrasena?accion=editar&id=<%= user.getIdUsuario() %>"">Actualizar contraseña</a>
                   </div>
                 <div>
                     

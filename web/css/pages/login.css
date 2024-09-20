@@ -78,11 +78,8 @@
 }
 
 .boton__usuario{
-  display:inline-grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 10px;
-  width: 100%;
-  margin-right: 20px;
+    width: 300px;
+    margin-right: 20px;
 }
 
 .boton_registro {
@@ -256,6 +253,16 @@ hr {
 .iconoAcceso{
   font-size: 150px;
   color: rgb(228, 18, 18);
+}
+
+.boton--olvidaste{
+  margin: 15px;
+  width: 190px;
+  background-color: #a3a3a3;
+}
+
+.input--olvidaste{
+    align-items: center;
 }
 
 /* Media query para dispositivos móviles */

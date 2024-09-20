@@ -48,6 +48,10 @@
         <servlet-name>ControlInterAnimal</servlet-name>
         <servlet-class>controlador.ControlInterAnimal</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlContrasena</servlet-name>
+        <servlet-class>controlador.ControlContrasena</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>ControlInterAnimal</servlet-name>
         <url-pattern>/ControlInterAnimal</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlContrasena</servlet-name>
+        <url-pattern>/ControlContrasena</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

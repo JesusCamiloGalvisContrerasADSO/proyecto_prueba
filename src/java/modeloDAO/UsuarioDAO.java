@@ -310,4 +310,27 @@ public boolean addPerfil(Usuario user) {
         
         return false; // Si ocurre un error, se retorna false
     }
+
+    @Override
+    public boolean actualizarContra(Usuario user) {
+        String sql = sql = "UPDATE usuarios SET contrasena = ? WHERE id = ?;";
+        
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+
+            ps.setString(1, user.getContrasena());
+            ps.setInt(2, user.getIdUsuario()); // Este es el ID del perfil
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("El usuario fue actualizado exitosamente.");
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al actualizar el usuario: " + e);
+        }
+        
+        return false; // Si ocurre un error, se retorna false
+    }
 }

@@ -1,15 +1,13 @@
+<%
+    request.setAttribute("pageTitle", "agregar lote");
+%>
+
 <%@ include file="../../componentes/validacionAdmin.jsp" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lotes</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+<%@ include file="/componentes/head.jsp" %>
     <body>
         <header class=" fondo_header">
             <div class="container encabezado">
@@ -46,7 +44,7 @@
                         <div class="alinear__Row">
                             <div class="alinear__colum">
                                 <label>Ingresa el numero del lote:</label>
-                                <input class="input_ingresar input--editar" type="text" name="txtNum"><br>
+                                <input class="input_ingresar input--editar" type="text" name="txtNum" required=""><br>
                             </div>
                             <input class="boton boton--listar input--editar" type="submit" name="accion" value="Agregar"><br>
                         </div>
@@ -54,5 +52,6 @@
                 </div>
             </section>
         </main>
+        <%@ include file="/componentes/error_ingreso.jsp" %>
     </body>
 </html>

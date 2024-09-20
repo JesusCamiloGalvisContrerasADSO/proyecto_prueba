@@ -138,8 +138,16 @@ public class ControlUsuario extends HttpServlet {
     // Mapeo del TipoSangre
     user.setSanid(tipoSan);
 
-    dao.add(user);
-    acceso = confir;
+    boolean respuesta = dao.add(user);
+    
+    if(respuesta){
+        acceso = confir;
+    }else{
+        // Redirigir a la página de login con un mensaje de error
+        request.setAttribute("error", "Credenciales inválidas");
+        acceso = add;
+    
+    }
 }
  else if (action.equalsIgnoreCase("index")){
             acceso = index;

@@ -45,13 +45,8 @@
             <hr>
             <div class="boton__usuario">
                 <a class="boton boton--modificador" href="ControlUsuario?accion=add">Registrarse</a>
-              <a class="boton boton__olvidar " href="">¿Olvidaste tu contraseña?</a>
+              
             </div>
-            
-            
-            
-            
-            
             
           </div>
         </div>

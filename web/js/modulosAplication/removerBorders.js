@@ -3,7 +3,6 @@ export default function removerBorde(event, docum) {
         event.preventDefault(); // Esto evitará que se ingrese el valor
     }
 
-    
     if (docum.value.length < 4) {
         docum.classList.remove("error");
         docum.classList.add("correcto");

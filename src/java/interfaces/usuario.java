@@ -13,6 +13,8 @@ public interface usuario {
     public boolean editPerfil(Usuario user);
     public boolean eliminar(int id);
     
+    public boolean actualizarContra(Usuario user);
+    
     public boolean VerificarLogin(Usuario user);
     
 }

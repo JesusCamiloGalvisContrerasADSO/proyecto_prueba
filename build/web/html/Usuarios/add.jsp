@@ -123,5 +123,6 @@
           </div>
       </section>
     </main>
+    <%@ include file="/componentes/error_ingreso.jsp" %>
 </body>
 </html>
