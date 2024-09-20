@@ -110,12 +110,13 @@
                         <td class="center border--bottom"><a href="ControlInterAnimal?accion=listar&animal_id=<%= animal.getId() %>&numAnimal=<%= animal.getNum()%>&id=<%= idLote %>&num=<%= numLote %>" class="boton boton__lote"><%= animal.getNum() %></a></td>
                         <td class="animal--movil border--bottom"><%= animal.getRaza().getNombre() %></td>
                         <td class="animal--movil border--bottom"><%= animal.getNomTipoSex() %></td>
-                        <td class="animal--tablet border--bottom"><%= animal.getPesos().getPeso() %> KG</td>
+                        <td class="animal--tablet border--bottom" ><%= animal.getPesos().getPeso() %> KG</td>
                         <td class="animal--tablet border--bottom">
-                        <input  class="input_ingresar input--peso" type="number" 
+                        
+                        <input id="" class="input_ingresar input--peso peso" type="number" 
                                 placeholder="Ingresa..." 
                                 onblur="enviarDatos(this, <%= animal.getId() %>, '<%= animal.getNum() %>', <%= numLote %>, <%= idLote %>)">
-
+                        
 
                         </td>
                         <td class="animal--tablet border--bottom">

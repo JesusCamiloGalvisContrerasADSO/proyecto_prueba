@@ -48,7 +48,7 @@
         %>
         <h1 class="titulo--caja">Editar perfil</h1>
         
-        <form action="ControlPerfil" method="POST">
+        <form action="ControlPerfil" id="registro" method="POST" >
                   
                   <div class="registro__input">
                       <label for="nombre">Nombre:</label>
@@ -64,7 +64,7 @@
                   </div>
                   <div class="registro__input">
                     <label for="tipoDocumento">Tipo de Documento:</label>
-                    <select class="input_registro borde" name="txtTipDoc" id="">
+                    <select class="input_registro borde" name="txtTipDoc" id="tipDoc" required>
                         <% 
                         TipoDocDAO docDao = new TipoDocDAO();
                         List<TipoDocum> docLista = docDao.listar();
@@ -93,11 +93,11 @@
                   
                   <div class="registro__input">
                       <label for="telefono">Teléfono:</label>
-                      <input class="input_registro borde" type="text" id="telefono" name="txtTel" value="<%=user.getTelefono()%>">
+                      <input class="input_registro borde" type="text" id="telefono" name="txtTel" value="<%=user.getTelefono()%>" required>
                   </div>
                   <div class="registro__input">
                       <label for="email">Email:</label>
-                      <input class="input_registro borde" type="email" id="email" name="txtCorreo" value="<%=user.getEmail()%>">
+                      <input id="correo" class="input_registro borde" name="txtCorreo" type="email" value="<%=user.getEmail()%>" required>
                   </div>
                   <div class="registro__input">
                       <label for="fechaContrato">Fecha inicio de Contrato:</label>
@@ -106,7 +106,7 @@
                     
                 <div>
                     
-                    <button class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
+                    <button id="enviar" class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
                     
                 </div>
               </form>

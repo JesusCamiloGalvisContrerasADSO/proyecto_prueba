@@ -168,12 +168,19 @@ public class ControlAnimal extends HttpServlet {
             
             String[] selectedAnimales = request.getParameterValues("selectedAnimales");
 
-            if (selectedAnimales != null) {
+            System.out.println("ID de animal seleccionado para cambiar estado: " + selectedAnimales);  // Imprimir los IDs
+            if (selectedAnimales != null && selectedAnimales.length > 0) {
                 for (String id : selectedAnimales) {
-                    int AnimalId = Integer.parseInt(id);
-                    Anim.setId(AnimalId);
-                    Anim.setEstado(0);
-                    dao.cambiarFalse(Anim);
+            System.out.println("ID de animal seleccionado para cambiar estado: " + id);  // Imprimir los IDs
+                    try {
+                       int AnimalId = Integer.parseInt(id);
+                        Anim.setId(AnimalId);
+                        Anim.setEstado(0);
+                        dao.cambiarFalse(Anim); 
+                    } catch (Exception e) {
+                        request.setAttribute("error", "ID de lote inválido: " + e);
+                    }
+                    
                 }
             }
 
@@ -189,7 +196,7 @@ public class ControlAnimal extends HttpServlet {
             
             String[] selectedAnimales = request.getParameterValues("selectedAnimales");
 
-            if (selectedAnimales != null) {
+            if (selectedAnimales != null && selectedAnimales.length > 0) {
                 for (String id : selectedAnimales) {
                 try {
                     int AnimalId = Integer.parseInt(id);

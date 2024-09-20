@@ -43,7 +43,7 @@
                   <h1 class="registro__titulo">Registrate para continuar</h1>
                   <hr class="registro__linea">
               </div>
-              <form id="registro" action="ControlUsuario" method="POST" novalidate>
+              <form id="registro" action="ControlUsuario" method="POST" >
                   <div class="registro__input">
                     <label for="nombre">Nombre:</label>
                       <input id="nombre" class="input_registro" name="txtNom" type="text" required>
@@ -62,7 +62,7 @@
                   <div class="registro__input">
                     <label for="tipDoc">Tipo de documento:</label>
                     <select class="input_registro" name="txtTipDoc" id="tipDoc" required>
-                        <option value=""></option>
+                        <option value="" disabled="" selected=""></option>
                         <% 
                         TipoDocDAO docDao = new TipoDocDAO();
                         List<TipoDocum> docLista = docDao.listar();

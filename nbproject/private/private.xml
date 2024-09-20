@@ -4,43 +4,37 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlUsuario.java</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/moduloRemover.js</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/html/lote/edit.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/app.js</file>
             <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/UsuarioDAO.java</file>
             <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlPerfil.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlInterAnimal.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlLogin.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/Papelera/lote/listar.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/TipoSangre/edit.jsp</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/edit.jsp</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/index.jsp</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/AccesoDenegado/AccesoDenegado.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/componentes/capturarAnimal.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/componentes/capturarLote_num.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/is_valid.js</file>
             <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlAnimal.java</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/componentes/head.jsp</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/Perfil/edit.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/InterAnimal/listar.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/Animales/edit.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/InterAnimal.css</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/modulo_numero.js</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/modulo_correo.js</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/modulo_letras.js</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/componentes/validacionAdmin.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/validacion.css</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/Animales/add.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/interfaces/animal.java</file>
             <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/LoginDAO.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/ControlPapeLote.java</file>
             <file>file:/C:/trabajo/proyecto_prueba/src/java/servicios/Utils.java</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/componentes/validacionRol.jsp</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/lote/listar.jsp</file>
             <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/AnimalDAO.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/TipoSangre/add.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/lote/add.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/controlador/controlLote.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/interfaces/pesos.java</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/html/Usuarios/add.jsp</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/Animales/listar.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/modelo/Pesos.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/PesosDAO.java</file>
-            <file>file:/C:/trabajo/proyecto_prueba/src/java/modeloDAO/LoteDAO.java</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/modulo_Box.js</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/css/style.css</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/Perfil/listar.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/InterAnimal/add.jsp</file>
-            <file>file:/C:/trabajo/proyecto_prueba/web/html/TipoSangre/listar.jsp</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/css/pages/login.css</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/modulo_validar.js</file>
+            <file>file:/C:/trabajo/proyecto_prueba/web/js/modulos/modulo_contrasena.js</file>
             <file>file:/C:/trabajo/proyecto_prueba/web/html/Papelera/animal/listar.jsp</file>
         </group>
     </open-files>

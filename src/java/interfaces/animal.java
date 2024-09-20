@@ -27,7 +27,7 @@ public interface animal {
     public boolean cambiarFalse(Animal Anim);
     
     // Método para mandar a listar un lote por su ID de 0 a 1
-    public boolean cambiarVerdad(Animal Anim);
+//    public boolean cambiarVerdad(Animal Anim);
     
     //Metodo para eliminar un lote por su ID
     public boolean eliminar(int AnimalId);

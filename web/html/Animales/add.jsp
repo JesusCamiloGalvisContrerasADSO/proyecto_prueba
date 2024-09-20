@@ -36,7 +36,7 @@
             
             <h1 class="titulo--caja" >Agregar Nuevo Animal</h1>
 
-            <form action="ControlAnimal" method="POST">
+            <form id="registro" action="ControlAnimal" method="POST" novalidate="">
             <%@ include file="../../componentes/capturarLote_num.jsp" %>
                 <!-- El atributo "name" debe coincidir con los parámetros esperados por el servlet -->
                 <input type="hidden" name="action" value="add"> <!-- Acción específica que manejará el servlet -->
@@ -51,7 +51,7 @@
 
                 <div class="registro__input">
                             <p>Tipo de Raza</p>
-                            <select class="input_registro" name="txtRaza" id="">
+                            <select class="input_registro" name="txtRaza" id="Raza" required="">
                                 <option value="" disabled="" selected=""></option>
                                 <% 
                                 RazaDAO razaDAO = new RazaDAO();
@@ -67,7 +67,7 @@
 
                 <div class="registro__input">
                             <p>Tipo de sexo</p>
-                            <select class="input_registro" name="txtSexo" id="">
+                            <select class="input_registro" name="txtSexo" id="sexo" required="">
                                 <option value="" disabled="" selected=""></option>
                                 <% 
                                 Tipo_sexoDAO sexoDao = new Tipo_sexoDAO();
@@ -83,7 +83,7 @@
 
                 <div class="registro__input">
                             <p>Estado de salud</p>
-                            <select class="input_registro" name="txtsalud" id="">
+                            <select class="input_registro" name="txtsalud" id="salud" required="">
                                 <option value=""></option>
                                 <% 
                                 SaludDAO saludDao = new SaludDAO();
@@ -103,7 +103,7 @@
                 <input class="input_registro" type="number" id="peso" name="txtpeso" step="0.01" required>
                 </div>
                 <!-- Botón para enviar el formulario -->
-                <button class="boton boton__registro" type="submit" type="submit" name="accion" value="Agregar">Agregar Animal</button>
+                <button id="enviar" class="boton boton__registro" type="submit" type="submit" name="accion" value="Agregar">Agregar Animal</button>
             </form>
         </div> 
     </section>

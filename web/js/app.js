@@ -7,7 +7,6 @@ import letras from "./modulos/modulo_letras.js";
 import validarContrasena from "./modulos/modulo_contrasena.js";
 import validarSelec from "./modulos/modulo_Box.js";
 import { validarFormulario } from "./modulos/modulo_contrasena.js";
-import numero from "./modulos/modulo_numero.js";
 import { validarFormularioNumero, validarFormularioTelefono} from "./modulos/modulo_numero.js";
 
 
@@ -27,6 +26,7 @@ const enviar = document.querySelector("#enviar");
 const tbody = document.querySelector("tbody");
 
 
+
 const validar = (event) =>{
      // Llamar a is_valid y obtener el resultado
     const esValido = is_valid(event, '#registro [required]');
@@ -36,6 +36,8 @@ const validar = (event) =>{
         event.preventDefault(); // Evitar el envío del formulario si hay errores
     }
 };
+
+$formulario.addEventListener("submit",validar) ;
 
 if(politicas){
 enviar.setAttribute('disabled', '');
@@ -114,6 +116,12 @@ confirContra.addEventListener('keypress', (event) => {
 $formulario.addEventListener('submit', (event) => {
     validarFormulario(event, contra, confirContra);
 });
+}
+
+if (email) {
+    $formulario.addEventListener('submit', (event) => {
+        correo(event, email);
+    });
 }
 
 if(documento){

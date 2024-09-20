@@ -53,14 +53,14 @@
             
             <section class="center registro__fondo">
                 <div class="container center registro sombras--contenedor">
-                    <form action="ControlAnimal" method="POST">
+                    <form id="registro" action="ControlAnimal" method="POST" novalidate="">
                         <input type="hidden" name="txtid" value="<%= anim.getId()%>">
                         <input type="hidden" name="txtidLote" value="<%= anim.getLote_id() %>">
                         <input type="hidden" name="txtnumLote" value="<%= anim.getLote().getNum()%>">
                             
                             <div class="registro__input">
                                 <label for="tipoDocumento">Lote:</label>
-                                <select class="input_registro " name="txtLote" id="">
+                                <select class="input_registro " name="txtLote" id="Raza">
                                     <% 
                                     LoteDAO lot = new LoteDAO();
                                     List<LoteM> lotLista = lot.listar();
@@ -78,7 +78,7 @@
                                 
                             <div class="registro__input">
                                 <p>Estado de salud</p>
-                                <select class="input_registro" name="txtsalud" id="">
+                                <select class="input_registro" name="txtsalud" id="salud">
                                     <% 
                                     SaludDAO saludDao = new SaludDAO();
                                     List<Salud> saludLista = saludDao.listar();
@@ -94,7 +94,7 @@
                                 </select>
                             </div>
                                 
-                                <button class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
+                                <button id="enviar" class="boton boton__registro" type="submit" name="accion" value="Actualizar">Actualizar</button>
                     </form>
                 </div>
             </section>

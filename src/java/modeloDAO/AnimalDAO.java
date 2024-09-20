@@ -359,21 +359,21 @@ public class AnimalDAO implements animal{
             return false;
     }
 
-    @Override
-    public boolean cambiarVerdad(Animal Anim) {
-        String sql = "UPDATE animal SET estado=? WHERE id=?";
-        try {
-            con = cn.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, Anim.getEstado());
-            ps.setInt(2, Anim.getId());
-            ps.executeUpdate();
-            return true;
-        } catch (Exception e) {
-            System.err.println("Error al editar el lote: " + e);
-        } 
-            return false;
-    }
+//    @Override
+//    public boolean cambiarVerdad(Animal Anim) {
+//        String sql = "UPDATE animal SET estado=? WHERE id=?";
+//        try {
+//            con = cn.getConnection();
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(1, Anim.getEstado());
+//            ps.setInt(2, Anim.getId());
+//            ps.executeUpdate();
+//            return true;
+//        } catch (Exception e) {
+//            System.err.println("Error al editar el lote: " + e);
+//        } 
+//            return false;
+//    }
 
     @Override
     public boolean eliminar(int AnimalId) {
