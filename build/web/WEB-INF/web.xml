@@ -52,6 +52,10 @@
         <servlet-name>ControlContrasena</servlet-name>
         <servlet-class>controlador.ControlContrasena</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlReportes</servlet-name>
+        <servlet-class>controlador.ControlReportes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>controlLote</servlet-name>
         <url-pattern>/controlLote</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>ControlContrasena</servlet-name>
         <url-pattern>/ControlContrasena</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlReportes</servlet-name>
+        <url-pattern>/ControlReportes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

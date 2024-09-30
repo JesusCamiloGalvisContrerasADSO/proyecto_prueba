@@ -359,21 +359,7 @@ public class AnimalDAO implements animal{
             return false;
     }
 
-//    @Override
-//    public boolean cambiarVerdad(Animal Anim) {
-//        String sql = "UPDATE animal SET estado=? WHERE id=?";
-//        try {
-//            con = cn.getConnection();
-//            ps = con.prepareStatement(sql);
-//            ps.setInt(1, Anim.getEstado());
-//            ps.setInt(2, Anim.getId());
-//            ps.executeUpdate();
-//            return true;
-//        } catch (Exception e) {
-//            System.err.println("Error al editar el lote: " + e);
-//        } 
-//            return false;
-//    }
+
 
     @Override
     public boolean eliminar(int AnimalId) {
@@ -388,5 +374,28 @@ public class AnimalDAO implements animal{
         }
         return false;
     }
+    
+@Override
+public boolean existeAnimal(String numeroAnimal) {
+    boolean existe = false;
+    String sql = "SELECT COUNT(*) AS existe FROM animal WHERE num = ?;";
+
+    // Usamos try-with-resources para cerrar automáticamente los recursos
+    try (Connection con = cn.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setString(1, numeroAnimal);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                existe = rs.getInt("existe") > 0; // Si la consulta devuelve un número mayor a 0, el animal existe
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace(); // Registra el error en los logs
+    }
+
+    return existe; // Devuelve si el animal existe o no
+}
+
     
 }

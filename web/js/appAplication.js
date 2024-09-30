@@ -12,11 +12,16 @@ const salud = document.querySelector("#salud");
 const pesos = document.querySelectorAll(".peso");
 
 if(num){
-num.addEventListener("keyup", () => {
-    removerBorde(num);
-});
 
-num.addEventListener("keypress", (event) => removerBorde(event, num));
+    num.addEventListener("input", () => {
+        num.value = num.value.toUpperCase();
+    });
+
+    num.addEventListener("keyup", () => {
+        removerBorde(num);
+    });
+
+    num.addEventListener("keypress", (event) => removerBorde(event, num));
 
 
 }

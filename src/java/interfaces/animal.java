@@ -31,4 +31,6 @@ public interface animal {
     
     //Metodo para eliminar un lote por su ID
     public boolean eliminar(int AnimalId);
+    
+    public boolean existeAnimal(String numeroAnimal);
 }

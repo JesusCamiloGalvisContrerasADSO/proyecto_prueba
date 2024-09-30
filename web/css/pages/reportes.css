@@ -1,0 +1,188 @@
+.facturacion__control{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 40px 10px;
+  }
+  
+  .input--facturacion{
+    max-width: 300px;
+    margin: 5px;
+  }
+  
+  .texto--facturacion{
+    font-size: 14px;
+  }
+  
+  .fac--selec--title{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .fac__formulario{
+    width: 320px;
+  }
+  
+  /* aqui se va a desarrollar los estilos del la factura como tal  */
+  
+  .tamaño__factura {
+    width: 100%;
+    overflow-x: auto; /* Habilita el scroll horizontal si es necesario */
+  }
+  
+  .factura {
+    background-color: var(--color--blanco);
+    padding: 30px 90px;
+    min-width: 816px; 
+    overflow-x: auto; /* Habilita el scroll horizontal si el contenido supera el ancho disponible */
+    white-space: nowrap; /* Evita el wrap del contenido */
+    box-sizing: content-box; /* Calcula el ancho sin incluir padding y border */
+  }
+  
+  
+  
+  .factura__encabezado{
+      height: 120px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  
+  .logo__factura{
+    font-size: 18px;
+    font-weight: 800;
+  }
+  
+  .titulo__factura{
+    font-size: 25px;
+    width: 70%;
+    padding-left: 140px;
+  }
+  
+  .factura__informacion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 55px 0px 35px 0px;
+  }
+  
+  .informacion__cliente{
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .cliente--modifica{
+    width: 35%;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px;
+    
+  }
+  
+  .cliente--NFactura{
+    display: flex;
+    flex-direction: column;
+    text-align: end;
+    gap: 20px;
+  }
+  
+  .informacion__lote{
+    display: flex;
+    flex-direction: row;
+    padding: 40px 0;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .infor__lote--cambios{
+    display: flex;
+    flex-direction: row;
+    width: 25%;
+    justify-content: space-between;
+  }
+  
+  .factura__animales{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin-bottom: 50px;
+  }
+  
+  .fact__animales--campos {
+    padding: 10px;
+    border: 1px solid var(--color--gris__oscuro);
+  }
+  
+  .factura__resumen{
+    margin: 0 auto;
+    border-collapse: collapse;
+  }
+  
+  .factura__resumen--campos{
+    display: inline-flex;
+    gap: 20px;
+    padding: 15px 25px;
+    text-align: center;
+    border: solid 1px var(--color--gris__oscuro);
+    font-weight: 800;
+  }
+  
+  .factura__resumen--campos > span{
+    font-weight: normal;
+    
+  }
+  
+  /* aqui se van a desarrollar los estilos necesarios para mostrar la vista de informes/reportes*/
+
+    .Reportes__seleccion{
+        padding: 30px;
+    }
+
+    .logo--factura{
+        height: 90px;
+    }
+
+    .boton--adaptado{
+        width: -webkit-fill-available;
+    }
+    
+    .datos--basicos{
+        font-size: 14px;
+    }
+  
+  @media (max-width:1000px) {
+    .facturacion__control{
+      display: grid;
+      grid-template-areas: 
+      "lote crea"
+      "lote recibe";
+      align-items: center;
+    }
+  
+    .fac--lote{
+      grid-area: lote;
+    }
+  
+    .fac--despacha{
+      grid-area: crea;
+    }
+  
+    .fac--recibe{
+      grid-area: recibe;
+    }
+  }
+  
+  @media (max-width: 745px) {
+    .facturacion__control{
+      display: flex;
+      flex-direction: column;
+      padding: 50px 0px;
+    }
+  }

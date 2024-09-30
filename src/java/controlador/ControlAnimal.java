@@ -1,6 +1,7 @@
 
 package controlador;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -13,6 +14,7 @@ import modelo.Animal;
 import modelo.LoteM;
 import modelo.Pesos;
 import modeloDAO.AnimalDAO;
+import servicios.Respuesta;
 
 
 public class ControlAnimal extends HttpServlet {
@@ -87,6 +89,11 @@ public class ControlAnimal extends HttpServlet {
             return; 
             
         }
+
+
+
+
+
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
 //        rutas de manera correcta, se llama al request y response
@@ -133,11 +140,19 @@ public class ControlAnimal extends HttpServlet {
             
             Anim.setPesos(pesos);
             
-            dao.add(Anim);
+            boolean respuesta =  dao.add(Anim);
             
-            // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
-            response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
-            return; 
+            if(respuesta){
+                // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
+                response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
+                return; 
+            }else{
+                request.setAttribute("error", "Credenciales inválidas");
+                response.sendRedirect("ControlAnimal?accion=add&id="+ idlote + "&num="+ numLote);
+                return; 
+                
+            }
+            
         } else if (action.equalsIgnoreCase("Actualizar")) {
             
             //aqui se captura el lote en el cual se encuentra el animal, es para poder 

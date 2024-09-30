@@ -104,6 +104,7 @@
             </div>
         </div>
     </section>
+    <a href="ControlReportes?accion=listars">Reportes</a>
   </main>
   
 </body>

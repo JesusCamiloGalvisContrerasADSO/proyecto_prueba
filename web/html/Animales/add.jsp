@@ -17,7 +17,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<%@ include file="../../componentes/head.jsp" %>
+<%@ include file="/componentes/head.jsp" %>
 <body>
     <header class=" fondo_header">
             <div class="container encabezado">
@@ -107,5 +107,7 @@
             </form>
         </div> 
     </section>
+    <%@ include file="/componentes/error_ingreso.jsp" %>
+   
 </body>
 </html>

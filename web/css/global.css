@@ -65,8 +65,42 @@ a{
     padding: 20px 0px;
 }
 
-  
+.tamaño--100{
+    width: 100px;
+}
 
+.negrita{
+    font: 800;
+}
+
+.borde-1px{
+    border: 1px solid var(--color--gris__oscuro);
+}
+
+.texto--inicio{
+    text-align: start;
+}
+
+.padding-3px{
+    padding: 5px;
+}
+
+.alinear-izquierda{
+    display: flex;
+    flex-direction: row;
+}
+
+.fondo--celeste{
+    background-color: aliceblue;
+} 
+
+.with-160{
+    width: 160px;
+}
+
+.negrita{
+    font-weight: bold;
+}
 
 @media (max-width: 768px) {
     header{
