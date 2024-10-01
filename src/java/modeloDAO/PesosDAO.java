@@ -23,7 +23,7 @@ public class PesosDAO implements pesos{
     @Override
     public List<Pesos> listar(int animal_id) {
         List<Pesos> lista = new ArrayList<>();
-        String sql= "SELECT id AS id_peso, peso AS pesoAnimal, fecha AS fechaPeso, animal_id FROM pesos WHERE animal_id=?";
+        String sql= "SELECT id AS id_peso, peso AS pesoAnimal, fecha AS fechaPeso, animal_id, descripcion FROM pesos WHERE animal_id=?";
         
         try {
             con = cn.getConnection();
@@ -38,6 +38,7 @@ public class PesosDAO implements pesos{
             pesos.setPeso(rs.getFloat("pesoAnimal"));
             pesos.setFechaPeso(rs.getDate("fechaPeso"));
             pesos.setAnimal_id(rs.getInt("animal_id"));
+            pesos.setDescripcion(rs.getString("descripcion"));
             
 
             lista.add(pesos); // Añadir el objeto animal a la lista
@@ -50,12 +51,23 @@ public class PesosDAO implements pesos{
 
     @Override
     public Pesos list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT descripcion FROM pesos WHERE id=" + id;
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                pesos.setDescripcion(rs.getString("descripcion")); // Asegúrate de que el nombre de columna es correcto
+            }
+        } catch (Exception e) {
+            System.err.println("Error al listar tipos de documento: " + e);
+        }
+        return pesos;
     }
 
     @Override
     public boolean add(Pesos pes) {
-       String sql = "INSERT INTO pesos(peso, fecha, animal_id) VALUES(?, ?, ?);";
+       String sql = "INSERT INTO pesos(peso, fecha, animal_id, descripcion) VALUES(?, ?, ?,?);";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -66,6 +78,7 @@ public class PesosDAO implements pesos{
             ps.setDate(2, sqlDate);
             
             ps.setInt(3, pes.getAnimal_id());
+            ps.setString(4, pes.getDescripcion());
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
@@ -76,7 +89,21 @@ public class PesosDAO implements pesos{
 
     @Override
     public boolean edit(Pesos pes) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE pesos SET descripcion = ? WHERE id=?;";
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql);
+            
+            ps.setString(1, pes.getDescripcion());
+            ps.setInt(2, pes.getIdPesos());
+            System.out.println("esta monda no prende "+pes.getDescripcion()+" "+pes.getIdPesos());
+            
+            ps.executeUpdate();
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al agregar el lote: " + e);
+        }
+            return false;
     }
 
     @Override

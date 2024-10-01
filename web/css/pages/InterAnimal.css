@@ -141,6 +141,11 @@
   grid-column: 3;
 }
 
+.tabla__celda--descripcion{
+  width: 200px;
+  word-wrap: break-word;
+  text-align: justify;
+}
 
 
 /* este es el @media para tablet */

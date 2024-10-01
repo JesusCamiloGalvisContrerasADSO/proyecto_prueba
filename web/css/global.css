@@ -102,6 +102,10 @@ a{
     font-weight: bold;
 }
 
+.fondo-rojo{
+    background-color: rgb(231, 186, 186);
+}
+
 @media (max-width: 768px) {
     header{
         padding: 0 10px;

@@ -24,6 +24,7 @@
                             <li class="submenu-item"><a href="ControlTipSan?accion=listar" class="submenu-link submenu-link--header">Tipos de Sangre</a></li>
                             <li class="submenu-item"><a href="ControlTipoDoc?accion=listar" class="submenu-link submenu-link--header ">Tipos de Documentos</a></li>
                             <li class="submenu-item "><a href="ControlRaza?accion=listar" class="submenu-link submenu-link--header ">Tipos de Razas</a></li>
+                            <li class="submenu-item "><a href="ControlReportes?accion=listars" class="submenu-link submenu-link--header ">Reportes</a></li>
                         </ul>
                     </li>
                     <% } %>

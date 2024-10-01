@@ -32,7 +32,7 @@
                 <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
                 <p>BoviControl</p>
               </div>
-                  <%@ include file="../../componentes/botones_header.jsp" %>
+                  <%@ include file="/componentes/botones_header.jsp" %>
             </div>
         </header>
        <main>

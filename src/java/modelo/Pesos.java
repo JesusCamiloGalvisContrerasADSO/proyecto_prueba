@@ -10,15 +10,17 @@ public class Pesos {
     private float peso;
     private Date fechaPeso;
     private int animal_id;
+    private String descripcion;
 
     public Pesos() {
     }
 
-    public Pesos(int idPesos, float peso, Date fechaPeso, int animal_id) {
+    public Pesos(int idPesos, float peso, Date fechaPeso, int animal_id, String descripcion) {
         this.idPesos = idPesos;
         this.peso = peso;
         this.fechaPeso = fechaPeso;
         this.animal_id = animal_id;
+        this.descripcion = descripcion;
     }
 
     public int getIdPesos() {
@@ -52,6 +54,14 @@ public class Pesos {
     public void setAnimal_id(int animal_id) {
         this.animal_id = animal_id;
     }
-    
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     
 }

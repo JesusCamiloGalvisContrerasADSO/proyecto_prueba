@@ -30,18 +30,21 @@
   /* aqui se va a desarrollar los estilos del la factura como tal  */
   
   .tamaño__factura {
-    width: 100%;
-    overflow-x: auto; /* Habilita el scroll horizontal si es necesario */
-  }
-  
-  .factura {
     background-color: var(--color--blanco);
-    padding: 30px 90px;
-    min-width: 816px; 
-    overflow-x: auto; /* Habilita el scroll horizontal si el contenido supera el ancho disponible */
-    white-space: nowrap; /* Evita el wrap del contenido */
-    box-sizing: content-box; /* Calcula el ancho sin incluir padding y border */
-  }
+    width: 722px;
+    padding: 20px 40px;
+    white-space: nowrap; /* Permite el wrap del contenido */
+    box-sizing: content-box;
+    overflow-x: auto; 
+}
+
+.factura {
+    font-size: 12px; 
+    overflow-x: visible; /* Evita el scroll horizontal */
+    white-space: normal; /* Permite el wrap del contenido */
+    box-sizing: content-box;
+}
+
   
   
   

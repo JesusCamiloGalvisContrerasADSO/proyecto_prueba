@@ -19,24 +19,14 @@ public class ControlInterAnimal extends HttpServlet {
 //    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String listar = "html/InterAnimal/listar.jsp";
     String add = "html/InterAnimal/add.jsp";
+    String edit = "html/InterAnimal/edit.jsp";
     Pesos pesos = new Pesos();
     PesosDAO dao = new PesosDAO();
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControlInterAnimal</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControlInterAnimal at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        request.setCharacterEncoding("UTF-8");
     }
 
     
@@ -55,33 +45,39 @@ public class ControlInterAnimal extends HttpServlet {
         } else if (action.equalsIgnoreCase("add")) {
             acceso = add;
         }else if (action.equalsIgnoreCase("AgregarPeso")) {
-    try {
-        int animalId = Integer.parseInt(request.getParameter("animal_id"));
-        String numAnimal = request.getParameter("numAnimal");
-        int numLote = Integer.parseInt(request.getParameter("numLote"));
-        int idLote = Integer.parseInt(request.getParameter("idLote"));
-        float peso = Float.parseFloat(request.getParameter("peso"));
+            try {
+                int animalId = Integer.parseInt(request.getParameter("animal_id"));
+                String numAnimal = request.getParameter("numAnimal");
+                int numLote = Integer.parseInt(request.getParameter("numLote"));
+                int idLote = Integer.parseInt(request.getParameter("idLote"));
+                float peso = Float.parseFloat(request.getParameter("peso"));
 
-        // Set the dynamic values to the pesos object
-        pesos.setAnimal_id(animalId);
-        pesos.setPeso(peso);
+                // Set the dynamic values to the pesos object
+                pesos.setAnimal_id(animalId);
+                pesos.setPeso(peso);
 
-        // Obtener la fecha actual
-        Date date = new Date(); 
-        pesos.setFechaPeso(date);
+                // Obtener la fecha actual
+                Date date = new Date(); 
+                pesos.setFechaPeso(date);
 
-        // Agregar el peso a la base de datos
-        dao.add(pesos);
+                //obtenemos la descripcion
+                pesos.setDescripcion("");
 
-        // Redirigir a la acción 'listar' con los valores dinámicos
-        response.sendRedirect("ControlAnimal?accion=listar&id=" + idLote + "&num=" + numLote);
-        
-    } catch (NumberFormatException e) {
-        System.err.println("Error al parsear los parámetros: " + e.getMessage());
-        // Manejo de error, redirigir a una página de error o mostrar un mensaje de error
-    }
-    return;
-}
+                // Agregar el peso a la base de datos
+                dao.add(pesos);
+
+                // Redirigir a la acción 'listar' con los valores dinámicos
+                response.sendRedirect("ControlAnimal?accion=listar&id=" + idLote + "&num=" + numLote);
+
+            } catch (NumberFormatException e) {
+                System.err.println("Error al parsear los parámetros: " + e.getMessage());
+                // Manejo de error, redirigir a una página de error o mostrar un mensaje de error
+            }
+            return;
+        }else if (action.equalsIgnoreCase("ModifiDesc")) {
+            request.setAttribute("id_peso", request.getParameter("id_peso"));
+            acceso = edit;
+        }
 
         
 //        con el requestDispatcher permite que se pueda viajer entre paginas y encuentre las
@@ -109,19 +105,50 @@ public class ControlInterAnimal extends HttpServlet {
             
             int idAnimal = Integer.parseInt(request.getParameter("txtIdAnimal"));
             float peso = Float.parseFloat(request.getParameter("txtPeso"));
+            String desc = request.getParameter("descripcion");
 
+            // Set the dynamic values to the pesos object
             pesos.setAnimal_id(idAnimal);
             pesos.setPeso(peso);
-            
+
+            // Obtener la fecha actual
             Date date = new Date(); 
             pesos.setFechaPeso(date);
-            
+
+            //obtenemos la descripcion
+            pesos.setDescripcion(desc);
+
+            // Agregar el peso a la base de datos
             dao.add(pesos);
             
             
 // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
-            response.sendRedirect("ControlInterAnimal?accion=listar&id="+ numLote +"&num="+ idLote+"&animal_id="+idAnimal+"&numAnimal="+numAnimal);
+            response.sendRedirect("ControlInterAnimal?accion=listar&id="+ idLote +"&num="+ numLote +"&animal_id="+idAnimal+"&numAnimal="+numAnimal);
             return; 
+            
+        }else if (action.equalsIgnoreCase("ActualizarDesc")) {
+            request.setCharacterEncoding("UTF-8");  // Asegura que el request use UTF-8
+            
+            int idAnimal = Integer.parseInt(request.getParameter("txtIdAnimal"));
+            String numAnimal = request.getParameter("txtNumAnimal");
+            int numLote = Integer.parseInt(request.getParameter("txtNumLote"));
+            int idLote = Integer.parseInt(request.getParameter("txtIdLote"));
+            int idPeso = Integer.parseInt(request.getParameter("txtidPeso"));
+            String desc = request.getParameter("descripcion");
+                
+            // Set the dynamic values to the pesos object
+            pesos.setIdPesos(idPeso);
+
+            //obtenemos la descripcion
+            pesos.setDescripcion(desc);
+            
+            System.out.println("esta monda no prende "+idPeso+" "+desc);
+            
+            dao.edit(pesos);
+                
+            // Redirigir a la acción 'listar' con los valores dinámicos
+            response.sendRedirect("ControlInterAnimal?accion=listar&id="+ idLote +"&num="+ numLote +"&animal_id="+idAnimal+"&numAnimal="+numAnimal);
+            return;
         }
 
     }

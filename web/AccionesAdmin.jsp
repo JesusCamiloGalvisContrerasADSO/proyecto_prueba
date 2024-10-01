@@ -35,18 +35,19 @@
                 <li class="menu-item "><a href="ControlUsuario?accion=listar" class="menu-linkNormal">Usuarios</a></li>
                 
                 <li class="menu-item">
-                    <a href="#" class="menu-link">Configuraciones</a>
-                    <ul class="submenu">
-                        <li class="submenu-item"><a href="ControlTipSan?accion=listar" class="submenu-link">Tipos de Sangre</a></li>
-                        <li class="submenu-item"><a href="ControlTipoDoc?accion=listar" class="submenu-link">Tipos de Documentos</a></li>
-                        <li class="submenu-item"><a href="ControlRaza?accion=listar" class="submenu-link">Tipos de Razas</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item">
                     <a href="#" class="menu-link icon-person"><i class="bi bi-person-circle"></i></a>
                     <ul class="submenu">
                         <li class="submenu-item"><a href="ControlPerfil?accion=listar&id=<%= idPerfil %>" class="submenu-link">Pefil</a></li>
                         <li class="submenu-item"><a href="ControlLogin?accion=cerrarSecion" class="submenu-link">Cerrar secion</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link icon-person"><i class="bi bi-gear-fill"></i></a>
+                    <ul class="submenu">
+                        <li class="submenu-item"><a href="ControlTipSan?accion=listar" class="submenu-link">Tipos de Sangre</a></li>
+                        <li class="submenu-item"><a href="ControlTipoDoc?accion=listar" class="submenu-link">Tipos de Documentos</a></li>
+                        <li class="submenu-item"><a href="ControlRaza?accion=listar" class="submenu-link">Tipos de Razas</a></li>
+                        <li class="submenu-item "><a href="ControlReportes?accion=listars" class="submenu-link ">Reportes</a></li>
                     </ul>
                 </li>
             </ul>
@@ -90,7 +91,7 @@
                 </div>
                 <div class="admind--contenido">
                     <h2 class="admind--titulo">Ultimos movimientos</h2>
-                    <p class="letra--16">Se han realizado un total de <%= datos.getCantLotVent() %> ventas de lotes de ganado</p>
+                    <p class="letra--16">Se han realizado <%= datos.getCantLotVent() %> eliminaciones de lotes de ganado</p>
                 </div>
             </div>
             <div class="cards--admin">
@@ -104,7 +105,6 @@
             </div>
         </div>
     </section>
-    <a href="ControlReportes?accion=listars">Reportes</a>
   </main>
   
 </body>

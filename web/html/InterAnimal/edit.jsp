@@ -5,15 +5,15 @@
 %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%@page import="modelo.Animal"%>
-<%@page import="modeloDAO.AnimalDAO"%>
 
 <%@ include file="../../componentes/validacionRol.jsp" %>
 <%@ include file="../../componentes/capturarAnimal.jsp" %>
 <%@ include file="../../componentes/capturarLote_num.jsp" %>
 
 
-<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+
+
 <!DOCTYPE html>
 <html lang="es">
     
@@ -56,21 +56,25 @@
             
             <section class="center registro__fondo">
                 <div class="container center registro sombras--contenedor">
-                    <form action="ControlInterAnimal" method="POST">
+                    <% 
+                        PesosDAO dao = new PesosDAO();
+                        int id = Integer.parseInt((String) request.getAttribute("id_peso"));
+                        Pesos datos = dao.list(id);
+                    %>
+                    <form action="ControlInterAnimal" method="POST" accept-charset="UTF-8">
                         <div class="registro__input">
-                           <input class="input_registro" type="hidden" id="nombre" name="txtNumAnimal" value="<%= numAnimal %>">
-                           <input class="input_registro" type="hidden" id="nombre" name="txtIdAnimal" value="<%= animal_id %>">
-                           <input class="input_registro" type="hidden" id="nombre" name="txtIdLote" value="<%= idLote %>">
-                           <input class="input_registro" type="hidden" id="nombre" name="txtNumLote" value="<%= numLote %>">
+                           <input class="input_registro" type="hidden" name="txtNumAnimal" value="<%= numAnimal %>">
+                           <input class="input_registro" type="hidden" name="txtIdAnimal" value="<%= animal_id %>">
+                           <input class="input_registro" type="hidden" name="txtIdLote" value="<%= idLote %>">
+                           <input class="input_registro" type="hidden" name="txtNumLote" value="<%= numLote %>">
+                           <input class="input_registro" type="hidden" name="txtidPeso" value="<%= id %>">
                            
-                           <label for="nombre">Agregar peso en KG:</label>
-                           <input class="input_registro" type="text" id="nombre" name="txtPeso" value="" required="">
                            <label for="nombre">Agregar descripción:</label>
-                           <input class="input_registro" type="text" id="nombre" name="descripcion" value="" required="">
+                           <input class="input_registro" type="text" id="nombre" name="descripcion" value="<%= datos.getDescripcion()%>" required="">
                        </div>
                        <div>
 
-                         <button class="boton boton__registro" type="submit" name="accion" value="Agregar">Actualizar</button>
+                         <button class="boton boton__registro" type="submit" name="accion" value="ActualizarDesc">Actualizar</button>
 
                        </div>
                     </form>

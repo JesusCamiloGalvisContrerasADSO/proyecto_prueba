@@ -69,6 +69,8 @@
                           <th class="tabla__encabezado">#</th>
                           <th class="tabla__encabezado">Peso</th>
                           <th class="tabla__encabezado">Fecha del control</th>
+                          <th class="tabla__encabezado">Descripción</th>
+                          <th class="tabla__encabezado">Acción</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -85,6 +87,8 @@
                           <td class="tabla__celda"><%= numero %></td>
                           <td class="tabla__celda"><%= pesos.getPeso() %> KG</td>
                           <td class="tabla__celda"><%= pesos.getFechaPeso()%></td>
+                          <td class="tabla__celda"><p class="tabla__celda--descripcion"><%= pesos.getDescripcion()%></p></td>
+                          <td class="tabla__celda center"><a href="ControlInterAnimal?accion=ModifiDesc&animal_id=<%= animal_id %>&numAnimal=<%= numAnimal%>&id=<%= idLote %>&num=<%= numLote %>&id_peso=<%= pesos.getIdPesos() %>" class="boton boton--editar" ><i class="bi bi-pencil"></i></a></td>
                         </tr>
                         <%
                             numero += 1;
