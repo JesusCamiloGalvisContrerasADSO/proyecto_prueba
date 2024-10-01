@@ -15,12 +15,14 @@ import modelo.Raza;
 import modelo.Salud;
 
 
+//aqui se realizan los metodos crud de los reportes donde solo hace consultas de datos
 public class ReportesDAO implements reportes{
     conexion cn = new conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
 
+//    con este metodo trae todos los animales del lote
     @Override
     public List<LoteM> listarLotes() {
         List<LoteM> list = new ArrayList<>();
@@ -45,6 +47,7 @@ public class ReportesDAO implements reportes{
         return list;
     }
 
+//    aqui hace una consulta del lote para capturar los lotes dependiendo del estado
     @Override
     public List<Animal> ConsultaLote(int idLote) {
         List<Animal> lista = new ArrayList<>();

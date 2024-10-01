@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Roles;
 
-
+//    aqui se manejan todos los metodos CRUD necesarios para poder manejar los roles, de momento 
+//solo lista, pero se dejaron los demas metodos abiertos para mejorar la escalabilidad del
+//proyecto
 public class RolesDAO implements roles{
 
     conexion cn = new conexion();

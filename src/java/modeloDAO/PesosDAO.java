@@ -11,15 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Pesos;
 
-
+//    aqui se manejan todos los metodos CRUD necesarios para poder manejar los pesos
 public class PesosDAO implements pesos{
 
+    //conexiones a la base de datos, se realizan las instancias de la clase
     conexion cn = new conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
     Pesos pesos = new Pesos();
     
+        //listar me trae todos los datos necesarios para mandar a la vista
     @Override
     public List<Pesos> listar(int animal_id) {
         List<Pesos> lista = new ArrayList<>();
@@ -49,6 +51,7 @@ public class PesosDAO implements pesos{
         return lista;
     }
 
+    //lista los datos para que puedan ser modificados
     @Override
     public Pesos list(int id) {
         String sql = "SELECT descripcion FROM pesos WHERE id=" + id;
@@ -65,6 +68,7 @@ public class PesosDAO implements pesos{
         return pesos;
     }
 
+    //agrega los datos enviados a la base de datos
     @Override
     public boolean add(Pesos pes) {
        String sql = "INSERT INTO pesos(peso, fecha, animal_id, descripcion) VALUES(?, ?, ?,?);";
@@ -87,6 +91,7 @@ public class PesosDAO implements pesos{
             return false;
     }
 
+    //edita los datos enviados desde la vista
     @Override
     public boolean edit(Pesos pes) {
         String sql = "UPDATE pesos SET descripcion = ? WHERE id=?;";
@@ -106,6 +111,7 @@ public class PesosDAO implements pesos{
             return false;
     }
 
+    // elimina el campo seleccionado en la base de datos
     @Override
     public boolean eliminar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

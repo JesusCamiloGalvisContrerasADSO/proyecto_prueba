@@ -131,7 +131,7 @@
                     </select>
                   </div>
                     <div class="registro__input input--olvidaste">
-                      <a class="boton boton--olvidaste" href="ControlContrasena?accion=editar&id=<%= user.getIdUsuario() %>"">Actualizar contraseña</a>
+                      <a class="boton boton--olvidaste" href="ControlContrasena?accion=editar&id=<%= user.getIdPerfil()%>"">Actualizar contraseña</a>
                   </div>
                 <div>
                     

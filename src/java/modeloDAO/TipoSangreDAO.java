@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.TipoSangre;
 
+//aqui se realizan todos los metodos crud para poder manejar el tipo de sangre
 public class TipoSangreDAO implements TipSan {
 
     conexion cn = new conexion();

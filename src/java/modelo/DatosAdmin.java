@@ -1,6 +1,20 @@
 
 package modelo;
 
+/**
+ * La clase DatosAdmin representa un modelo que encapsula las estadísticas principales 
+ * relacionadas con la administración del sistema. Esta clase es utilizada para 
+ * proporcionar información consolidada sobre usuarios, lotes y animales.
+ *
+ * Atributos:
+ * - CantUsu: Cantidad total de usuarios en el sistema.
+ * - CantLotVent: Cantidad de lotes vendidos.
+ * - CantLot: Cantidad total de lotes en el sistema.
+ * - CantAnim: Cantidad total de animales registrados.
+ *
+ * Esta clase contiene los métodos necesarios para acceder y manipular estos datos.
+ */
+
 public class DatosAdmin {
     
     private int CantUsu;

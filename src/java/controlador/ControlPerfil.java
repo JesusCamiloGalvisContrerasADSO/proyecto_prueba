@@ -17,6 +17,8 @@ import modeloDAO.UsuarioDAO;
 
 public class ControlPerfil extends HttpServlet {
 
+    //    aqui se declaran las varibles que van a guardar las rutas, tambien estaran las instancias 
+//    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String listar = "html/Perfil/listar.jsp";
     String edit = "html/Perfil/edit.jsp";
     

@@ -40,6 +40,8 @@ public class ControlInterAnimal extends HttpServlet {
         String acceso = "";
         String action = request.getParameter("accion");
         
+        //esas son condiciones las cuales evaluan la accion que se manda desde la vista
+        //y dependiendo de esta realiza la accion
         if (action.equalsIgnoreCase("listar")) {
             acceso = listar;
         } else if (action.equalsIgnoreCase("add")) {
@@ -87,7 +89,9 @@ public class ControlInterAnimal extends HttpServlet {
         
     }
 
-
+//        El método POST introduce los parámetros en la solicitud HTTP para el servidor.
+//        Por ello, no quedan visibles para el usuario. Además, la capacidad del
+//        método POST es ilimitada
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

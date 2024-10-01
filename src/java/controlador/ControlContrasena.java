@@ -29,6 +29,10 @@ public class ControlContrasena extends HttpServlet {
     Usuario user = new Usuario();
     UsuarioDAO dao = new UsuarioDAO();
     
+    //    método generado por defecto en un servlet de Java llamado processRequest. 
+//    El método maneja tanto solicitudes HTTP GET como POST y genera una 
+//    respuesta HTML simple
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -88,12 +92,17 @@ public class ControlContrasena extends HttpServlet {
         String contra = request.getParameter("txtContra");
         String contraEncriptada = Utils.encriptarBCrypt(contra);
 
+        //se guarda en los metodos publicos setters, se almcena en el modelo usuario 
+        //y se manda al dao este modelo y con su respectiva accion
+        
         user.setIdUsuario(id_user);  
         user.setContrasena(contraEncriptada); // Guarda la contraseña encriptada
 
-
+        //aqui es donde se manda el dao, primero el nombre de la funcion y luego el modelo
         dao.actualizarContra(user);
         
+        
+        //se redirige a la pagina 
         acceso = listar;
     
     }

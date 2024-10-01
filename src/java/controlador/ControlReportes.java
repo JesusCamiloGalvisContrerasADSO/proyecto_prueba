@@ -17,6 +17,8 @@ import modeloDAO.ReportesDAO;
 
 public class ControlReportes extends HttpServlet {
 
+    //    aqui se declaran las varibles que van a guardar las rutas, tambien estaran las instancias 
+//    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String listar = "html/reportes/listar.jsp";
     
     LoteM lot = new LoteM();
@@ -30,10 +32,13 @@ public class ControlReportes extends HttpServlet {
         }
     }
 
-
+//aqui en el metodo doGet se estan manejando las peticiones de volver, retorna a 
+//  una pagina exclusivamente de administrador
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //        se crean las variables de acceso y a action se le asigna la accion 
+//       que le manda el boton o enlace al que estamos dando click  
         String acceso = "";
         String action = request.getParameter("accion");
         if(action.equalsIgnoreCase("listars")){

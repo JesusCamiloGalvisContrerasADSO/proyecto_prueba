@@ -28,6 +28,9 @@ public class ControlAnimal extends HttpServlet {
     Animal Anim = new Animal();
     AnimalDAO dao = new AnimalDAO();
     
+    //    método generado por defecto en un servlet de Java llamado processRequest. 
+//    El método maneja tanto solicitudes HTTP GET como POST y genera una 
+//    respuesta HTML simple
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -110,6 +113,9 @@ public class ControlAnimal extends HttpServlet {
         String acceso = "";
         String action = request.getParameter("accion");
         
+        //        aqui se realizan los ciclos en los cuales se determina la accion para poder 
+//        hacer el envio o solicitud de datos, se manda ya sea al controlador o al 
+//        modelo dao
         if (action.equalsIgnoreCase("Agregar")) {
             
             int idlote = Integer.parseInt(request.getParameter("txtid"));
@@ -139,6 +145,10 @@ public class ControlAnimal extends HttpServlet {
             pesos.setFechaPeso(date);
             
             Anim.setPesos(pesos);
+            
+            //dependiendo de la respuesta que da el animal sabemos si existe o no ese numero,
+            //como es unico no puede repetirse por ende si ya existe retorna false y lo envia a
+            //la misma pagina de agregar
             
             boolean respuesta =  dao.add(Anim);
             
@@ -175,6 +185,10 @@ public class ControlAnimal extends HttpServlet {
             // Después de agregar el animal, redirigir a la acción 'listar' con el id del lote
             response.sendRedirect("ControlAnimal?accion=listar&id=" + idlote +"&num=" + numLote);
             return;
+            
+            //esta accion lo que hace es que modifica el estado del animal, captura los datos necesarios
+            //y los envia al dao para realizar la consulta a la base de datos
+            
         }else if (action.equalsIgnoreCase("cambiarFalse")) {
             //aqui se captura el lote en el cual se encuentra el animal, es para poder 
             //enviarlo al lote donde esta el animal

@@ -64,7 +64,7 @@
                            <input class="input_registro" type="hidden" id="nombre" name="txtNumLote" value="<%= numLote %>">
                            
                            <label for="nombre">Agregar peso en KG:</label>
-                           <input class="input_registro" type="text" id="nombre" name="txtPeso" value="" required="">
+                           <input class="input_registro" type="number" id="num" name="txtPeso" value="" required="">
                            <label for="nombre">Agregar descripción:</label>
                            <input class="input_registro" type="text" id="nombre" name="descripcion" value="" required="">
                        </div>

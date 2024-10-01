@@ -20,6 +20,8 @@ public class DatosAdminDAO implements datosAdmin{
     PreparedStatement ps;
     ResultSet rs;
     
+    //es una sola consulta para traer datos generales de la base de datos, 
+    //essto es solo para el admin
     @Override
     public DatosAdmin listar() {
         String sql = "SELECT " +

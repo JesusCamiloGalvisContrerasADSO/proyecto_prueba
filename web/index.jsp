@@ -32,9 +32,9 @@
         </div>
         <div class="datos_logeo center sombras--contenedor">
         <h1 class="">Iniciar sesión</h1>
-            <form action="ControlLogin" method="POST" class="center">
+            <form action="ControlLogin" method="POST" id="registro" class="center">
             <!-- ingresar numero de documento y contraseña  -->
-            <input id="numDoc" class="input_ingresar" name="txtDocum" id="num_doc" placeholder="Ingresa el numero de documento" type="" required="">
+            <input class="input_ingresar" type="number" name="txtDocum" id="numDoc" placeholder="Ingresa el numero de documento" type="" required="">
             
             <input id="contra" class="input_ingresar" name="txtContra" placeholder="Ingresa tu contraseña" type="password" required="">  
             <br>

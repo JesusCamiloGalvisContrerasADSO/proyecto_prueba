@@ -15,6 +15,9 @@ public class ControlAcciones extends HttpServlet {
 //    de los modelos los cuales se van a acceder para poder realizar el proceso del crud
     String VolverAcciones = "paginasAcciones.html";
 
+    //    método generado por defecto en un servlet de Java llamado processRequest. 
+//    El método maneja tanto solicitudes HTTP GET como POST y genera una 
+//    respuesta HTML simple
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

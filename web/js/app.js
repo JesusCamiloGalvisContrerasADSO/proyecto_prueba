@@ -4,6 +4,7 @@ import is_valid from "./modulos/is_valid.js";
 import remover from "./modulos/moduloRemover.js";
 import correo  from "./modulos/modulo_correo.js";
 import letras from "./modulos/modulo_letras.js";
+import numero from "./modulos/modulo_numero.js";
 import validarContrasena from "./modulos/modulo_contrasena.js";
 import validarSelec from "./modulos/modulo_Box.js";
 import { validarFormulario } from "./modulos/modulo_contrasena.js";
@@ -73,12 +74,36 @@ telefono.addEventListener("keyup", () => {
 });
 }
 
-if(documento){
-documento.addEventListener("keyup", () => {
-    remover(documento);
-});
+// function numero(event, docum) {
+//     if (event.keyCode < 48 || event.keyCode > 57) {
+        
+//         event.preventDefault(); // Esto evitará que se ingrese el valor
+//     }
 
-documento.addEventListener("keypress",(event) => numero(event, documento));
+    
+//     if (docum.value.length < 6) {
+//         docum.classList.remove("correcto");
+//         docum.classList.add("error");
+//     } else if (docum.value.length > 9) {
+//         event.preventDefault(); // Esto evitará que se ingrese el valor
+//         docum.classList.remove("correcto");
+//         docum.classList.add("error");
+//     } else {
+//         docum.classList.remove("error");
+//         docum.classList.add("correcto");
+//     }
+    
+// }
+
+
+if (documento) {
+    documento.addEventListener("keyup", () => {
+        remover(documento);  // Asegúrate de que la función remover esté definida
+    });
+
+    documento.addEventListener("keypress", (event) => numero(event, documento));  // Usa 'keydown' o 'keypress' según la necesidad
+} else {
+    console.error("El elemento 'documento' no se encontró en el DOM");
 }
 
 if(telefono){
@@ -124,12 +149,12 @@ if (email) {
     });
 }
 
-if(documento){
-// Agregar el event listener para la validación al enviar el formulario
-$formulario.addEventListener('submit', (event) => {
-    validarFormularioNumero(event, documento);
-});
-}
+// if(documento){
+// // Agregar el event listener para la validación al enviar el formulario
+// $formulario.addEventListener('submit', (event) => {
+//     validarFormularioNumero(event, documento);
+// });
+// }
 
 if(telefono){
 // Agregar el event listener para la validación al enviar el formulario

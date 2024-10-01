@@ -24,6 +24,9 @@ public class AnimalDAO implements animal{
     ResultSet rs;
     Animal Anim = new Animal();
     
+//    aqui se manejan todos los metodos CRUD necesarios para poder manejar al animal
+    
+    //listar me trae todos los animales que se encuentran activos de la base de datos, osea estado = 1
     @Override
     public List<Animal> listar(int idLote) {
         List<Animal> lista = new ArrayList<>();
@@ -116,6 +119,7 @@ public class AnimalDAO implements animal{
     return lista;
     }
 
+    //lista todos los animales que se encuentran en estado 0
     @Override
     public List<Animal> listarPapelera(int idLote) {
         List<Animal> lista = new ArrayList<>();
@@ -207,6 +211,7 @@ public class AnimalDAO implements animal{
     return lista;
     }
 
+    //lista los datos para que puedan ser modificados
     @Override
     public Animal list(int id) {
         List<Animal> lista = new ArrayList<>();
@@ -273,6 +278,7 @@ public class AnimalDAO implements animal{
         return animal;
     }
 
+    //agrega los datos enviados a la base de datos
     @Override
     public boolean add(Animal Anim) {
         // Inserción en la tabla 'animal'
@@ -326,6 +332,7 @@ public class AnimalDAO implements animal{
     return false;
 }
 
+    //edita los datos enviados desde la vista
     @Override
     public boolean edit(Animal Ani) {
         String sql="UPDATE animal SET saludId = ?, lote_id = ? WHERE id = ?;";
@@ -343,6 +350,7 @@ public class AnimalDAO implements animal{
             return false;
     }
 
+    //modifica el estado, cambia de 1 a 0
     @Override
     public boolean cambiarFalse(Animal Anim) {
         String sql = "UPDATE animal SET estado=? WHERE id=?";
@@ -360,7 +368,7 @@ public class AnimalDAO implements animal{
     }
 
 
-
+// elimina el campo seleccionado en la base de datos
     @Override
     public boolean eliminar(int AnimalId) {
         String sql = "DELETE FROM animal WHERE id="+AnimalId;
@@ -375,6 +383,7 @@ public class AnimalDAO implements animal{
         return false;
     }
     
+    //verifica que no se repita el animal
 @Override
 public boolean existeAnimal(String numeroAnimal) {
     boolean existe = false;

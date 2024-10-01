@@ -3,6 +3,23 @@ package modelo;
 
 import java.util.Date;
 
+/**
+ * La clase Usuario representa la entidad de un usuario en el sistema.
+ * Esta clase actúa como el modelo dentro del patrón MVC y se encarga
+ * de mapear los datos de la tabla "usuarios" en la base de datos.
+ *
+ * Atributos:
+ * - idUsuario: Identificador único del usuario.
+ * - documento: Número de documento de identificación.
+ * - contrasena: Contraseña del usuario para acceder al sistema.
+ * - nombre: Nombre del usuario.
+ * - apellido: Apellido del usuario.
+ * - email: Correo electrónico del usuario.
+ *
+ * Funciones:
+ * - Getters y Setters para cada campo.
+ * - Validaciones específicas relacionadas con el usuario.
+ */
     
 public class Usuario {
     

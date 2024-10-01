@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.TipoDocum;
 
+
+//aqui se realizan todos los metodos crud para poder manejar el tipo de documento
 public class TipoDocDAO implements TipoDoc {
 
     conexion cn = new conexion();

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Tipo_sexo;
 
-
+//aqui se realizan todos los metodos crud para poder manejar el tipo de sexo
 public class Tipo_sexoDAO implements tipo_sexo{
     
     conexion cn = new conexion();

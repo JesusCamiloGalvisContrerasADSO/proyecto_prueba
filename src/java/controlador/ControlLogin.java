@@ -65,6 +65,8 @@ public class ControlLogin extends HttpServlet {
                 acceso = acciones;
         }
         
+        //esto es necesario para que pueda enviar a la vista que queremos
+        //es para el manejo de la navegacion dentro del setvelt
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
         

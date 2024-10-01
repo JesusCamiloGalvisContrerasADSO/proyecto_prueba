@@ -3,6 +3,32 @@ package modelo;
 
 import java.util.Date;
 
+
+/**
+ * La clase Animal representa la entidad de un animal dentro del sistema de gestión ganadera.
+ * Este modelo se encarga de mapear los datos de la tabla "animales" en la base de datos,
+ * permitiendo la manipulación y gestión de sus atributos dentro de la aplicación.
+ *
+ * Atributos:
+ * - id: Identificador único del animal.
+ * - num: Número de identificación del animal.
+ * - estado: Estado actual del animal (por ejemplo, activo, inactivo, vendido).
+ * - fechaCompra: Fecha en la que el animal fue adquirido.
+ * - Raza: Objeto que representa la raza del animal (relación con la clase Raza).
+ * - raza_id: Identificador de la raza del animal.
+ * - tipo_sexo: Código numérico que representa el sexo del animal (por ejemplo, 1 para macho, 2 para hembra).
+ * - nomTipoSex: Nombre descriptivo del tipo de sexo (por ejemplo, "Macho" o "Hembra").
+ * - Lote: Objeto que representa el lote al que pertenece el animal (relación con la clase LoteM).
+ * - lote_id: Identificador del lote en el que está el animal.
+ * - pesos: Objeto que almacena la información de los pesos del animal (relación con la clase Pesos).
+ * - pesos_id: Identificador del registro de pesos del animal.
+ * - salud: Objeto que almacena la información de salud del animal (relación con la clase Salud).
+ * - salud_id: Identificador del registro de salud del animal.
+ *
+ * Esta clase incluye los métodos para acceder y modificar cada uno de los atributos,
+ * así como otras operaciones necesarias para gestionar la información del animal dentro del sistema.
+ */
+
 public class Animal {
     private int id;
     private String num;

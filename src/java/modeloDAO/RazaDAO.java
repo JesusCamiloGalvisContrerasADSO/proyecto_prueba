@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Raza;
 
-
+//    aqui se manejan todos los metodos CRUD necesarios para poder manejar la raza
 public class RazaDAO implements raza{
     
+    //conexiones a la base de datos, se realizan las instancias de la clase
     conexion cn = new conexion();
     Connection con;
     PreparedStatement ps;
@@ -20,6 +21,7 @@ public class RazaDAO implements raza{
     
     Raza raz = new Raza();
     
+        //listar me trae todos los datos necesarios para mandar a la vista
     @Override
     public List<Raza> listar() {
         List<Raza> list = new ArrayList<>();
@@ -42,6 +44,7 @@ public class RazaDAO implements raza{
         return list;
     }
 
+    //lista los datos para que puedan ser modificados
     @Override
     public Raza list(int id) {
         String sql = "SELECT * FROM tipo_raza WHERE id=" + id;
@@ -59,6 +62,7 @@ public class RazaDAO implements raza{
         return raz;
     }
 
+    //agrega los datos enviados a la base de datos
     @Override
     public boolean add(Raza raz) {
        String sql = "INSERT INTO tipo_raza (nombre) VALUES (?)";
@@ -74,6 +78,7 @@ public class RazaDAO implements raza{
         return false; 
     }
 
+    //edita los datos enviados desde la vista
     @Override
     public boolean edit(Raza raz) {
         String sql = "UPDATE tipo_raza SET nombre = ? WHERE id=?";
@@ -90,6 +95,7 @@ public class RazaDAO implements raza{
         return false;
     }
 
+    // elimina el campo seleccionado en la base de datos
     @Override
     public boolean eliminar(int id) {
         String sql = "DELETE FROM tipo_raza WHERE id=?" ;

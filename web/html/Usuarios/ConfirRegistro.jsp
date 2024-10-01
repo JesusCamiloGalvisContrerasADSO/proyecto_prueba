@@ -23,7 +23,7 @@
     <div class="container encabezado">
 
       <div class="encabezado">
-        <img class="logo" src="../../Recursos/logo/logo-BoviControl.svg" alt="">
+        <img class="logo" src="Recursos/logo-BoviControl.png" alt="">
         <p>BoviControl</p>
       </div>
     </div>
@@ -35,11 +35,12 @@
         <div>
           <h1 class="registro__titulo">Registrado</h1>
           <hr class="registro__linea">
+          <br><br>
         </div>
         <div>
           <p>
             Tu usuario fue registrado, vuelve a iniciar sesión
-          </p>
+          </p><br><br>
         </div>
         <div>
           <a href="ControlUsuario?accion=index" class="boton boton__registro" >Iniciar sesion</a>

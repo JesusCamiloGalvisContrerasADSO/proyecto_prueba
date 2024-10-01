@@ -13,6 +13,8 @@ import modelo.TipoDocum;
 import modelo.TipoSangre;
 import modelo.Usuario;
 
+
+//aqui se realizan todos los metodos crud para poder manejar los usuarios
 public class UsuarioDAO implements usuario {
     conexion cn = new conexion();
     Connection con;
@@ -87,7 +89,7 @@ public List<Usuario> listar() {
     public Usuario list(int id) {
         
         String sql = "SELECT p.id AS persona_id, p.nombre, p.apellido, p.telefono, " +
-             "p.email, p.fechaContrato, p.tipo_doc_id, p.sangre_id, u.documento, u.rol_id, " +
+             "p.email, p.fechaContrato, p.tipo_doc_id, p.sangre_id, u.id AS id_usuario, u.documento, u.rol_id, " +
              "r.nombre AS nombre_rol, " +
              "td.nombre AS tipo_documento, ts.nombre AS tipo_sangre " +
              "FROM perfil p " +
@@ -103,6 +105,7 @@ public List<Usuario> listar() {
             rs = ps.executeQuery();
             while (rs.next()) {
                 user.setIdUsuario(rs.getInt("persona_id"));
+                user.setIdPerfil(rs.getInt("id_usuario"));
                 user.setNombre(rs.getString("nombre"));
                 user.setApellido(rs.getString("apellido")); 
                 user.setTelefono(rs.getLong("telefono")); 
@@ -134,6 +137,8 @@ public List<Usuario> listar() {
         return user;
     }
     
+    
+    //cree un metodo para agregar donde llama al metodo de agregar usuario y despues el del perfil
     @Override
     public boolean add(Usuario user) {
         int userId = addUsuario(user);
@@ -145,7 +150,7 @@ public List<Usuario> listar() {
         }
     }
 
-
+//en este metodo se agrega al usuario, su contraseña y documento y se establece el rol en 0
    @Override
     public int addUsuario(Usuario user) {
     String sqlUsuario = "INSERT INTO usuarios(documento, contrasena, rol_id) VALUES(?, ?, ?)";
@@ -172,7 +177,7 @@ public List<Usuario> listar() {
     return userId;
 }
 
-
+//aqui se captura el id creado en la anterior tabla para poder colocarlo como foranea en este nuevo metodo
     @Override
 public boolean addPerfil(Usuario user) {
     String sql = "INSERT INTO perfil (nombre, apellido, telefono, email, fechaContrato, usuario_id, tipo_doc_id, sangre_id, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -199,6 +204,7 @@ public boolean addPerfil(Usuario user) {
 }
 
 
+//este metodo es para el admin, donde el pueda actualizar en su totalidad al usuario
     @Override
     public boolean edit(Usuario user) {
         // La consulta SQL completa con los campos necesarios
@@ -240,6 +246,7 @@ public boolean addPerfil(Usuario user) {
         return false;
     }
     
+    //este metodo si es solo para usuario, el usuario puede actualizar ciertos campos del perfil
     @Override
     public boolean editPerfil(Usuario user) {
         // La consulta SQL completa con los campos necesarios
@@ -271,7 +278,8 @@ public boolean addPerfil(Usuario user) {
         return false;
     }
 
-
+//este metodo es el de eliminar usuarios, solo el admin podra realizar esa accion, es una eliminacion
+    //en casacada por ende se borrara definitivamente todo el usuario
     @Override
     public boolean eliminar(int id) {
         String sql = "DELETE FROM usuarios WHERE id=?";
@@ -287,11 +295,14 @@ public boolean addPerfil(Usuario user) {
         return false;
     }
 
+    //en este metodo se realiza la consulta para verificar si el usuario existe / esta registrado
     @Override
     public boolean VerificarLogin(Usuario user) {
         String sql = "SELECT documento, contrasena FROM usuarios WHERE documento = ? AND contrasena = ?;";
 
         try {
+            
+//            se prepara la consulta con el prepareStatement
             con = cn.getConnection();
             ps = con.prepareStatement(sql); 
             ps.setLong(1, user.getDocumento());
@@ -311,9 +322,10 @@ public boolean addPerfil(Usuario user) {
         return false; // Si ocurre un error, se retorna false
     }
 
+    //este metodo es el de actualizar contraseña, solo el administrador puede hacerlo
     @Override
     public boolean actualizarContra(Usuario user) {
-        String sql = sql = "UPDATE usuarios SET contrasena = ? WHERE id = ?;";
+        String sql = "UPDATE usuarios SET contrasena = ? WHERE id = ?;";
         
         try {
             con = cn.getConnection();
@@ -321,7 +333,7 @@ public boolean addPerfil(Usuario user) {
 
             ps.setString(1, user.getContrasena());
             ps.setInt(2, user.getIdUsuario()); // Este es el ID del perfil
-
+            
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("El usuario fue actualizado exitosamente.");

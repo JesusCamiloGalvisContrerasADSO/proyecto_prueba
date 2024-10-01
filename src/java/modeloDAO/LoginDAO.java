@@ -20,6 +20,7 @@ public class LoginDAO implements login{
     ResultSet rs;
     Usuario user = new Usuario();
     
+    //aqui se maneja el crud del login
     @Override
     public boolean VerificarLogin(Usuario user) {
         String sql = "SELECT u.contrasena, u.rol_id, p.id AS id_perfil " +

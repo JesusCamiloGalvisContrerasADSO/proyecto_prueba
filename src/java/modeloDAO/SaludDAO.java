@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import modelo.Salud;
 
-
+//    aqui se manejan todos los metodos CRUD necesarios para poder manejar al la salud
+//de momento solo lista ya que es un dato fijo pero se deja abierto para poder permitir la escalabilidad
 public class SaludDAO implements salud{
 
     conexion cn = new conexion();
@@ -18,6 +19,7 @@ public class SaludDAO implements salud{
     PreparedStatement ps;
     ResultSet rs;
     
+    //listar me trae todos los datos necesarios para mandar a la vista
     @Override
     public List<Salud> listar() {
         List<Salud> list = new ArrayList<>();

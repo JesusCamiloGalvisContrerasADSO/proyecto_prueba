@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ControlDatosAdmin extends HttpServlet {
 
+    
+//    método generado por defecto en un servlet de Java llamado processRequest. 
+//    El método maneja tanto solicitudes HTTP GET como POST y genera una 
+//    respuesta HTML simple
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
