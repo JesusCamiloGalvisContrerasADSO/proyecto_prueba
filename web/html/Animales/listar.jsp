@@ -85,7 +85,7 @@
                     <table class="datos__persona datos__animal centrar--texto">
                       <thead>
                       <tr >
-                        <th></th>
+                        <th class="animal--movil "></th>
                         <th>Número animal</th>
                         <th class="animal--movil ">Raza</th>
                         <th class="animal--movil">Sexo/tipo</th>

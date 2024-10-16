@@ -147,4 +147,19 @@
 }
 .submenu-link--header:hover{
     background-color:var(--color--gris__medio);
+    
+}
+
+@media (max-width: 1300px){
+    .cards__Acciones{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media (max-width: 650px){
+
+    .cinta__Titulo{
+        display: none;
+    }
 }

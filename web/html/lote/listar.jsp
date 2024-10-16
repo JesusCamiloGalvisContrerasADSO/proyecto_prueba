@@ -9,14 +9,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lotes</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="stylesheet" href="css/style.css">
-  <script src="js/acciones/menu_desplegable.js"> </script>
-    </head>
+    <%@ include file="../../componentes/head.jsp" %>
     <body>
         
         <header class=" fondo_header">
@@ -36,6 +29,7 @@
             </div>
         </header>
        <main>
+        <form action="controlLote" method="POST">
             <!-- aquí determina qué es lo que se está viendo -->
             <section class="fondo__cinta">
 
@@ -54,19 +48,21 @@
                     <div class="menu">
                         <ul class="opciones__botones">
                             <li>
-                                <a href="controlLote?accion=add"><button class="opciones__botones--boton" ><i class="bi bi-plus"></i></button></a>
+                                <a href="controlLote?accion=add"><div class="opciones__botones--boton" ><i class="bi bi-plus"></i></div></a>
                             </li>
                             <li>
+                                
                                 <a href="ControlPapeLote?accion=cambiarVerdad" >
-                                <button class="opciones__botones--boton"><i class="bi bi-card-checklist"></i></button>
+                                <div class="opciones__botones--boton"><i class="bi bi-card-checklist"></i></div>
                                 </a>
                             </li>
                             <li>
                                 <!-- Mueve el formulario aquí y coloca el botón eliminar dentro del mismo -->
-                                <form action="controlLote" method="POST">
-                                    <button class=" opciones__botones--boton" type="submit" name="accion" value="cambiarFalse">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                                
+                                <button type="button" id="btn-mover-papelera" class="opciones__botones--boton">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                                <!-- <a class=" opciones__botones--boton" href="controlLote?accion=cambiarFalse"></a> -->
                                 
                             </li>
                             
@@ -87,45 +83,39 @@
             </section>
 
             <section>
-                <div>
-                    <!-- Formulario que contiene los checkboxes -->
-                    <% 
-                        LoteDAO dao = new LoteDAO();
-                        List<LoteM> lista = dao.listar();
-                        Iterator<LoteM> iter = lista.iterator();
-                        LoteM Tipo = null;
-                        while (iter.hasNext()) {
-                        Tipo = iter.next();
-                    %>
-                    <hr class="linea__datos">
-                    <div class="">
+                <div class="cajaLotes">
+
+                </div>
+            </section>
+        </form>
+        </main>
+        <template id="tb_lotes">
+            <hr class="linea__datos">
+                    <div>
                         <div class="container Datos__lote" >
                             <div class="Datos__lote--numero">
                                 <div class="num__lote">
                                     <% if (rol == 1) {%>
-                                    <input class="checkbox" type="checkbox" name="selectedLotes" value="<%= Tipo.getId() %>">
+                                    <input class="checkbox seleccion" type="checkbox" name="selectedLotes" >
                                     <% } %>
-                                    <a class="boton boton__lote" href="ControlAnimal?accion=listar&id=<%= Tipo.getId() %>&num=<%= Tipo.getNum() %>">Lote <%= Tipo.getNum() %></a>
+                                    <a class="boton boton__lote numLote" href="">Lote </a>
                                 </div>
                                 <div class="Datos__lote--texto">
-                                    <p class="Datos__lote--cantidad">Cantidad: <%= Tipo.getCantidad()%></p>
+                                    <p class="Datos__lote--cantidad cantidadAnimales">Cantidad: </p>
                                 </div>
                             </div>
                                 <%
                                     if (rol == 1) {
                                 %>
                             <div>
-                                <p><a class=" boton boton--editar" href="controlLote?accion=editar&id=<%= Tipo.getId() %>"><i class="bi bi-pencil"></i></a></p>
+                                <p><a class=" boton boton--editar editarLote" href=""><i class="bi bi-pencil"></i></a></p>
                                 <!--<p class="Datos__lote--texto Datos__lote--texto2">Última fecha de revisión: 12/05/2024</p>-->
                             </div>
                                 <%}%>
                         </div>
                     </div>
-                    <% } %>
-                    <hr class="linea__datos"> 
-                </div>
-                    
-            </section>
-        </main>
+        </template>
+        <script src="js/listarLotes.js" type="module"></script>
+        <script src="js/envioPape.js" type="module"></script>
     </body>
 </html>

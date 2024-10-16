@@ -39,26 +39,24 @@
             </section>
             
             <section>
-                <% 
-                    LoteDAO dao = new LoteDAO();
-                    int id = Integer.parseInt((String) request.getAttribute("idLote"));
-                    LoteM lote = dao.list(id);
-                %>
                 <div class="container tabla__listar">
-                    <form action="controlLote" method="POST">
+                    <form id="registro" >
                         <div class="alinear__Row">
                             <div class="alinear__colum">
-                            <label>Numero del lote:</label>
-                            <input class="input_ingresar input--editar" type="number" name="txtNum" value="<%=lote.getNum()%>" required=""><br>
+                                <label>Numero del lote:</label>
+                                <input  class="input_ingresar input--editar txtNum" type="number" name="txtNum" id="txtNum" required=""><br>
                             </div>
-                            <input type="hidden" name="txtid" value="<%=lote.getId()%>">
-                            <input type="hidden" name="txtEst" value="<%=lote.getEst()%>">
-                            <input class="boton boton--listar input--editar" type="submit" name="accion" value="Actualizar"><br>
+                            <input type="hidden" name="txtEst" id="txtEst">
+                            <button type="button" class="boton boton--listar input--editar" id="btnActualizar">Actualizar</button>
                         </div>
                     </form>
                 </div>
             </section>
         </main>
         <%@ include file="/componentes/error_ingreso.jsp" %>
+
+
+        <script src="js/editarLote.js" type="module"></script>
+    
 </body>
 </html>

@@ -1,3 +1,11 @@
+/**
+ * en este archivo se manejan las validaciones que tienen los formularios
+ * de ingreso y registro el aplicativo
+ * 
+ */
+
+
+//importaciones de modulos utilizados para validar
 import contrasena from "./modulos/modulo_contrasena.js";
 import is_valid from "./modulos/is_valid.js";
 // import validar from "./modulos/modulo_validar.js";
@@ -12,7 +20,7 @@ import { validarFormularioNumero, validarFormularioTelefono} from "./modulos/mod
 
 
 const $formulario = document.querySelector("#registro");
-
+//seleccion de todos los inputs
 const nombre = document.querySelector("#nombre");
 const apellido = document.querySelector("#apellido");
 const telefono = document.querySelector("#telefono");
@@ -27,7 +35,7 @@ const enviar = document.querySelector("#enviar");
 const tbody = document.querySelector("tbody");
 
 
-
+//funcion para validar todos los input que tengan required
 const validar = (event) =>{
      // Llamar a is_valid y obtener el resultado
     const esValido = is_valid(event, '#registro [required]');
@@ -38,14 +46,21 @@ const validar = (event) =>{
     }
 };
 
+// se utiliza el formulario capturado y se llama la funcion anterior
 $formulario.addEventListener("submit",validar) ;
 
+//verificamos que exista politicas
 if(politicas){
+    //colocamos el boton desactivado
 enviar.setAttribute('disabled', '');
 
 addEventListener("DOMContentLoaded", (event) => {
-
+    //le agregamos a politicas el evento change
+    //si esta seleccionado cambie, si hay algun cambio llame la funcion
     politicas.addEventListener("change", () => {
+        //verificamos que este seleccionado, dependiendo le agregamos 
+        //disabled o no, eso es para que no pueda enviar el formulario 
+        //si todo esta lleno
     if(politicas.checked ){
         enviar.removeAttribute("disabled","");
     }else{
@@ -55,7 +70,8 @@ addEventListener("DOMContentLoaded", (event) => {
 });
 }
 
-
+//se verifica si existe y si es correcto se llama la funcion remover
+// y se le pasa el argumento, esta funcion le coloca borde rojo(erro) verde(correcto)
 if(nombre){
 nombre.addEventListener("keyup", () => {
     remover(nombre);
@@ -74,37 +90,16 @@ telefono.addEventListener("keyup", () => {
 });
 }
 
-// function numero(event, docum) {
-//     if (event.keyCode < 48 || event.keyCode > 57) {
-        
-//         event.preventDefault(); // Esto evitará que se ingrese el valor
-//     }
-
-    
-//     if (docum.value.length < 6) {
-//         docum.classList.remove("correcto");
-//         docum.classList.add("error");
-//     } else if (docum.value.length > 9) {
-//         event.preventDefault(); // Esto evitará que se ingrese el valor
-//         docum.classList.remove("correcto");
-//         docum.classList.add("error");
-//     } else {
-//         docum.classList.remove("error");
-//         docum.classList.add("correcto");
-//     }
-    
-// }
-
 
 if (documento) {
     documento.addEventListener("keyup", () => {
         remover(documento);  // Asegúrate de que la función remover esté definida
     });
 
+    //despues de la validacion se pasa el evento, donde se valida los datos que se 
+    //pueden ingresar en los inputs
     documento.addEventListener("keypress", (event) => numero(event, documento));  // Usa 'keydown' o 'keypress' según la necesidad
-} else {
-    console.error("El elemento 'documento' no se encontró en el DOM");
-}
+} 
 
 if(telefono){
 telefono.addEventListener("keypress", (event) => numero(event, telefono));
@@ -149,12 +144,6 @@ if (email) {
     });
 }
 
-// if(documento){
-// // Agregar el event listener para la validación al enviar el formulario
-// $formulario.addEventListener('submit', (event) => {
-//     validarFormularioNumero(event, documento);
-// });
-// }
 
 if(telefono){
 // Agregar el event listener para la validación al enviar el formulario
@@ -162,6 +151,10 @@ $formulario.addEventListener('submit', (event) => {
     validarFormularioTelefono(event, telefono);
 });
 }
+
+//en estos dos cambia el evento ya que son campos de seleccion
+//se verifica que tengan alguno seleccioando, de lo contrario 
+//error
 
 if(tipo_Doc){
 tipo_Doc.addEventListener("change", (event) => {

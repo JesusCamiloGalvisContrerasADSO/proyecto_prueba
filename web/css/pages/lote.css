@@ -135,6 +135,10 @@
   border:solid 1px #adadad;
   background-color:var(--botones--interaccion) ;
   transition: 0.5s;
+  color: black;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .opciones__botones--boton:hover{
@@ -145,9 +149,13 @@
   display: none;
 }
 
+.cajaLotes{
+  padding: 0 8px;
+}
+
 @media (max-width: 768px){
   /* inicio con la @media de la vista lote  */
-  .cinta__logo, .opciones__botones, .Datos__lote--tipo{
+  .cinta__logo, .Datos__lote--tipo{
     display: none;
   }
   
@@ -163,7 +171,7 @@
 
 @media (max-width: 1310px){
   /* @media para movil de la vista animales  */
-  .opciones__botones--espacio, .animal--tablet{
+  .animal--tablet{
     display: none;
   }
   .lista{
@@ -175,11 +183,15 @@
 }
 
 @media (max-width: 680px){
-  .animal--movil, .opciones__buscador, .linea--celular{
+  .animal--movil, .opciones__buscador, .linea--celular, .cinta__Titulo{
     display: none;
   }
   .cinta__opciones--animal{
     gap: 10px;
+  }
+
+  .opciones__botones{
+    justify-content: center;
   }
 }
 

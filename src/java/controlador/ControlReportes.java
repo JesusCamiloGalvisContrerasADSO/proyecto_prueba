@@ -41,6 +41,7 @@ public class ControlReportes extends HttpServlet {
 //       que le manda el boton o enlace al que estamos dando click  
         String acceso = "";
         String action = request.getParameter("accion");
+        
         if(action.equalsIgnoreCase("listars")){
             acceso = listar;
             RequestDispatcher vista = request.getRequestDispatcher(acceso);

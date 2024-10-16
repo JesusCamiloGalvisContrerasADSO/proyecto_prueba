@@ -1,4 +1,9 @@
 
+/**
+ * funcion para que en el menu de navegacion pueda ser dinamico
+ * que al dar cilc en algun boton se despliegue el menu y tenga 
+ * los diferentes enlaces necesarios para el aplicativo
+ */
 
     // Función para inicializar los menús desplegables
     document.addEventListener('DOMContentLoaded', function() {

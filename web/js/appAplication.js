@@ -1,10 +1,12 @@
 import removerBorde from "./modulosAplication/removerBorders.js";
 import numero from "./modulos/modulo_numero.js";
 import validarSelec from "./modulos/modulo_Box.js";
+import removerBordeLote from "./modulosAplication/removerBordersLote.js";
 
 
 const $formulario = document.querySelector("#registro");
 const num = document.querySelector("#num");
+const numeroLote = document.querySelector(".txtNum");
 const letra = document.querySelector("#letra");
 const raza = document.querySelector("#Raza");
 const sexo = document.querySelector("#sexo");
@@ -22,6 +24,16 @@ if(num){
     });
 
     num.addEventListener("keypress", (event) => removerBorde(event, num));
+
+
+}
+if(numeroLote){
+
+    numeroLote.addEventListener("keyup", () => {
+        removerBordeLote(numeroLote);
+    });
+
+    numeroLote.addEventListener("keypress", (event) => removerBordeLote(event, numeroLote));
 
 
 }

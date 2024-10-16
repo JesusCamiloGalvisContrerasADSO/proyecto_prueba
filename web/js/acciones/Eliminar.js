@@ -1,3 +1,12 @@
+/**
+ * esto es una funcion de swit aletr, que con una libreria de la mano pueda 
+ * mostrar las alertas de una manera mas interactiva con el usuario
+ * se realiza un evento, que cargue el contenido antes de cargar el html
+ * despues un forEach para que le asigne la alerta al boton con la clase
+ * (".boton--eliminar") y se active al dar click sobre el boton
+ */
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // Selecciona todos los botones con la clase 'boton--eliminar'
     const botones = document.querySelectorAll(".boton--eliminar");
